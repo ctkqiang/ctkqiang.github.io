@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: johnmelodyme.github.io
+Token: 799a9ac936a935e00ed9d57326c3df0f34a63e6dbbd9b364ca5f362c0d52bb50
