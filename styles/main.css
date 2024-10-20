@@ -91,6 +91,23 @@ h1, h2 {
     font-family: 'Courier New', monospace;
 }
 
+.terminal-line {
+    margin: 5px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.terminal-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.warning {
+    color: #ff0;
+    font-weight: bold;
+}
+
 .profile-name {
     color: #fff;
     border-bottom: 2px solid #f00;
