@@ -25,7 +25,6 @@ body {
     transform: translate(-50%, -50%);
     width: 300px;
     height: 300px;
-    background: url('https://example.com/red-queen-hologram.png') no-repeat center center;
     background-size: contain;
     opacity: 0.7;
     animation: flicker 5s infinite alternate;
