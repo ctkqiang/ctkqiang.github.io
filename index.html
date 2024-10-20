@@ -6,6 +6,182 @@
     <title>Umbrella Corp: Cheng Tze Keong</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Umbrella_Corporation_logo.svg/640px-Umbrella_Corporation_logo.svg.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+    body {
+        background-color: #000;
+        color: #f00;
+        font-family: 'Orbitron', sans-serif;
+        padding: 20px;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .red-queen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: url('https://steamuserimages-a.akamaihd.net/ugc/2046357221769666387/C6C48D1EEC0412637F6D4970B5D639B7B0F14F6A/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .hologram {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        background-size: contain;
+        opacity: 0.7;
+        animation: flicker 5s infinite alternate;
+    }
+
+    @keyframes flicker {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 0.5; }
+    }
+
+    .container {
+        background-color: rgba(0, 0, 0, 0.8);
+        border: 2px solid #f00;
+        padding: 20px;
+        max-width: 800px;
+        margin: 20px auto;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 0 20px #f00;
+    }
+
+    .umbrella-logo {
+        width: 100px;
+        height: 100px;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Umbrella_Corporation_logo.svg/640px-Umbrella_Corporation_logo.svg.png') no-repeat center center;
+        background-size: contain;
+        margin: 0 auto 20px;
+    }
+
+    h1, h2 {
+        color: #f00;
+        text-transform: uppercase;
+        text-align: center;
+        text-shadow: 0 0 10px #f00;
+    }
+
+    .terminal {
+        background-color: #000;
+        border: 1px solid #f00;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-family: 'Courier New', monospace;
+    }
+
+    .profile-name {
+        color: #fff;
+        border-bottom: 2px solid #f00;
+        padding-bottom: 10px;
+    }
+
+    .status, .clearance {
+        color: #0f0;
+        font-weight: bold;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    li::before {
+        content: "> ";
+        color: #f00;
+    }
+
+    .skill-list, .specialization-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .warning {
+        color: #ff0;
+        font-weight: bold;
+        border: 1px solid #ff0;
+        padding: 10px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    a {
+        color: #0ff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .quote {
+        font-style: italic;
+        border-left: 3px solid #f00;
+        padding-left: 10px;
+        margin-top: 20px;
+        color: #fff;
+    }
+
+    .termination {
+        text-align: center;
+        color: #f00;
+        font-weight: bold;
+        margin-top: 20px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    .social-links {
+        background-color: #000;
+        border: 1px solid #f00;
+        padding: 15px;
+        margin: 20px 0;
+        font-family: 'Courier New', monospace;
+    }
+
+    .social-links p {
+        color: #0f0;
+        margin-bottom: 10px;
+    }
+
+    .terminal-link {
+        display: inline-block;
+        color: #f00;
+        text-decoration: none;
+        margin-right: 15px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .terminal-link::before {
+        content: '> ';
+        color: #0f0;
+    }
+
+    .terminal-link:hover {
+        color: #fff;
+        text-shadow: 0 0 5px #f00;
+    }
+
+    .terminal-link:active {
+        color: #ff0;
+    }
+
+    </style>
 </head>
 <body>
     <div class="red-queen">
