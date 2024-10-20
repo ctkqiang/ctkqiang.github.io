@@ -87,13 +87,7 @@
         // Try to play automatically
         playMusic();
 
-        // If autoplay is prevented, add a button to play music
-        if (music.paused) {
-            var playButton = document.createElement('button');
-            playButton.textContent = 'Play Music';
-            playButton.onclick = playMusic;
-            document.body.appendChild(playButton);
-        }
+
       });
 
     </script>
