@@ -86,9 +86,12 @@ h1, h2 {
 .terminal {
     background-color: #000;
     border: 1px solid #f00;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 20px;
     font-family: 'Courier New', monospace;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
 }
 
 .terminal-line {
@@ -96,11 +99,28 @@ h1, h2 {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .terminal-line.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 600px) {
+    .terminal {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .terminal-line {
+        font-size: 12px;
+        margin: 3px 0;
+    }
 }
 
 .warning {
