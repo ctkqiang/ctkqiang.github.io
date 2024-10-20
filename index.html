@@ -66,6 +66,36 @@
         </div>
 
         <p class="termination">[ACCESS TERMINATED]</p>
+
+        <audio id="backgroundMusic" loop>
+          <source src="assets/bg.mp3" type="audio/mpeg">
+        </audio>
     </div>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var music = document.getElementById('backgroundMusic');
+
+        // Function to play music
+        function playMusic() {
+            music.play().catch(function(error) {
+                console.log('Autoplay prevented: ' + error);
+            });
+        }
+
+        // Try to play automatically
+        playMusic();
+
+        // If autoplay is prevented, add a button to play music
+        if (music.paused) {
+            var playButton = document.createElement('button');
+            playButton.textContent = 'Play Music';
+            playButton.onclick = playMusic;
+            document.body.appendChild(playButton);
+        }
+      });
+
+    </script>
 </body>
 </html>
