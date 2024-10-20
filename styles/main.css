@@ -11,11 +11,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 150%;
+    height: 150vh; /* Use viewport height */
     z-index: -1;
-    background: url('https://steamuserimages-a.akamaihd.net/ugc/2046357221769666387/C6C48D1EEC0412637F6D4970B5D639B7B0F14F6A/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true') no-repeat center center fixed;
-    background-size: cover;
+    background: url('https://i.pinimg.com/564x/cc/71/8f/cc718f3e323a0fc5abdde91dc0c1caa5.jpg') no-repeat center center fixed;
+    object-fit: cover; /* Ensure the image covers the area */
+    object-position: center; /* Center the image */
 }
 
 .hologram {
@@ -65,7 +66,7 @@ body {
         transform: rotateY(180deg) scale(1.1);
     }
     100% {
-        transform: rotateY(360deg) scale(1);
+      transform: rotateY(360deg) scale(1);
     }
 }
 
@@ -74,6 +75,7 @@ body {
     50% { transform: scale(1.1) rotateY(180deg); }
     100% { transform: scale(1) rotateY(360deg); }
 }
+
 h1, h2 {
     color: #f00;
     text-transform: uppercase;
