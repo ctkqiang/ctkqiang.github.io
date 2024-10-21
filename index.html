@@ -74,7 +74,13 @@
 
         <p class="termination glitch" data-text="[SYSTEM BREACH DETECTED]">[SYSTEM BREACH DETECTED]</p>
 
-
+        <div class="user-terminal">
+            <div id="terminal-output"></div>
+            <div class="input-line">
+                <span class="prompt">umbrella@corp:~$</span>
+                <input type="text" id="terminal-input" autofocus>
+            </div>
+        </div>
     </div>
 
     <audio id="backgroundMusic" loop>
@@ -82,5 +88,8 @@
       >>> failed.
     </audio>
     <script src="scripts/main.js"></script>
+    <div id="jumpscare" class="jumpscare">
+        <img src="https://i.pinimg.com/564x/cc/71/8f/cc718f3e323a0fc5abdde91dc0c1caa5.jpg" alt="Red Queen">
+    </div>
 </body>
 </html>

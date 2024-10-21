@@ -304,3 +304,95 @@ a:hover {
 .terminal-link:hover {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
 }
+
+.user-terminal {
+    background-color: #000;
+    border: 1px solid #ff0000;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    margin-top: 20px;
+}
+
+#terminal-output {
+    color: #ff0000;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: #ff0000;
+    margin-right: 5px;
+}
+
+#terminal-input {
+    background-color: transparent;
+    border: none;
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    flex-grow: 1;
+    outline: none;
+}
+
+/* Add a red text shadow for a glowing effect */
+#terminal-output, .prompt, #terminal-input {
+    text-shadow: 0 0 5px #ff0000;
+}
+
+/* Style for user input in the output */
+#terminal-output div:nth-child(odd) {
+    color: #ff6666;
+}
+
+/* Scrollbar styling for webkit browsers */
+#terminal-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#terminal-output::-webkit-scrollbar-track {
+    background: #300;
+}
+
+#terminal-output::-webkit-scrollbar-thumb {
+    background: #900;
+}
+
+#terminal-output::-webkit-scrollbar-thumb:hover {
+    background: #f00;
+}
+
+
+.jumpscare {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+}
+
+.jumpscare img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jumpscare.active {
+    display: block;
+    animation: flicker 0.5s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
