@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('backgroundMusic');
     let hasScrolled = false;
 
+    audio.volume = 0.4;
+
     // Function to play audio
     function playAudio() {
         if (!hasScrolled) {
