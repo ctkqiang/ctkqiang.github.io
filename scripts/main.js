@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
     const jumpscareElement = document.getElementById('jumpscare');
-    const jumpscareSound = new Audio('path/to/jumpscare-sound.mp3'); // Add a scary sound effect
+    const jumpscareSound = new Audio('../assets/sf.mp3');
 
     terminalInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
