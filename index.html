@@ -78,28 +78,9 @@
     </div>
 
     <audio id="backgroundMusic" loop>
-      <source src="assets/bg.mp3" type="audio/mpeg">
+      <source src="assets/bg.mp3" type="audio/ogg">
+      >>> failed.
     </audio>
-
-    <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var music = document.getElementById('backgroundMusic');
-
-        // Function to play music
-        function playMusic() {
-            music.play().catch(function(error) {
-                console.log('Autoplay prevented: ' + error);
-            });
-        }
-
-        // Try to play automatically
-        playMusic();
-
-
-      });
-
-    </script>
     <script src="scripts/main.js"></script>
 </body>
 </html>

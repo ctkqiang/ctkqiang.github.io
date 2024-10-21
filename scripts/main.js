@@ -1,12 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const lines = document.querySelectorAll('.terminal-line');
-    let delay = 0;
-    const increment = 1000; // 1 second between each line
+    const audio = document.getElementById('backgroundMusic');
+    let hasScrolled = false;
 
-    lines.forEach((line, index) => {
-        setTimeout(() => {
-            line.classList.add('visible');
-        }, delay);
-        delay += increment;
-    });
+    // Function to play audio
+    function playAudio() {
+        if (!hasScrolled) {
+            audio.play().then(() => {
+                console.log("Audio started playing");
+                hasScrolled = true;
+            }).catch(error => {
+                console.log("Error playing audio:", error);
+            });
+        }
+    }
+
+    // Listen for scroll event
+    window.addEventListener('scroll', function() {
+        requestAnimationFrame(playAudio);
+    }, { passive: true });
+
+    // Optional: Add a small delay before trying to play
+    setTimeout(() => {
+        window.dispatchEvent(new Event('scroll'));
+    }, 1000);
 });
