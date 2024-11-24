@@ -3,93 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umbrella Corp: Cheng Tze Keong</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Umbrella_Corporation_logo.svg/640px-Umbrella_Corporation_logo.svg.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles/main.css">
+    <title>Cheng Tze Keong</title>
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-    <div class="red-queen">
-        <div class="hologram"></div>
-    </div>
-    <div class="container">
-        <div class="umbrella-logo"></div>
-        <h1>UMBRELLA CORPORATION</h1>
-        <h2>Secure Access Terminal</h2>
-
-        <div class="terminal">
-            <p class="terminal-line">>>> Initiating developer profile scan...</p>
-            <p class="terminal-line">>>> Accessing secure database...</p>
-            <p class="terminal-line">>>> Decrypting encrypted files...</p>
-            <p class="terminal-line">>>> Bypassing firewalls...</p>
-            <p class="terminal-line">>>> Retrieving classified information...</p>
-            <p class="terminal-line">>>> Compiling developer data...</p>
-            <p class="terminal-line">>>> Verifying security clearance...</p>
-            <p class="terminal-line">>>> Access granted. Developer profile unlocked.</p>
-            <p class="terminal-line warning">>>> WARNING: This information is highly classified. Unauthorized access will result in immediate termination.</p>
-        </div>
-
-        <h2 class="profile-name">DEVELOPER PROFILE: CHENG TZE KEONG</h2>
-        <p>>> Status: <span class="status">Active</span></p>
-        <p>>> Clearance Level: <span class="clearance">Alpha</span></p>
-
-        <h2>SKILL SETS:</h2>
-        <ul class="skill-list">
-            <li>Viral Programming: Flutter, Express.js, Android, iOS</li>
-            <li>Mutant Languages: Dart, JavaScript, Python, Ruby, Elixir, C/C++</li>
-            <li>Bio-Organic Frameworks: Ruby on Rails</li>
-            <li>Neural Network Manipulation: TensorFlow, PyTorch, scikit-learn</li>
-            <li>Genetic Algorithm Design</li>
-            <li>Quantum Computing</li>
-            <li>Blockchain Integration</li>
-            <li>AR/VR Development</li>
-        </ul>
-
-        <h2>SPECIALIZATIONS:</h2>
-        <ul class="specialization-list">
-            <li>T-Virus Frontend Architecture</li>
-            <li>G-Virus Backend Systems</li>
-            <li>Nemesis AI Research & Development</li>
-        </ul>
-
-        <p class="warning">WARNING: Subject demonstrates high aptitude across multiple disciplines.
-        Potential candidate for advanced Tyrant programming division.</p>
-
-        <p>CONTACT: <a href="mailto:johnmelodymel@qq.com">johnmelodymel@qq.com</a></p>
-        <div class="social-links">
-          <p>> Accessing social network nodes...</p>
-          <a href="https://www.facebook.com/ctkqiang" class="terminal-link">facebook</a>
-          <a href="https://www.twitter.com/ctkqiang" class="terminal-link">twitter</a>
-          <a href="https://www.instagram.com/ctkqiang" class="terminal-link">instagram</a>
-          <a href="https://www.github.com/ctkqiang" class="terminal-link">github</a>
-          <a href="https://www.linkedin.com/in/ctkqiang" class="terminal-link">linkedin</a>
-          <a href="https://wa.me/60137397193?text=[This%20is%20automated%20Message]%20.%20Hello%20John%20Melody%20.%20I%20had%20seen%20your%20Portfolio." class="terminal-link">whatsapp</a>
-          <a href="weixin://dl/chat?ctkqiang" class="terminal-link">wechat</a>
-        </div>
-
-        <div class="quote">
-            "The human mind is a dangerous plaything, Dr. Cheng.
-            Let's see what monsters you can create with code."
-            <br>- Red Queen
-        </div>
-
-        <p class="termination glitch" data-text="[SYSTEM BREACH DETECTED]">[SYSTEM BREACH DETECTED]</p>
-
-        <div class="user-terminal">
-            <div id="terminal-output"></div>
-            <div class="input-line">
-                <span class="prompt">umbrella@corp:~$</span>
-                <input type="text" id="terminal-input" autofocus>
-            </div>
+    <div id="content" role="main">
+        <h1 aria-label="Portfolio of Cheng Tze Keong">{'>'} Cheng Tze Keong</h1>
+        <p id="typewriter" aria-live="polite"></p>
+        <div class="social-links" aria-label="Social Media Links">
+            <a href="https://www.facebook.com/ctkqiang" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.twitter.com/ctkqiang" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://www.instagram.com/ctkqiang" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.github.com/ctkqiang" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/ctkqiang" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://wa.me/60137397193" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="weixin://dl/chat?ctkqiang" target="_blank" rel="noopener noreferrer">WeChat</a>
         </div>
     </div>
 
-    <audio id="backgroundMusic" loop>
-      <source src="assets/bg.mp3" type="audio/ogg">
-      >>> failed.
-    </audio>
-    <script src="scripts/main.js"></script>
-    <div id="jumpscare" class="jumpscare">
-        <img src="https://i.pinimg.com/564x/cc/71/8f/cc718f3e323a0fc5abdde91dc0c1caa5.jpg" alt="Red Queen">
-    </div>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        (() => {
+            const initScene = () => {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                return { scene, camera, renderer };
+            };
+
+            const createParticles = (scene) => {
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particlesCount = 5000;
+                const posArray = new Float32Array(particlesCount * 3);
+
+                // Particle position data
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 5;
+                }
+
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+                // Particle color array (changing colors)
+                const colorArray = [];
+                for (let i = 0; i < particlesCount; i++) {
+                    // Assign random colors from a palette (Purple, Yellow, White, Green, Blue)
+                    const color = new THREE.Color();
+                    color.setHSL(Math.random(), 0.8, 0.5);  // Random color in HSL
+                    colorArray.push(color.r, color.g, color.b);
+                }
+
+                particlesGeometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colorArray), 3));
+
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.005 * window.innerWidth / 1000,
+                    vertexColors: true, // Enable vertex colors
+                });
+
+                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particlesMesh);
+
+                return particlesMesh;
+            };
+
+            const addFloatingEffect = (particlesMesh) => {
+                const positions = particlesMesh.geometry.attributes.position.array;
+                const velocityArray = new Array(positions.length).fill(0).map(() => (Math.random() / 0.5) * 0.01);
+
+                return () => {
+                    for (let i = 0; i < positions.length; i += 30) {
+                        positions[i] += velocityArray[i];
+                        positions[i + 1] += velocityArray[i + 1];
+                        positions[i + 2] += velocityArray[i + 2];
+
+                        if (positions[i] > 5 || positions[i] < -5) velocityArray[i] *= -1;
+                        if (positions[i + 1] > 5 || positions[i + 1] < -5) velocityArray[i + 1] *= -1;
+                        if (positions[i + 2] > 5 || positions[i + 2] < -5) velocityArray[i + 2] *= -1;
+                    }
+                    particlesMesh.geometry.attributes.position.needsUpdate = true;
+                };
+            };
+
+            const initTypewriter = (text, elementId) => {
+                const element = document.getElementById(elementId);
+                let index = 0;
+
+                const type = () => {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, 50);
+                    }
+                };
+
+                type();
+            };
+
+            const animate = (scene, camera, renderer, particlesMesh, floatingEffect) => {
+                const render = () => {
+                    floatingEffect();
+                    particlesMesh.rotation.y += 0.001;
+
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(render);
+                };
+
+                render();
+            };
+
+            window.addEventListener('load', () => {
+                const { scene, camera, renderer } = initScene();
+                const particlesMesh = createParticles(scene);
+                const floatingEffect = addFloatingEffect(particlesMesh);
+
+                camera.position.z = 2;
+
+                initTypewriter("Senior Software Engineer | Data Scientist | Tech Enthusiast", "typewriter");
+                animate(scene, camera, renderer, particlesMesh, floatingEffect);
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    camera.updateProjectionMatrix();
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

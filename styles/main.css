@@ -1,398 +1,95 @@
+:root {
+  --bg-color: #f8f8ff; /* Pearl White */
+  --text-color: #ffffff; /* Purple */
+  --hover-bg: #ffb3d6; /* Yellow */
+  --hover-text: #ffffff; /* White */
+  --content-bg: rgba(0, 0, 0, 0.8); /* Semi-transparent Purple */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #000;
-    color: #f00;
-    font-family: 'Orbitron', sans-serif;
-    padding: 20px;
-    margin: 0;
-    overflow-x: hidden;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.red-queen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 150%;
-    height: 150vh; /* Use viewport height */
-    z-index: -1;
-    background: url('https://i.pinimg.com/564x/cc/71/8f/cc718f3e323a0fc5abdde91dc0c1caa5.jpg') no-repeat center center fixed;
-    object-fit: cover; /* Ensure the image covers the area */
-    object-position: center; /* Center the image */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-.hologram {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    background-size: contain;
-    opacity: 0.7;
-    animation: flicker 5s infinite alternate;
+#content {
+  position: absolute;
+  padding: 2rem;
+  max-width: 600px;
+  background: var(--content-bg);
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes flicker {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 0.5; }
-}
-
-.container {
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 2px solid #f00;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 20px #f00;
-}
-
-.umbrella-logo {
-    width: 100px;
-    height: 100px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Umbrella_Corporation_logo.svg/640px-Umbrella_Corporation_logo.svg.png') no-repeat center center;
-    background-size: contain;
-    margin: 0 auto 20px;
-    animation:
-        flip360 4s linear infinite,
-        pulse 2s infinite;
-}
-
-@keyframes flip360 {
-    0% {
-        transform: rotateY(0deg) scale(1);
-    }
-    50% {
-        transform: rotateY(180deg) scale(1.1);
-    }
-    100% {
-      transform: rotateY(360deg) scale(1);
-    }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1) rotateY(0deg); }
-    50% { transform: scale(1.1) rotateY(180deg); }
-    100% { transform: scale(1) rotateY(360deg); }
-}
-
-h1, h2 {
-    color: #f00;
-    text-transform: uppercase;
-    text-align: center;
-    text-shadow: 0 0 10px #f00;
-}
-
-.terminal {
-    background-color: #000;
-    border: 1px solid #f00;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-family: 'Courier New', monospace;
-}
-
-.profile-name {
-    color: #fff;
-    border-bottom: 2px solid #f00;
-    padding-bottom: 10px;
-}
-
-.status, .clearance {
-    color: #0f0;
-    font-weight: bold;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-li::before {
-    content: "> ";
-    color: #f00;
-}
-
-.skill-list, .specialization-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-}
-
-.warning {
-    color: #ff0;
-    font-weight: bold;
-    border: 1px solid #ff0;
-    padding: 10px;
-    margin: 20px 0;
-    text-align: center;
-}
-
-a {
-    color: #0ff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.quote {
-    font-style: italic;
-    border-left: 3px solid #f00;
-    padding-left: 10px;
-    margin-top: 20px;
-    color: #fff;
-}
-
-.termination {
-    text-align: center;
-    color: #f00;
-    font-weight: bold;
-    margin-top: 20px;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+h1 {
+  font-size: 2rem;
+  animation: scaleUp 2s infinite alternate;
+  color: var(--hover-bg);
 }
 
 .social-links {
-    background-color: #000;
-    border: 1px solid #f00;
-    padding: 15px;
-    margin: 20px 0;
-    font-family: 'Courier New', monospace;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.social-links p {
-    color: #0f0;
-    margin-bottom: 10px;
+.social-links a {
+  color: var(--hover-bg);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--hover-bg);
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
-.terminal-link {
-    display: inline-block;
-    color: #f00;
-    text-decoration: none;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.social-links a:hover,
+.social-links a:focus {
+  background: var(--hover-bg);
+  color: var(--hover-text);
+  transform: scale(1.1);
 }
 
-.terminal-link::before {
-    content: '> ';
-    color: #0f0;
+#typewriter {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
 }
 
-.terminal-link:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #f00;
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 
-.terminal-link:active {
-    color: #ff0;
-}
-
-.terminal p {
-    overflow: hidden;
-    border-right: .15em solid #f00;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: .15em;
-    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #f00; }
-}
-
-/* Glitch effect for the profile name */
-.profile-name {
-    position: relative;
-    animation: glitch 1s linear infinite;
-}
-
-@keyframes glitch {
-    2%, 64% { transform: translate(2px, 0) skew(0deg); }
-    4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-    62% { transform: translate(0, 0) skew(5deg); }
-}
-
-.profile-name:before,
-.profile-name:after {
-    content: attr(title);
-    position: absolute;
-    left: 0;
-}
-
-.profile-name:before {
-    animation: glitchTop 1s linear infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-}
-
-@keyframes glitchTop {
-    2%, 64% { transform: translate(2px, -2px); }
-    4%, 60% { transform: translate(-2px, 2px); }
-    62% { transform: translate(13px, -1px) skew(-13deg); }
-}
-
-.profile-name:after {
-    animation: glitchBottom 1.5s linear infinite;
-    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-}
-
-@keyframes glitchBottom {
-    2%, 64% { transform: translate(-2px, 0); }
-    4%, 60% { transform: translate(-2px, 0); }
-    62% { transform: translate(-22px, 5px) skew(21deg); }
-}
-
-/* Scanning effect for skill list */
-.skill-list li, .specialization-list li {
-    position: relative;
-    overflow: hidden;
-}
-
-.skill-list li::after, .specialization-list li::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(30deg);
-    animation: scan 3s linear infinite;
-}
-
-@keyframes scan {
-    0% { transform: rotate(30deg) translateY(200%); }
-    100% { transform: rotate(30deg) translateY(-200%); }
-}
-
-/* Floating animation for the warning box */
-.warning {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-/* Neon glow effect for links */
-.terminal-link {
-    text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 15px #f00, 0 0 20px #f00;
-    transition: all 0.3s ease;
-}
-
-.terminal-link:hover {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
-}
-
-.user-terminal {
-    background-color: #000;
-    border: 1px solid #ff0000;
-    padding: 10px;
-    font-family: 'Courier New', monospace;
-    margin-top: 20px;
-}
-
-#terminal-output {
-    color: #ff0000;
-    min-height: 100px;
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-}
-
-.input-line {
-    display: flex;
-    align-items: center;
-}
-
-.prompt {
-    color: #ff0000;
-    margin-right: 5px;
-}
-
-#terminal-input {
-    background-color: transparent;
-    border: none;
-    color: #ff0000;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    flex-grow: 1;
-    outline: none;
-}
-
-/* Add a red text shadow for a glowing effect */
-#terminal-output, .prompt, #terminal-input {
-    text-shadow: 0 0 5px #ff0000;
-}
-
-/* Style for user input in the output */
-#terminal-output div:nth-child(odd) {
-    color: #ff6666;
-}
-
-/* Scrollbar styling for webkit browsers */
-#terminal-output::-webkit-scrollbar {
-    width: 8px;
-}
-
-#terminal-output::-webkit-scrollbar-track {
-    background: #300;
-}
-
-#terminal-output::-webkit-scrollbar-thumb {
-    background: #900;
-}
-
-#terminal-output::-webkit-scrollbar-thumb:hover {
-    background: #f00;
-}
-
-
-.jumpscare {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    z-index: 9999;
-}
-
-.jumpscare img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.jumpscare.active {
-    display: block;
-    animation: flicker 0.5s infinite;
-}
-
-@keyframes flicker {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
