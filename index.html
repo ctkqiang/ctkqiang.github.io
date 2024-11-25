@@ -133,6 +133,7 @@
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         async function fetchProjects() {
+            const key = 'Bearer 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';
             try {
                 const query = `
                 query {
@@ -158,7 +159,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': '',
+                        'Authorization': key,
                     },
                     body: JSON.stringify({ query }),
                 });
