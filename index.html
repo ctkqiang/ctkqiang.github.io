@@ -1,349 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="Portfolio of Cheng Tze Keong - Senior Software Engineer, Data Scientist, and Tech Enthusiast">
-      <meta name="author" content="Cheng Tze Keong">
-      <meta name="keywords" content="Software Engineer, Data Scientist, Machine Learning, AI, Web Development, Portfolio">
-      
-      <!-- Open Graph Tags for Social Media Sharing -->
-      <meta property="og:type" content="website">
-      <meta property="og:title" content="Cheng Tze Keong | Software Engineer & Data Scientist">
-      <meta property="og:description" content="Explore the portfolio of Cheng Tze Keong, showcasing expertise in software engineering, data science, and technology innovation.">
-      <meta property="og:url" content="/">
-      
-      <!-- Twitter Card Tags for Twitter Sharing -->
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Cheng Tze Keong | Software Engineer & Data Scientist">
-      <meta name="twitter:description" content="Explore the portfolio of Cheng Tze Keong, showcasing expertise in software engineering, data science, and technology innovation.">
-      
-      <title>Cheng Tze Keong | Software Engineer & Data Scientist</title>
-      <link rel="stylesheet" href="./styles/main.css">
-   </head>
-   <body>
-      <div id="canvas-container"></div>
-      <div id="content" role="main">
-      <h1 aria-label="Portfolio of Cheng Tze Keong">{'>'} Cheng Tze Keong 钟智强</h1>
-      <p id="typewriter" aria-live="polite"></p>
-      <p id="typewriter-zh" aria-live="polite"></p>
-      <div class="skills">
-         <div class="skill-category">
-            <h2>Technical Skills</h2>
-            <div class="skill-list">
-               <span class="skill-tag">Flutter</span>
-               <span class="skill-tag">Java</span>
-               <span class="skill-tag">Python</span>
-               <span class="skill-tag">Arduino</span>
-               <span class="skill-tag">TypeScript</span>
-               <span class="skill-tag">Kotlin</span>
-               <span class="skill-tag">Tensorflow</span>
-               <span class="skill-tag">PyTorch</span>
-               <span class="skill-tag">SwiftUI</span>
-               <span class="skill-tag">Node.js</span>
-               <span class="skill-tag">PHP</span>
-               <span class="skill-tag">Erlang</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Cheng Tze Keong - Senior Software Engineer, Data Scientist, and Tech Enthusiast">
+    <meta name="author" content="Cheng Tze Keong">
+    <meta name="keywords" content="Software Engineer, Data Scientist, Machine Learning, AI, Web Development, Portfolio">
+    <title>Cheng Tze Keong | Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #e83b3b;
+            --secondary-color: #2d3436;
+            --background-color: #0a0a0a;
+            --text-color: #f0f0f0;
+            --card-bg: rgba(26, 26, 26, 0.95);
+            --highlight-color: rgba(232, 59, 59, 0.2);
+            --transition: 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--highlight-color);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: var(--background-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #f0f0f0, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 2rem 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--highlight-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card h3 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill {
+            background: var(--card-bg);
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--highlight-color);
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--highlight-color);
+        }
+
+        .project-card a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card a:hover {
+            background: var(--text-color);
+            color: var(--primary-color);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card a svg {
+            margin-left: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Cheng Tze Keong</h1>
+            <p>Senior Software Engineer & Data Scientist</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/ctkqiang" target="_blank">LinkedIn</a>
+               <a href="https://github.com/ctkqiang" target="_blank">GitHub</a>
+               <a href="mailto:johnmelodymel@qq.com">Email</a>
+               <a href="https://wa.me/60137397193" target="_blank">WhatsApp</a>
+               <a href="https://raw.githubusercontent.com/ctkqiang/ctkqiang/refs/heads/main/assets/IMG_9245.JPG" target="_blank">WeChat</a>
+               <br />
+               <a href="https://discord.com/invite/6nZ2QJEvAF" target="_blank">Discord</a>
+               <a href="https://line.me/ti/p/RN0P0mtQOg" target="_blank">Line</a>
+               <a href="https://mastodon.social/@ctkqiang" target="_blank">Mastodon</a>
+               <a href="https://substack.com/@ctkqiang" target="_blank">Substack</a>
+               <a href="https://stackoverflow.com/users/10758321/钟智强" target="_blank">Stack Overflow</a>
             </div>
-         </div>
-         <div class="skill-category">
-            <h2>Expertise</h2>
-            <div class="skill-list">
-               <span class="skill-tag">Software Engineering</span>
-               <span class="skill-tag">Data Science</span>
-               <span class="skill-tag">Mobile Development</span>
-               <span class="skill-tag">Machine Learning</span>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>I am a passionate software engineer and data scientist with expertise in machine learning, web development, and mobile application design. My projects focus on creating innovative solutions that make a difference.</p>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Pawlyn Pet</h3>
+                    <p>A digital platform for managing pet clinics and hospitals.</p>
+                    <a href="https://pawlynpet.vercel.app" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>TGIGS</h3>
+                    <p>A freelance platform leveraging the TON blockchain.</p>
+                    <a href="https://man-xing-telegram.vercel.app/" target="_blank">View Project</a>
+                </div>
+                <!-- Repository Projects -->
+                <div class="project-card">
+                    <h3>Luhn Algorithm</h3>
+                    <p>Used for verifying identity codes like credit card numbers.</p>
+                    <a href="https://github.com/ctkqiang/LuhnAlgorithm.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>HuaTuoAI</h3>
+                    <p>AI-based system for classifying traditional Chinese medicine images.</p>
+                    <a href="https://github.com/ctkqiang/HuaTuoAI.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>YanJiAI</h3>
+                    <p>AI system for facial recognition and object detection for safety monitoring.</p>
+                    <a href="https://github.com/ctkqiang/YanJiAI.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>AEDPenang</h3>
+                    <p>Platform for locating AED devices during emergencies.</p>
+                    <a href="https://aedpenang.onrender.com/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>MobileAppAnalyzer</h3>
+                    <p>Ruby script for analyzing mobile application files (APK & IPA).</p>
+                    <a href="https://github.com/ctkqiang/MobileAppAnalyzer.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>KeyloggerZGHK</h3>
+                    <p>Python script for capturing keyboard inputs and sending to a server.</p>
+                    <a href="https://github.com/ctkqiang/KeyloggerZGHK.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>MaybankAutomation</h3>
+                    <p>Automation script for querying bank info and executing transactions.</p>
+                    <a href="https://github.com/ctkqiang/MaybankAutomation" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>StockAnalysis</h3>
+                    <p>Jupyter Notebook for analyzing stock market data and providing insights.</p>
+                    <a href="https://github.com/ctkqiang/StockAnalysis.git" target="_blank">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3>RFID</h3>
+                    <p>Project for reading and verifying RFID cards using an RC522 module.</p>
+                    <a href="https://github.com/ctkqiang/RFID.git" target="_blank">View Repository</a>
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="social-links" aria-label="Social Media Links">
-         <a href="https://www.linkedin.com/in/ctkqiang" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-               <rect x="2" y="9" width="4" height="12"></rect>
-               <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-            LinkedIn 
-         </a>
-         <a href="https://www.github.com/ctkqiang" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            GitHub 
-         </a>
-         <a href="mailto:johnmelodymel@qq.com">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-               <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            Email 
-         </a>
-         <a href="https://wa.me/60137397193" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-            WhatsApp 
-         </a>
-         <a href="https://raw.githubusercontent.com/ctkqiang/ctkqiang/refs/heads/main/assets/IMG_9245.JPG" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M9 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
-               <path d="M21 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
-               <path d="M3 12h6" />
-               <path d="M15 12h6" />
-            </svg>
-            WeChat 
-         </a>
-         <a href="https://discord.com/invite/6nZ2QJEvAF" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-               <path d="M8 10h.01" />
-               <path d="M16 10h.01" />
-            </svg>
-            Discord 
-         </a>
-         <a href="https://line.me/ti/p/RN0P0mtQOg" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-               <path d="M8 10h8" />
-               <path d="M8 14h8" />
-            </svg>
-            Line 
-         </a>
-         <a href="https://mastodon.social/@ctkqiang" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-               <path d="M8 8v6" />
-               <path d="M12 8v6" />
-               <path d="M16 8v6" />
-            </svg>
-            Mastodon 
-         </a>
-         <a href="https://substack.com/@ctkqiang" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M4 6h16" />
-               <path d="M4 12h16" />
-               <path d="M4 18h12" />
-            </svg>
-            Substack 
-         </a>
-         <a href="https://stackoverflow.com/users/10758321/钟智强" target="_blank" rel="noopener noreferrer">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-               <path d="M4 17v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1" />
-               <path d="M8 12h8" />
-               <path d="M8 8h8" />
-               <path d="M8 16h8" />
-            </svg>
-            Stack Overflow 
-         </a>
-      </div>
-      <div class="projects"></div>
-      <h2>Featured Projects</h2>
-         <div class="featured-project">
-            <h3>Pawlyn Pet - 宠物医疗数字平台</h3>
-            <p>宠物医院和诊所的数字化管理平台。这个创新的系统简化了宠物医疗服务的各个环节，从预约管理到病历记录，让兽医和宠物主人都能享受到更便捷的服务体验。系统集成了智能预约、电子病历、用药提醒等功能，为宠物医疗保健带来了全新的数字化解决方案。</p>
+        </section>
 
-            <div class="embed-container">
-               <iframe src="https://pawlynpet.vercel.app/" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-               <div class="embed-overlay">
-                     <a href="https://pawlynpet.vercel.app/" target="_blank" class="visit-button">View Project</a>
-               </div>
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+               <div class="skill">Python</div>
+               <div class="skill">Java</div>
+               <div class="skill">Flutter</div>
+               <div class="skill">Arduino</div>
+               <div class="skill">TypeScript</div>
+               <div class="skill">Kotlin</div>
+               <div class="skill">TensorFlow</div>
+               <div class="skill">PyTorch</div>
+               <div class="skill">SwiftUI</div>
+               <div class="skill">Node.js</div>
+               <div class="skill">PHP</div>
+               <div class="skill">Erlang</div>
+               <div class="skill">JavaScript</div>
+               <div class="skill">C++</div>
+               <div class="skill">Go</div>
+               <div class="skill">Ruby</div>
+               <div class="skill">Rust</div>
+               <div class="skill">Docker</div>
+               <div class="skill">Kubernetes</div>
+               <div class="skill">GraphQL</div>
+               <div class="skill">SQL</div>
+               <div class="skill">NoSQL</div>
+               <div class="skill">AWS</div>
+               <div class="skill">Azure</div>
+               <div class="skill">GCP</div>
+               <div class="skill">Deep Learning</div>
+               <div class="skill">Blockchain</div>
+               <div class="skill">Web3</div>
+               <div class="skill">Tencent</div>
+               <div class="skill">微信小程序</div>
+               <div class="skill">Vue.js</div>
+               <div class="skill">抖音小程序</div>
             </div>
-      </div>
+        </section>
 
-      <div class="divider" style="padding-bottom:10px;"></div>
-      
-      <div class="featured-project">
-            <h3>TGIGS</h3>
-            <p>TGIGS is a dynamic platform tailored for freelancers, leveraging the power of the TON blockchain. This platform enables users to post freelance gigs, engage in seamless transactions, and track their job progress—all backed by the TON cryptocurrency. With an intuitive interface, clients and freelancers can easily connect, negotiate, and execute projects. Built to empower the gig economy, TGIGS ensures secure and transparent payments, offering a modern, decentralized approach to freelance work.</p>
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>If you'd like to collaborate or learn more about my work, feel free to reach out via email or connect on LinkedIn!</p>
+        </section>
+    </main>
 
-            <div class="embed-container">
-               <iframe src="https://man-xing-telegram.vercel.app/" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-               <div class="embed-overlay">
-                     <a href="https://man-xing-telegram.vercel.app/" target="_blank" class="visit-button">View Project</a>
-               </div>
-            </div>
-      </div>
-
-      <div class="divider" style="padding-bottom:10px;"></div>
-
-      <div class="projects">
-         
-         <div class="project-grid" id="project-grid">
-            <!-- Projects will be populated by JavaScript -->
-         </div>
-      </div>
-      
-      <script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-      <!-- Axios CDN -->
-      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <!-- Cheerio CDN -->
-      <script src="https://cdn.jsdelivr.net/npm/cheerio@1.0.0-rc.12/dist/cheerio.min.js"></script>
-      <script>
-         (() => {
-           const initTypewriter = (text, elementId) => {
-             const element = document.getElementById(elementId);
-             let index = 0;
-             const type = () => {
-               if (index < text.length) {
-                 element.textContent += text.charAt(index);
-                 index++;
-                 setTimeout(type, 50);
-               }
-             };
-             type();
-             // Call the function to display repositories
-             displayRepositories();
-           };
-
-           const initScene = () => {
-                if (!window.THREE) {
-                    console.warn('THREE.js not loaded yet, retrying...');
-                    setTimeout(initScene, 100);
-                    return;
-                }
-
-                // Retrieve the primary color from CSS
-                const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
-
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                const renderer = new THREE.WebGLRenderer({
-                    antialias: true,
-                    alpha: true
-                });
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setClearColor(0x000000, 0);
-
-                document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-                // Particle setup
-                const particlesGeometry = new THREE.BufferGeometry();
-                const particlesCount = 2000;
-                const posArray = new Float32Array(particlesCount * 3);
-                for (let i = 0; i < particlesCount * 3; i++) {
-                    posArray[i] = (Math.random() - 0.5) * 5;
-                }
-                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-                // Set the particle color to match the CSS primary color
-                const particlesMaterial = new THREE.PointsMaterial({
-                    size: 0.01 * window.innerWidth / 1000,  // Dynamically adjust the particle size based on the viewport
-                    color: primaryColor,  // Use primary color from CSS
-                    transparent: true,
-                    opacity: 0.8,
-                });
-
-                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-                scene.add(particlesMesh);
-
-                camera.position.z = 2;
-
-                const animate = () => {
-                    requestAnimationFrame(animate);
-                    particlesMesh.rotation.y += 0.0005;
-                    renderer.render(scene, camera);
-                };
-
-                animate();
-
-                window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                });
-
-                return {
-                    scene,
-                    camera,
-                    renderer,
-                    particlesMesh
-                };
-                };
-
-
-           // List of repositories with their details
-           const repositories = [{
-             name: "LuhnAlgorithm",
-             description: "Luhn算法，也被称为Mod 10算法，是数据完整性验证领域的一个重要基石。它主要用于验证各种身份编码，如信用卡号码、IMEI码，甚至包括加拿大社会保险号码，其重要性超越了其简单性。 Luhn算法的优雅之处在于其系统化的方法，用于确认身份代码的真实性。这个历史悠久的技术利用模数算术的威力创建校验和，经得起审查，实现了无缝的身份编码验证。",
-             url: "https://github.com/ctkqiang/LuhnAlgorithm.git",
-             stars: 2, 
-             forks: 5 
-           }, {
-             name: "HuaTuoAI",
-             description: "基于人工智能的中医图像分类, 本存储库包含一个针对中药的人工智能图像分类系统。该项目的目标是通过输入图像准确识别和分类各种中草药和成分。这个仓库里藏着一个神秘的宝藏——一个专为中药打造的人工智能图像分类系统。就像一位奇幻冒险中的导航者，这个项目的任务是将神秘的图像输入，变幻成准确的中草药和成分分类。让我们一起揭开这个数字世界中的迷雾，解锁植物的秘密，用技术和智能描绘中药的未知领域。",
-             url: "https://github.com/ctkqiang/HuaTuoAI.git",
-             stars: 90,
-             forks: 15
-           }, {
-             name: "YanJiAI",
-             description: "眼迹AI是一套集成了面部识别和物体检测功能的系统，它能够实时监控环境并在检测到危险情况时自动向服务器发送警报，从而迅速通知当局应对风险。对于司机而言，时常面临乘客可能实施抢劫或其他不当行为的潜在威胁。通过在您的手机或行车记录仪上部署这一AI系统，不仅能提供即时的安全保障，还能在关键时刻为您节省宝贵的求助时间，确保您能在第一时间获得必要的帮助。",
-             url: "https://github.com/ctkqiang/YanJiAI.git",
-             stars: 10,
-             forks: 1
-           }, {
-             name: "AEDPenang",
-             description: "槟城 AED 智能定位平台，让急救设备不再遥不可及。通过精准定位技术，为您导航至最近的自动体外除颤器，提供实时位置、现场照片和周边地标。我们相信，在紧急时刻，每一秒都是生命的希望。这是一个用科技守护城市安全的公益项目。",
-             url: "https://aedpenang.onrender.com/",
-             stars: 1,
-             forks: 0
-           }, {
-             name: "MobileAppAnalyzer",
-             description: "这个仓库包含了一个用于分析移动应用文件（APK 和 IPA）的 Ruby 脚本。它能够提取这些文件并运行诸如 APKTool 和 JADX（用于 Android）以及 class-dump（用于 iOS）等工具进行分析。该脚本支持对 Android APK 文件和 iOS IPA 文件进行详细分析，包括提取和解析文件内容，并能自动下载和安装所需的工具。",
-             url: "https://github.com/ctkqiang/MobileAppAnalyzer.git",
-             stars: 4,
-             forks: 1
-           }, {
-             name: "KeyloggerZGHK",
-             description: "This repository contains a Python script for a basic keylogger. A keylogger is a type of surveillance software that monitors and records keystrokes made by a user on a computer. This script specifically captures keyboard inputs and sends the recorded data to a remote server via a webhook URL.",
-             url: "https://github.com/ctkqiang/KeyloggerZGHK.git ",
-             stars: 40,
-             forks: 5
-           }, {
-             name: "MaybankAutomation",
-             description: "体验金融的未来，感受 《自动化马来亚银行》。这个创新的自动化程序为您提供了轻松的方式来查询银行信息，包括账户余额、账户类型，甚至能够执行安全的银行转账。而且，您还可以以优雅的PDF格式下载交易记录，财务管理从未如此轻松。告别繁琐的流程，迎接更智能、高效的金融管理方式。",
-             url: "https://github.com/ctkqiang/MaybankAutomation",
-             stars: 90,
-             forks: 25
-           }, {
-             name: "StockAnalysis",
-             description: "StockAnalysis is a Jupyter Notebook project designed to analyze stock market data. This project aims to provide insights and visualizations to help users make informed investment decisions.",
-             url: "https://github.com/ctkqiang/StockAnalysis.git",
-             stars: 70,
-             forks: 18
-           }, {
-             name: "RFID",
-             description: "该项目演示了如何使用 RFID RC522 模块读取和验证 RFID 卡片。系统旨在允许访问特定的 RFID 标签（卡片），同时根据预定义的标签 ID 拒绝其他卡片的访问。RFID 项目",
-             url: "https://github.com/ctkqiang/RFID.git",
-             stars: 30,
-             forks: 4
-           }];
-           // Function to display repositories
-           function displayRepositories() {
-             const projectGrid = document.getElementById('project-grid');
-             projectGrid.innerHTML = ''; // Clear any previous content
-             repositories.forEach((repo) => {
-               const projectCard = document.createElement('div');
-               projectCard.className = 'project-card';
-               projectCard.innerHTML = `
-             
-         <h3>${repo.name}</h3>
-         <p>${repo.description}</p>
-         <div class="project-links">
-         	<a href="${repo.url}" target="_blank" rel="noopener noreferrer">View Project</a>
-         </div>
-         <div class="tech-tags">
-         	<span class="tech-tag">⭐ ${repo.stars}</span>
-         	<span class="tech-tag">🍴 ${repo.forks}</span>
-         </div>`;
-               projectGrid.appendChild(projectCard);
-             });
-           }
-           window.addEventListener('load', () => {
-             initTypewriter("Senior Software Engineer | Data Scientist | Tech Enthusiast | 高级软件工程师 | 数据科学家 | 科技爱好者", "typewriter");
-             initScene();
-             // Call the function to display repositories
-             displayRepositories();
-           });
-         })();
-      </script>
-   </body>
+    <footer>
+        <p>&copy; 2025 Cheng Tze Keong. All rights reserved.</p>
+    </footer>
+</body>
 </html>
