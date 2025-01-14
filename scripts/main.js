@@ -1,79 +1,84 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const audio = document.getElementById('backgroundMusic');
-    let hasScrolled = false;
-
-    audio.volume = 0.4;
-
-    // Function to play audio
-    function playAudio() {
-        if (!hasScrolled) {
-            audio.play().then(() => {
-                console.log("Audio started playing");
-                hasScrolled = true;
-            }).catch(error => {
-                console.log("Error playing audio:", error);
-            });
-        }
-    }
-
-    // Listen for scroll event
-    window.addEventListener('scroll', function() {
-        requestAnimationFrame(playAudio);
-    }, { passive: true });
-
-    // Optional: Add a small delay before trying to play
-    setTimeout(() => {
-        window.dispatchEvent(new Event('scroll'));
-    }, 1000);
+// Intersection Observer for animations
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  {
+    threshold: 0.1
+  }
+);
+document.querySelectorAll(".section").forEach(section => {
+  observer.observe(section);
+});
+// Cursor glow effect
+const cursorGlow = document.querySelector(".cursor-glow");
+let mouseX = 0,
+  mouseY = 0;
+let cursorX = 0,
+  cursorY = 0;
+document.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorGlow.style.opacity = "1";
 });
 
+function animate() {
+  const dx = mouseX - cursorX;
+  const dy = mouseY - cursorY;
+  cursorX += dx * 0.1;
+  cursorY += dy * 0.1;
+  cursorGlow.style.left = cursorX + "px";
+  cursorGlow.style.top = cursorY + "px";
+  requestAnimationFrame(animate);
+}
+animate();
+// Navbar hide on scroll
+let lastScroll = 0;
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    header.classList.add("hidden");
+  } else {
+    header.classList.remove("hidden");
+  }
+  lastScroll = currentScroll;
+});
+// Particle effect
+function createParticle(x, y) {
+  const particle = document.createElement("div");
+  particle.className = "particle";
+  particle.style.left = x + "px";
+  particle.style.top = y + "px";
+  particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+  particle.style.width = "4px";
+  particle.style.height = "4px";
+  particle.style.borderRadius = "50%";
+  document.body.appendChild(particle);
+  const angle = Math.random() * Math.PI * 2;
+  const velocity = 1 + Math.random() * 2;
+  const dx = Math.cos(angle) * velocity;
+  const dy = Math.sin(angle) * velocity;
+  let opacity = 1;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const terminalInput = document.getElementById('terminal-input');
-    const terminalOutput = document.getElementById('terminal-output');
-    const jumpscareElement = document.getElementById('jumpscare');
-    const jumpscareSound = new Audio('../assets/sf.mp3');
-
-    terminalInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            const command = this.value.trim().toLowerCase();
-            let output = '';
-
-            switch(command) {
-                case 'help':
-                    output = 'Available commands: help, ls, pwd, whoami, clear, queen';
-                    break;
-                case 'ls':
-                    output = 'classified_files  research_data  t-virus  g-virus  nemesis_ai';
-                    break;
-                case 'pwd':
-                    output = '/home/umbrella/secret_lab';
-                    break;
-                case 'whoami':
-                    output = 'CHENG TZE KEONG - Senior Software Engineer';
-                    break;
-                case 'clear':
-                    terminalOutput.innerHTML = '';
-                    this.value = '';
-                    return;
-                case 'queen':
-                    triggerJumpscare();
-                    return;
-                default:
-                    output = `Command not found: ${command}. Type 'help' for available commands.`;
-            }
-
-            terminalOutput.innerHTML += `<div>umbrella@redqueen:~$ ${command}</div><div>${output}</div>`;
-            this.value = '';
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-        }
-    });
-
-    function triggerJumpscare() {
-        jumpscareSound.play();
-        jumpscareElement.classList.add('active');
-        setTimeout(() => {
-            jumpscareElement.classList.remove('active');
-        }, 3000); // Remove jumpscare after 3 seconds
+  function animate() {
+    particle.style.transform = `translate(${dx * 10}px, ${dy * 10}px)`;
+    particle.style.opacity = opacity;
+    opacity -= 0.02;
+    if (opacity > 0) {
+      requestAnimationFrame(animate);
+    } else {
+      particle.remove();
     }
+  }
+  requestAnimationFrame(animate);
+}
+document.addEventListener("mousemove", e => {
+  if (Math.random() < 0.1) {
+    createParticle(e.clientX, e.clientY);
+  }
 });

@@ -1,334 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Cheng Tze Keong - Senior Software Engineer, Data Scientist, and Tech Enthusiast">
-    <meta name="author" content="Cheng Tze Keong">
-    <meta name="keywords" content="Software Engineer, Data Scientist, Machine Learning, AI, Web Development, Portfolio">
-    <title>Cheng Tze Keong | Portfolio</title>
-    <style>
-        :root {
-            --primary-color: #e83b3b;
-            --secondary-color: #2d3436;
-            --background-color: #0a0a0a;
-            --text-color: #f0f0f0;
-            --card-bg: rgba(26, 26, 26, 0.95);
-            --highlight-color: rgba(232, 59, 59, 0.2);
-            --transition: 0.3s ease;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Meta description for SEO in both English and Chinese -->
+        <meta name="description" content="Cheng Tze Keong's portfolio. Senior Software Engineer, Data Scientist, and Tech Enthusiast. Projects in machine learning, AI, web development, and more.">
+        <meta name="description" lang="zh" content="钟智强的个人网站。资深软件工程师，数据科学家及技术爱好者。包括机器学习、人工智能、网页开发等项目。">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+        <!-- Meta author and keywords -->
+        <meta name="author" content="Cheng Tze Keong">
+        <meta name="keywords" content="Software Engineer, Data Scientist, Machine Learning, AI, Web Development, Portfolio">
+        <meta name="keywords" lang="zh" content="软件工程师, 数据科学家, 机器学习, 人工智能, 网页开发, 个人网站">
 
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--highlight-color);
-        }
+        <!-- Hreflang tags for multi-language SEO -->
+        <link rel="alternate" href="https://ctkqiang.github.io/" hreflang="en" />
+        <link rel="alternate" href="https://ctkqiang.github.io/" hreflang="zh" />
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
+        <!-- Title tag for SEO -->
+        <title>Cheng Tze Keong | Portfolio</title>
+        <title lang="zh">钟智强 | 个人网站</title>
 
-        .nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            margin: 0 1rem;
-            position: relative;
-        }
+        <!-- Open Graph meta tags for social media sharing -->
+        <meta property="og:title" content="Cheng Tze Keong | Portfolio">
+        <meta property="og:title" content="钟智强 | 个人网站" lang="zh">
+        <meta property="og:description" content="Cheng Tze Keong's portfolio. Senior Software Engineer, Data Scientist, and Tech Enthusiast.">
+        <meta property="og:description" content="钟智强的个人网站。资深软件工程师，数据科学家及技术爱好者。" lang="zh">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://ctkqiang.github.io/">
 
-        .nav a:hover {
-            color: var(--primary-color);
-        }
+        <!-- Favicon and touch icons -->
+        <link rel="icon" href="./assets/metadata.png" type="image/x-icon">
+        <link rel="apple-touch-icon" href="./assets/metadata.png">
 
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            background: var(--background-color);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(45deg, #f0f0f0, var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin: 1rem 0;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary-color);
-            border-radius: 4px;
-            text-decoration: none;
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: var(--background-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .section {
-            margin: 2rem 0;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: var(--transition);
-            border: 1px solid var(--highlight-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card h3 {
-            margin: 0 0 1rem 0;
-            color: var(--primary-color);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill {
-            background: var(--card-bg);
-            padding: 0.75rem;
-            border-radius: 6px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--highlight-color);
-        }
-
-        .skill:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-color);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--highlight-color);
-        }
-
-        .project-card a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            background: var(--primary-color);
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-card a:hover {
-            background: var(--text-color);
-            color: var(--primary-color);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card a svg {
-            margin-left: 0.5rem;
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-    </style>
-</head>
-<body>
-    <header>
-        <div class="nav">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div>
-            <h1>Cheng Tze Keong</h1>
-            <p>Senior Software Engineer & Data Scientist</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/ctkqiang" target="_blank">LinkedIn</a>
-               <a href="https://github.com/ctkqiang" target="_blank">GitHub</a>
-               <a href="mailto:johnmelodymel@qq.com">Email</a>
-               <a href="https://wa.me/60137397193" target="_blank">WhatsApp</a>
-               <a href="https://raw.githubusercontent.com/ctkqiang/ctkqiang/refs/heads/main/assets/IMG_9245.JPG" target="_blank">WeChat</a>
-               <br />
-               <a href="https://discord.com/invite/6nZ2QJEvAF" target="_blank">Discord</a>
-               <a href="https://line.me/ti/p/RN0P0mtQOg" target="_blank">Line</a>
-               <a href="https://mastodon.social/@ctkqiang" target="_blank">Mastodon</a>
-               <a href="https://substack.com/@ctkqiang" target="_blank">Substack</a>
-               <a href="https://stackoverflow.com/users/10758321/钟智强" target="_blank">Stack Overflow</a>
+        <!-- Stylesheets and other resources -->
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <header>
+            <div class="nav">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <!-- <select id="language-selector">
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+                <option value="de">Deutsch</option>
+                <option value="ru">Русский</option>
+                <option value="fr">Français</option>
+                </select> -->
             </div>
-        </div>
-    </section>
+        </header>
+        <section class="hero">
+            <div>
+                <h1>Cheng Tze Keong</h1>
+                <p>Senior Software Engineer & Data Scientist</p>
+                <div class="social-links" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://linkedin.com/in/ctkqiang" target="_blank">LinkedIn</a>
+                <a href="https://github.com/ctkqiang" target="_blank">GitHub</a>
+                <a href="mailto:johnmelodymel@qq.com">Email</a>
+                <a href="https://wa.me/60137397193" target="_blank">WhatsApp</a>
+                <a href="https://raw.githubusercontent.com/ctkqiang/ctkqiang/refs/heads/main/assets/IMG_9245.JPG" target="_blank">WeChat</a>
+                <a href="https://discord.com/invite/6nZ2QJEvAF" target="_blank">Discord</a>
+                <a href="https://line.me/ti/p/RN0P0mtQOg" target="_blank">Line</a>
+                <a href="https://mastodon.social/@ctkqiang" target="_blank">Mastodon</a>
+                <a href="https://substack.com/@ctkqiang" target="_blank">Substack</a>
+                <a href="https://stackoverflow.com/users/10758321/钟智强" target="_blank">Stack Overflow</a>
+                </div>
+            </div>
+        </section>
 
-    <main class="container">
+        <main class="container">
         <section id="about" class="section">
             <h2>About Me</h2>
             <p>I am a passionate software engineer and data scientist with expertise in machine learning, web development, and mobile application design. My projects focus on creating innovative solutions that make a difference.</p>
         </section>
-
         <section id="projects" class="section">
             <h2>Featured Projects</h2>
             <div class="project-grid">
-                <div class="project-card">
-                    <h3>Pawlyn Pet</h3>
-                    <p>A digital platform for managing pet clinics and hospitals.</p>
-                    <a href="https://pawlynpet.vercel.app" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>TGIGS</h3>
-                    <p>A freelance platform leveraging the TON blockchain.</p>
-                    <a href="https://man-xing-telegram.vercel.app/" target="_blank">View Project</a>
-                </div>
-                <!-- Repository Projects -->
-                <div class="project-card">
-                    <h3>Luhn Algorithm</h3>
-                    <p>Used for verifying identity codes like credit card numbers.</p>
-                    <a href="https://github.com/ctkqiang/LuhnAlgorithm.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>HuaTuoAI</h3>
-                    <p>AI-based system for classifying traditional Chinese medicine images.</p>
-                    <a href="https://github.com/ctkqiang/HuaTuoAI.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>YanJiAI</h3>
-                    <p>AI system for facial recognition and object detection for safety monitoring.</p>
-                    <a href="https://github.com/ctkqiang/YanJiAI.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>AEDPenang</h3>
-                    <p>Platform for locating AED devices during emergencies.</p>
-                    <a href="https://aedpenang.onrender.com/" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>MobileAppAnalyzer</h3>
-                    <p>Ruby script for analyzing mobile application files (APK & IPA).</p>
-                    <a href="https://github.com/ctkqiang/MobileAppAnalyzer.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>KeyloggerZGHK</h3>
-                    <p>Python script for capturing keyboard inputs and sending to a server.</p>
-                    <a href="https://github.com/ctkqiang/KeyloggerZGHK.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>MaybankAutomation</h3>
-                    <p>Automation script for querying bank info and executing transactions.</p>
-                    <a href="https://github.com/ctkqiang/MaybankAutomation" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>StockAnalysis</h3>
-                    <p>Jupyter Notebook for analyzing stock market data and providing insights.</p>
-                    <a href="https://github.com/ctkqiang/StockAnalysis.git" target="_blank">View Repository</a>
-                </div>
-                <div class="project-card">
-                    <h3>RFID</h3>
-                    <p>Project for reading and verifying RFID cards using an RC522 module.</p>
-                    <a href="https://github.com/ctkqiang/RFID.git" target="_blank">View Repository</a>
-                </div>
+            <div class="project-card">
+                <h3>Pawlyn Pet</h3>
+                <p>A digital platform for managing pet clinics and hospitals.</p>
+                <a class="view-repo-link" href="https://pawlynpet.vercel.app" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>TGIGS</h3>
+                <p>A freelance platform leveraging the TON blockchain.</p>
+                <a class="view-repo-link" href="https://man-xing-telegram.vercel.app/" target="_blank">View Project</a>
+            </div>
+            <!-- Repository Projects -->
+            <div class="project-card">
+                <h3>Luhn Algorithm</h3>
+                <p>Used for verifying identity codes like credit card numbers.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/LuhnAlgorithm.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>HuaTuoAI</h3>
+                <p>AI-based system for classifying traditional Chinese medicine images.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/HuaTuoAI.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>YanJiAI</h3>
+                <p>AI system for facial recognition and object detection for safety monitoring.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/YanJiAI.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>AEDPenang</h3>
+                <p>Platform for locating AED devices during emergencies.</p>
+                <a class="view-repo-link" href="https://aedpenang.onrender.com/" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>MobileAppAnalyzer</h3>
+                <p>Ruby script for analyzing mobile application files (APK & IPA).</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/MobileAppAnalyzer.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>KeyloggerZGHK</h3>
+                <p>Python script for capturing keyboard inputs and sending to a server.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/KeyloggerZGHK.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>MaybankAutomation</h3>
+                <p>Automation script for querying bank info and executing transactions.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/MaybankAutomation" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>StockAnalysis</h3>
+                <p>Jupyter Notebook for analyzing stock market data and providing insights.</p>
+                <a class="view-repo-link" href="https://github.com/ctkqiang/StockAnalysis.git" target="_blank">View Repository</a>
+            </div>
+            <div class="project-card">
+                <h3>RFID</h3>
+                <p>Project for reading and verifying RFID cards using an RC522 module.</p>
+                <a class="view-repo-link"  href="https://github.com/ctkqiang/RFID.git" target="_blank">View Repository</a>
+            </div>
             </div>
         </section>
-
+        <div class="cursor-glow">
+            <div class="skill">Hire Me?</div>
+        </div>
         <section id="skills" class="section">
             <h2>Skills</h2>
             <div class="skills-grid">
-               <div class="skill">Python</div>
-               <div class="skill">Java</div>
-               <div class="skill">Flutter</div>
-               <div class="skill">Arduino</div>
-               <div class="skill">TypeScript</div>
-               <div class="skill">Kotlin</div>
-               <div class="skill">TensorFlow</div>
-               <div class="skill">PyTorch</div>
-               <div class="skill">SwiftUI</div>
-               <div class="skill">Node.js</div>
-               <div class="skill">PHP</div>
-               <div class="skill">Erlang</div>
-               <div class="skill">JavaScript</div>
-               <div class="skill">C++</div>
-               <div class="skill">Go</div>
-               <div class="skill">Ruby</div>
-               <div class="skill">Rust</div>
-               <div class="skill">Docker</div>
-               <div class="skill">Kubernetes</div>
-               <div class="skill">GraphQL</div>
-               <div class="skill">SQL</div>
-               <div class="skill">NoSQL</div>
-               <div class="skill">AWS</div>
-               <div class="skill">Azure</div>
-               <div class="skill">GCP</div>
-               <div class="skill">Deep Learning</div>
-               <div class="skill">Blockchain</div>
-               <div class="skill">Web3</div>
-               <div class="skill">Tencent</div>
-               <div class="skill">微信小程序</div>
-               <div class="skill">Vue.js</div>
-               <div class="skill">抖音小程序</div>
+            <div class="skill">Python</div>
+            <div class="skill">Java</div>
+            <div class="skill">Flutter</div>
+            <div class="skill">Arduino</div>
+            <div class="skill">TypeScript</div>
+            <div class="skill">Kotlin</div>
+            <div class="skill">TensorFlow</div>
+            <div class="skill">PyTorch</div>
+            <div class="skill">SwiftUI</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">PHP</div>
+            <div class="skill">Erlang</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">C++</div>
+            <div class="skill">Go</div>
+            <div class="skill">Ruby</div>
+            <div class="skill">Rust</div>
+            <div class="skill">Docker</div>
+            <div class="skill">Kubernetes</div>
+            <div class="skill">GraphQL</div>
+            <div class="skill">SQL</div>
+            <div class="skill">NoSQL</div>
+            <div class="skill">AWS</div>
+            <div class="skill">Azure</div>
+            <div class="skill">GCP</div>
+            <div class="skill">Deep Learning</div>
+            <div class="skill">Blockchain</div>
+            <div class="skill">Web3</div>
+            <div class="skill">Tencent</div>
+            <div class="skill">微信小程序</div>
+            <div class="skill">Vue.js</div>
+            <div class="skill">抖音小程序</div>
             </div>
         </section>
-
+        <section id="testimonials" class="section">
+            <h2>What My Customers Say</h2>
+            <div class="project-grid">
+            <div class="testimonial">
+                <p>"Cheng's dedication and expertise exceeded all my expectations. He solved a problem I had been struggling with for months."</p>
+                <span>- Annika Vogel, Germany</span>
+            </div>
+            <div class="testimonial">
+                <p>"Quick, efficient, and always professional. I highly recommend his services to anyone in need of a reliable developer."</p>
+                <span>- Liang Xiu, China</span>
+            </div>
+            <div class="testimonial">
+                <p>"Cheng provided excellent guidance and delivered exactly what I needed. I couldn't be happier with the results."</p>
+                <span>- Aiman Farid, Malaysia</span>
+            </div>
+            <div class="testimonial">
+                <p>"Working with Cheng was a pleasure. His attention to detail and creative problem-solving made all the difference."</p>
+                <span>- Grace Chou , Singapore</span>
+            </div>
+            <div class="testimonial">
+                <p>"Cheng transformed our ideas into reality with his expert skills and insight. Highly recommended!"</p>
+                <span>- Victor Leung, Hong Kong</span>
+            </div>
+            <div class="testimonial">
+                <p>"I appreciate Cheng’s patience and ability to explain complex concepts in a way that was easy to understand."</p>
+                <span>- Matthias Breuer, Germany</span>
+            </div>
+            <div class="testimonial">
+                <p>"He exceeded all expectations, delivering quality work on time. I will definitely work with him again."</p>
+                <span>- Chen Mei-Yun, China</span>
+            </div>
+            <div class="testimonial">
+                <p>"Cheng is the kind of developer you can trust to get the job done right the first time. Fantastic experience."</p>
+                <span>- Roshan Kumar, Malaysia</span>
+            </div>
+            </div>
+        </section>
+        <!-- <section id="blog" class="section"><h2>Blog</h2><p>Visit my blog for more insights and articles:</p><a href="https://johnmelodyme.wordpress.com/" target="_blank">Go to Blog</a></section> -->
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>If you'd like to collaborate or learn more about my work, feel free to reach out via email or connect on LinkedIn!</p>
         </section>
     </main>
 
+    <script src="./scripts/main.js"></script>
+    
     <footer>
-        <p>&copy; 2025 Cheng Tze Keong. All rights reserved.</p>
+      <p>&copy; 2025 Cheng Tze Keong. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
