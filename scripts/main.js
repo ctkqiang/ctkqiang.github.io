@@ -111,3 +111,28 @@ document.addEventListener("DOMContentLoaded", function() {
   // Set initial resume link based on default language
   updateResumeLink(languageSelector.value);
 });
+
+// Mobile menu functionality
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const navContainer = document.querySelector(".nav-container");
+
+mobileMenuToggle.addEventListener("click", () => {
+  mobileMenuToggle.classList.toggle("active");
+  navContainer.classList.toggle("active");
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenuToggle.classList.remove("active");
+    navContainer.classList.remove("active");
+  });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", e => {
+  if (!e.target.closest(".nav") && navContainer.classList.contains("active")) {
+    mobileMenuToggle.classList.remove("active");
+    navContainer.classList.remove("active");
+  }
+});
