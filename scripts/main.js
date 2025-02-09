@@ -7,35 +7,13 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.1
-  }
+  { threshold: 0.1 }
 );
+
 document.querySelectorAll(".section").forEach(section => {
   observer.observe(section);
 });
-// Cursor glow effect
-const cursorGlow = document.querySelector(".cursor-glow");
-let mouseX = 0,
-  mouseY = 0;
-let cursorX = 0,
-  cursorY = 0;
-document.addEventListener("mousemove", e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursorGlow.style.opacity = "1";
-});
 
-function animate() {
-  const dx = mouseX - cursorX;
-  const dy = mouseY - cursorY;
-  cursorX += dx * 0.1;
-  cursorY += dy * 0.1;
-  cursorGlow.style.left = cursorX + "px";
-  cursorGlow.style.top = cursorY + "px";
-  requestAnimationFrame(animate);
-}
-animate();
 // Navbar hide on scroll
 let lastScroll = 0;
 const header = document.querySelector("header");
@@ -48,37 +26,88 @@ window.addEventListener("scroll", () => {
   }
   lastScroll = currentScroll;
 });
-// Particle effect
-function createParticle(x, y) {
-  const particle = document.createElement("div");
-  particle.className = "particle";
-  particle.style.left = x + "px";
-  particle.style.top = y + "px";
-  particle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-  particle.style.width = "4px";
-  particle.style.height = "4px";
-  particle.style.borderRadius = "50%";
-  document.body.appendChild(particle);
-  const angle = Math.random() * Math.PI * 2;
-  const velocity = 1 + Math.random() * 2;
-  const dx = Math.cos(angle) * velocity;
-  const dy = Math.sin(angle) * velocity;
-  let opacity = 1;
 
-  function animate() {
-    particle.style.transform = `translate(${dx * 10}px, ${dy * 10}px)`;
-    particle.style.opacity = opacity;
-    opacity -= 0.02;
-    if (opacity > 0) {
-      requestAnimationFrame(animate);
-    } else {
-      particle.remove();
+// Language switching logic
+function updateContent(language) {
+  // Update HTML lang attribute
+  document.documentElement.lang = language;
+
+  // Update all translatable elements
+  document
+    .querySelectorAll("[data-lang-en], [data-lang-zh]")
+    .forEach(element => {
+      const content = element.getAttribute(`data-lang-${language}`);
+      if (!content) return;
+
+      if (element.tagName === "META") {
+        element.setAttribute("content", content);
+      } else if (element.tagName === "TITLE") {
+        document.title = content;
+      } else if (element.tagName === "A" && element.id === "resume-button") {
+        const resumePaths = {
+          en: "./assets/Cheng_Tze_Keong_Resume.pdf",
+          zh: "./assets/高级全栈开发工程师_钟智强.pdf"
+        };
+        element.href = resumePaths[language];
+        element.querySelector("span:last-child").textContent = content;
+      } else {
+        element.textContent = content;
+      }
+    });
+
+  // Store the selected language
+  localStorage.setItem("preferred-language", language);
+}
+
+// Initialize language settings
+function initializeLanguage() {
+  const languageSelector = document.getElementById("language-selector");
+  if (!languageSelector) return;
+
+  // Get preferred language
+  const savedLanguage = localStorage.getItem("preferred-language");
+  const browserLanguage = navigator.language.toLowerCase().startsWith("zh")
+    ? "zh"
+    : "en";
+  const defaultLanguage = savedLanguage || browserLanguage;
+
+  // Set initial language
+  languageSelector.value = defaultLanguage;
+  updateContent(defaultLanguage);
+
+  // Add change event listener
+  languageSelector.addEventListener("change", e => {
+    updateContent(e.target.value);
+  });
+}
+
+// Wait for DOM to be fully loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeLanguage);
+} else {
+  initializeLanguage();
+}
+// 在语言切换函数中添加
+document.addEventListener("DOMContentLoaded", function() {
+  const languageSelector = document.getElementById("language-selector");
+  const resumeButton = document.getElementById("resume-button");
+
+  // Function to update resume link based on selected language
+  function updateResumeLink(language) {
+    if (resumeButton) {
+      const resumePath =
+        language === "zh"
+          ? resumeButton.getAttribute("data-zh-resume")
+          : resumeButton.getAttribute("data-en-resume");
+      resumeButton.href = resumePath;
     }
   }
-  requestAnimationFrame(animate);
-}
-document.addEventListener("mousemove", e => {
-  if (Math.random() < 0.1) {
-    createParticle(e.clientX, e.clientY);
-  }
+
+  // Update resume link when language changes
+  languageSelector.addEventListener("change", function(e) {
+    updateResumeLink(e.target.value);
+  });
+
+  // Set initial resume link based on default language
+  updateResumeLink(languageSelector.value);
 });
