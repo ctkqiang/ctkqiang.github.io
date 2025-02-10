@@ -76,9 +76,66 @@ function initializeLanguage() {
   updateContent(defaultLanguage);
 
   // Add change event listener
-  languageSelector.addEventListener("change", e => {
-    updateContent(e.target.value);
-  });
+  document
+    .getElementById("language-selector")
+    .addEventListener("change", function(e) {
+      const selectedLang = e.target.value;
+
+      if (selectedLang === "ja") {
+        document.body.innerHTML = `
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                text-align: center;
+                padding: 20px;
+            ">
+                <img src="./assets/466814271_940006101310145_6152385849733212408_n.jpg" 
+                     alt="Logo" 
+                     style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 20px;">
+                <h1 style="color: #333; margin-bottom: 15px; font-size: 28px;">申し訳ありません</h1>
+                <p style="color: #666; margin-bottom: 20px; font-size: 16px;">日本語版は現在準備中です。</p>
+                <p style="color: #888; margin-bottom: 30px; font-size: 14px;">Please check back later or select another language.</p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="?" style="
+                        text-decoration: none;
+                        color: #fff;
+                        background-color: #007bff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        transition: background-color 0.3s;
+                        font-size: 14px;
+                    ">← ホームに戻る</a>
+                    <a href="mailto:johnmelodymel@qq.com" style="
+                        text-decoration: none;
+                        color: #007bff;
+                        border: 1px solid #007bff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        transition: all 0.3s;
+                        font-size: 14px;
+                    ">お問い合わせ</a>
+                </div>
+            </div>
+        `;
+        return;
+      }
+
+      // Regular language switching logic for other languages
+      document.querySelectorAll("[data-lang-en]").forEach(element => {
+        const content = element.getAttribute(`data-lang-${selectedLang}`);
+        if (content) {
+          if (element.tagName === "META") {
+            element.setAttribute("content", content);
+          } else {
+            element.textContent = content;
+          }
+        }
+      });
+    });
 }
 
 // Wait for DOM to be fully loaded

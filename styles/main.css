@@ -14,7 +14,7 @@
 
   /* Effects */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --glow: 0 0 10px rgba(255, 102, 0, 0.3);
+  --glow: 0 0 10px rgba(255, 102, 0, 1);
   --glass-effect: rgba(255, 255, 255, 0.1);
   --glass-blur: blur(10px);
 
@@ -50,13 +50,22 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   overflow-x: hidden;
-  background-image: url('./assets/nezha_bg.jpg');
-  background-size: cover;
-  background-attachment: fixed;
   min-height: 100vh;
+  position: relative;
 }
 
-/* Header & Navigation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/bg.png') no-repeat center center / cover;
+  opacity: 0.2;
+  z-index: -1;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -382,7 +391,154 @@ nav {
   box-shadow: 0 5px 15px rgba(255, 102, 0, 0.5);
 }
 
-/* Animations */
+/* Enhanced Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+/* Apply animations to elements */
+.avatar {
+  animation: float 6s ease-in-out infinite;
+}
+
+.skill {
+  animation: slideIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.skill:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.skill:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.skill:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.skill:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.skill:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.skill:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.skill:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.skill:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.skill:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.skill:nth-child(10) {
+  animation-delay: 1s;
+}
+
+.project-card {
+  animation: slideIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.project-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.project-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.project-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.project-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.project-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.social-link {
+  animation: rotateIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.social-link:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.social-link:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.social-link:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.social-link:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.social-link:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.skill i {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .skill,
+  .project-card,
+  .social-link,
+  .skill i {
+    animation: none;
+  }
+}
+
 @keyframes glow {
   from {
     text-shadow: 0 0 5px rgba(255, 102, 0, 0.2);
@@ -597,28 +753,85 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: var(--spacing-sm);
+  gap: 0.8rem;
+  padding: var(--spacing-md);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   transition: all var(--transition);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--flame-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .skill i {
-  font-size: 2rem;
-  color: var(--primary-color);
+  font-size: 2.8rem;
   transition: all var(--transition);
+  position: relative;
+  z-index: 2;
+}
+
+.skill span {
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
 }
 
 .skill:hover {
-  transform: translateY(-3px);
-  background: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: var(--glow);
 }
 
-.skill:hover i,
-.skill:hover span {
-  color: var(--background-color);
+.skill:hover::before {
+  opacity: 0.1;
+}
+
+.skill:hover i {
+  transform: scale(1.1);
+}
+
+/* Override specific Devicon colors */
+.devicon-python-original {
+  color: #3776ab;
+}
+.devicon-java-original {
+  color: #ea2d2e;
+}
+.devicon-javascript-original {
+  color: #f7df1e;
+}
+.devicon-typescript-original {
+  color: #007acc;
+}
+.devicon-kotlin-original {
+  color: #7f52ff;
+}
+.devicon-cplusplus-original {
+  color: #00599c;
+}
+.devicon-go-original {
+  color: #00add8;
+}
+.devicon-ruby-original {
+  color: #cc342d;
+}
+.devicon-elixir-original {
+  color: #4b275f;
+}
+.devicon-rust-original {
+  color: #000000;
 }
 
 @media (max-width: 768px) {
