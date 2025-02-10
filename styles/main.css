@@ -377,6 +377,9 @@ nav {
 
 /* Resume Button */
 .resume-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
   background: linear-gradient(135deg, var(--primary-color), var(--flame-color));
   color: var(--background-color);
   font-weight: 600;
@@ -384,6 +387,7 @@ nav {
   border-radius: var(--radius-md);
   box-shadow: var(--glow);
   transition: all var(--transition);
+  text-decoration: none;
 }
 
 .resume-button:hover {
@@ -391,6 +395,9 @@ nav {
   box-shadow: 0 5px 15px rgba(255, 102, 0, 0.5);
 }
 
+.resume-icon {
+  font-size: 1.2rem;
+}
 /* Enhanced Animations */
 @keyframes float {
   0% {
