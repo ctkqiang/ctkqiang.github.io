@@ -4,6 +4,27 @@ const servicePrices = {
     title: {
       en: "Web Scraping & Crawling",
       zh: "网页抓取和爬虫"
+    },
+    features: {
+      basic: {
+        en: [
+          "Single website scraping",
+          "Basic data extraction",
+          "CSV export",
+          "1 week support"
+        ],
+        zh: ["单个网站抓取", "基础数据提取", "CSV导出", "1周技术支持"]
+      },
+      dev: {
+        en: [
+          "Multiple websites",
+          "Advanced data parsing",
+          "Multiple export formats",
+          "API integration",
+          "1 month support"
+        ],
+        zh: ["多个网站抓取", "高级数据解析", "多种导出格式", "API集成", "1个月技术支持"]
+      }
     }
   },
   "ai-model": {
@@ -11,6 +32,27 @@ const servicePrices = {
     title: {
       en: "AI Model Development",
       zh: "AI模型开发"
+    },
+    features: {
+      basic: {
+        en: [
+          "Basic model training",
+          "Single task solution",
+          "Standard accuracy",
+          "Basic documentation"
+        ],
+        zh: ["基础模型训练", "单一任务解决方案", "标准精度", "基础文档"]
+      },
+      dev: {
+        en: [
+          "Custom model architecture",
+          "Multi-task solution",
+          "High accuracy",
+          "Model optimization",
+          "Comprehensive documentation"
+        ],
+        zh: ["自定义模型架构", "多任务解决方案", "高精度", "模型优化", "完整文档"]
+      }
     }
   },
   "mobile-app": {
@@ -18,6 +60,27 @@ const servicePrices = {
     title: {
       en: "Mobile App Development",
       zh: "移动应用开发"
+    },
+    features: {
+      basic: {
+        en: [
+          "Single platform (Android/iOS)",
+          "Basic UI/UX",
+          "Essential features",
+          "3 months support"
+        ],
+        zh: ["单平台(安卓/苹果)", "基础界面设计", "基本功能", "3个月技术支持"]
+      },
+      dev: {
+        en: [
+          "Cross-platform",
+          "Premium UI/UX",
+          "Advanced features",
+          "API integration",
+          "6 months support"
+        ],
+        zh: ["跨平台开发", "高级界面设计", "进阶功能", "API集成", "6个月技术支持"]
+      }
     }
   },
   website: {
@@ -25,6 +88,28 @@ const servicePrices = {
     title: {
       en: "Website Development",
       zh: "网站开发"
+    },
+    features: {
+      basic: {
+        en: [
+          "5 pages",
+          "Responsive design",
+          "Basic SEO",
+          "Contact form",
+          "2 months support"
+        ],
+        zh: ["5个页面", "响应式设计", "基础SEO", "联系表单", "2个月技术支持"]
+      },
+      dev: {
+        en: [
+          "Unlimited pages",
+          "Advanced SEO",
+          "CMS integration",
+          "E-commerce ready",
+          "6 months support"
+        ],
+        zh: ["无限页面", "高级SEO", "CMS集成", "电商功能", "6个月技术支持"]
+      }
     }
   }
 };
@@ -51,15 +136,7 @@ function showPricingModal(service) {
   const currentLang = document.documentElement.lang || "en";
   const basic = servicePrices[service].basic;
   const dev = basic * 1.2;
-
-  const currencySymbol = "¥";
-  const selectText = currentLang === "en" ? "Select" : "选择";
-  const contactText = currentLang === "en" ? "Contact" : "联系我";
-  const basicPlanText = currentLang === "en" ? "Basic Plan" : "基础方案";
-  const devPlanText = currentLang === "en" ? "Developer Plan" : "开发者方案";
-  const customPlanText = currentLang === "en" ? "Custom Plan" : "定制方案";
-  const contactPricingText =
-    currentLang === "en" ? "Contact for pricing" : "联系获取报价";
+  const features = servicePrices[service].features;
 
   modal.innerHTML = `
         <div class="bg-gray-900 rounded-lg p-8 max-w-4xl w-11/12 relative border border-orange-500">
@@ -80,6 +157,11 @@ function showPricingModal(service) {
                 ? "Basic Plan"
                 : "基础方案"}</h3>
               <p class="text-3xl font-bold text-orange-500 mb-4">¥${basic}</p>
+              <ul class="text-gray-300 mb-6 text-left text-sm">
+                ${features.basic[currentLang]
+                  .map(feature => `<li class="mb-2">✓ ${feature}</li>`)
+                  .join("")}
+              </ul>
               <button onclick="selectPlan('basic')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
                 ${currentLang === "en" ? "Select" : "选择"}
               </button>
@@ -91,6 +173,11 @@ function showPricingModal(service) {
                 ? "Developer Plan"
                 : "开发者方案"}</h3>
               <p class="text-3xl font-bold text-orange-500 mb-4">¥${dev}</p>
+              <ul class="text-gray-300 mb-6 text-left text-sm">
+                ${features.dev[currentLang]
+                  .map(feature => `<li class="mb-2">✓ ${feature}</li>`)
+                  .join("")}
+              </ul>
               <button onclick="selectPlan('dev')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
                 ${currentLang === "en" ? "Select" : "选择"}
               </button>
@@ -102,8 +189,22 @@ function showPricingModal(service) {
                 ? "Custom Plan"
                 : "定制方案"}</h3>
               <p class="text-lg text-gray-400 mb-4">${currentLang === "en"
-                ? "Contact for pricing"
-                : "联系获取报价"}</p>
+                ? "Custom solutions tailored to your needs"
+                : "根据您的需求定制解决方案"}</p>
+              <ul class="text-gray-300 mb-6 text-left text-sm">
+                <li class="mb-2">✓ ${currentLang === "en"
+                  ? "Custom requirements"
+                  : "自定义需求"}</li>
+                <li class="mb-2">✓ ${currentLang === "en"
+                  ? "Priority support"
+                  : "优先支持"}</li>
+                <li class="mb-2">✓ ${currentLang === "en"
+                  ? "Flexible timeline"
+                  : "灵活时间表"}</li>
+                <li class="mb-2">✓ ${currentLang === "en"
+                  ? "Dedicated team"
+                  : "专属团队"}</li>
+              </ul>
               <a href="mailto:johnmelodymel@qq.com" class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded text-center transition-colors">
                 ${currentLang === "en" ? "Contact" : "联系我们"}
               </a>
