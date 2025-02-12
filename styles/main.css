@@ -1099,3 +1099,138 @@ nav {
     top: -10px;
   }
 }
+
+/* Services Styles */
+.services-container {
+  max-width: var(--container-width);
+  margin: 6rem auto 2rem;
+  padding: var(--spacing-md);
+}
+
+.services-title {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--primary-color);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.service-card {
+  background: var(--card-bg);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid var(--highlight-color);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow);
+}
+
+.service-card i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  margin: 15% auto;
+  padding: var(--spacing-md);
+  width: 80%;
+  max-width: 800px;
+  border-radius: var(--radius-md);
+  position: relative;
+  border: 1px solid var(--highlight-color);
+}
+
+.close-modal {
+  position: absolute;
+  right: var(--spacing-md);
+  top: var(--spacing-sm);
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.plan {
+  text-align: center;
+  padding: var(--spacing-md);
+  border: 1px solid var(--highlight-color);
+  border-radius: var(--radius-md);
+}
+
+.plan h3 {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.price {
+  font-size: 1.5rem;
+  margin: var(--spacing-sm) 0;
+}
+
+.select-plan {
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.select-plan:hover {
+  background: var(--flame-color);
+  transform: translateY(-2px);
+}
+
+.language-wrapper {
+  position: relative;
+  margin-left: var(--spacing-md);
+}
+
+#language-selector {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--highlight-color);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#language-selector:hover {
+  border-color: var(--primary-color);
+}
+
+#language-selector option {
+  background: var(--card-bg);
+  color: var(--text-color);
+}

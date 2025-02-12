@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-en="Services | Cheng Tze Keong" data-lang-zh="服务 | 钟智强">Services | Cheng Tze Keong</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="services-container">
+        <h1 class="services-title" data-lang-en="Our Services" data-lang-zh="我们的服务">Our Services</h1>
+        
+        <div class="services-grid">
+            <!-- Web Scraping -->
+            <div class="service-card" onclick="showPricingModal('web-scraping')">
+                <i class="fas fa-spider"></i>
+                <h3 data-lang-en="Web Scraping & Crawling" data-lang-zh="网页抓取和爬虫">Web Scraping & Crawling</h3>
+                <p data-lang-en="Automated data extraction and web crawling solutions" data-lang-zh="自动化数据提取和网页爬虫解决方案"></p>
+            </div>
+
+            <!-- AI Model Development -->
+            <div class="service-card" onclick="showPricingModal('ai-model')">
+                <i class="fas fa-brain"></i>
+                <h3 data-lang-en="AI Model Development" data-lang-zh="AI模型开发">AI Model Development</h3>
+                <p data-lang-en="Computer vision and machine learning solutions" data-lang-zh="计算机视觉和机器学习解决方案"></p>
+            </div>
+
+            <!-- Mobile App Development -->
+            <div class="service-card" onclick="showPricingModal('mobile-app')">
+                <i class="fas fa-mobile-alt"></i>
+                <h3 data-lang-en="Mobile App Development" data-lang-zh="移动应用开发">Mobile App Development</h3>
+                <p data-lang-en="Cross-platform mobile application development" data-lang-zh="跨平台移动应用开发"></p>
+            </div>
+
+            <!-- Website Development -->
+            <div class="service-card" onclick="showPricingModal('website')">
+                <i class="fas fa-laptop-code"></i>
+                <h3 data-lang-en="Website Development" data-lang-zh="网站开发">Website Development</h3>
+                <p data-lang-en="Custom website and web application development" data-lang-zh="定制网站和网络应用开发"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Modal -->
+    <div id="pricing-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div class="pricing-plans">
+                <div class="plan">
+                    <h3 data-lang-en="Basic Plan" data-lang-zh="基础方案">Basic Plan</h3>
+                    <div class="price" id="basic-price"></div>
+                    <button class="select-plan" onclick="selectPlan('basic')">Select</button>
+                </div>
+                <div class="plan">
+                    <h3 data-lang-en="Developer Plan" data-lang-zh="开发者方案">Developer Plan</h3>
+                    <div class="price" id="dev-price"></div>
+                    <button class="select-plan" onclick="selectPlan('dev')">Select</button>
+                </div>
+                <div class="plan">
+                    <h3 data-lang-en="Custom Plan" data-lang-zh="定制方案">Custom Plan</h3>
+                    <p data-lang-en="Contact for pricing" data-lang-zh="联系获取报价">Contact for pricing</p>
+                    <button class="select-plan" onclick="window.location.href='mailto:johnmelodymel@qq.com'">Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/services.js"></script>
+</body>
+</html>
