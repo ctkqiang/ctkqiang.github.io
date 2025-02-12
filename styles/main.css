@@ -1105,12 +1105,19 @@ nav {
   max-width: var(--container-width);
   margin: 6rem auto 2rem;
   padding: var(--spacing-md);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .services-title {
   text-align: center;
   margin-bottom: var(--spacing-lg);
   color: var(--primary-color);
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--flame-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .services-grid {
@@ -1120,24 +1127,69 @@ nav {
 }
 
 .service-card {
-  background: var(--card-bg);
+  background: var(--glass-effect);
+  backdrop-filter: var(--glass-blur);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   text-align: center;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--highlight-color);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.service-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.service-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.service-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.service-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), var(--flame-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: var(--glow);
+  border-color: var(--primary-color);
+}
+
+.service-card:hover::before {
+  opacity: 0.1;
 }
 
 .service-card i {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: var(--primary-color);
   margin-bottom: var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover i {
+  transform: scale(1.1) rotate(5deg);
+  animation: iconPulse 1s ease-in-out infinite;
 }
 
 /* Modal Styles */
@@ -1148,28 +1200,45 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
   z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
 }
 
 .modal-content {
   background: var(--card-bg);
   margin: 15% auto;
-  padding: var(--spacing-md);
-  width: 80%;
+  padding: var(--spacing-lg);
+  width: 90%;
   max-width: 800px;
   border-radius: var(--radius-md);
   position: relative;
   border: 1px solid var(--highlight-color);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: slideInDown 0.5s ease-out forwards;
 }
 
 .close-modal {
   position: absolute;
   right: var(--spacing-md);
-  top: var(--spacing-sm);
+  top: var(--spacing-md);
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--text-color);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.close-modal:hover {
+  color: var(--primary-color);
+  transform: rotate(90deg);
 }
 
 .pricing-plans {
@@ -1184,53 +1253,120 @@ nav {
   padding: var(--spacing-md);
   border: 1px solid var(--highlight-color);
   border-radius: var(--radius-md);
+  background: var(--glass-effect);
+  backdrop-filter: var(--glass-blur);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.plan:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.plan:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.plan:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: var(--glow);
 }
 
 .plan h3 {
   color: var(--primary-color);
   margin-bottom: var(--spacing-sm);
+  font-size: 1.3rem;
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: var(--spacing-sm) 0;
+  color: var(--flame-color);
+  font-weight: bold;
 }
 
 .select-plan {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--flame-color));
   color: var(--text-color);
   border: none;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  width: 100%;
+  font-weight: 500;
 }
 
 .select-plan:hover {
-  background: var(--flame-color);
   transform: translateY(-2px);
+  box-shadow: var(--glow);
+  filter: brightness(1.1);
 }
 
-.language-wrapper {
-  position: relative;
-  margin-left: var(--spacing-md);
+/* New Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-#language-selector {
-  background: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--highlight-color);
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-size: 0.9rem;
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-#language-selector:hover {
-  border-color: var(--primary-color);
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-#language-selector option {
-  background: var(--card-bg);
-  color: var(--text-color);
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .services-container {
+    margin: 4rem auto 1rem;
+  }
+
+  .services-title {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    padding: var(--spacing-sm);
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: var(--spacing-md);
+  }
+
+  .pricing-plans {
+    gap: var(--spacing-sm);
+  }
+
+  .plan {
+    padding: var(--spacing-sm);
+  }
 }

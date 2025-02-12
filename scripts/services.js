@@ -54,7 +54,7 @@ function showPricingModal(service) {
 
   const currencySymbol = "¥";
   const selectText = currentLang === "en" ? "Select" : "选择";
-  const contactText = currentLang === "en" ? "Contact" : "联系我们";
+  const contactText = currentLang === "en" ? "Contact" : "联系我";
   const basicPlanText = currentLang === "en" ? "Basic Plan" : "基础方案";
   const devPlanText = currentLang === "en" ? "Developer Plan" : "开发者方案";
   const customPlanText = currentLang === "en" ? "Custom Plan" : "定制方案";
