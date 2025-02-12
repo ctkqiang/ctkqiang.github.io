@@ -203,4 +203,3 @@ document.addEventListener("click", e => {
     navContainer.classList.remove("active");
   }
 });
-
