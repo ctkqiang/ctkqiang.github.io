@@ -29,12 +29,19 @@ window.addEventListener("scroll", () => {
 
 // Language switching logic
 function updateContent(language) {
+  if (language === "ja") {
+    window.location.href = "/pages/no-jap.html";
+    return;
+  }
+
   // Update HTML lang attribute
   document.documentElement.lang = language;
 
   // Update all translatable elements
   document
-    .querySelectorAll("[data-lang-en], [data-lang-zh]")
+    .querySelectorAll(
+      "[data-lang-en], [data-lang-zh], [data-lang-ru], [data-lang-de], [data-lang-ko]"
+    )
     .forEach(element => {
       const content = element.getAttribute(`data-lang-${language}`);
       if (!content) return;
@@ -45,10 +52,13 @@ function updateContent(language) {
         document.title = content;
       } else if (element.tagName === "A" && element.id === "resume-button") {
         const resumePaths = {
-          en: "./assets/Cheng_Tze_Keong_Resume.pdf",
-          zh: "./assets/高级全栈开发工程师_钟智强.pdf"
+          en: "./assets/CHENG_TZE_KEONG_RESUME.pdf",
+          zh: "./assets/高级全栈开发工程师_钟智强.pdf",
+          ru: "./assets/CHENG_TZE_KEONG_RESUME_RU.pdf",
+          de: "./assets/CHENG_TZE_KEONG_RESUME_DE.pdf",
+          ko: "./assets/CHENG_TZE_KEONG_RESUME_KO.pdf"
         };
-        element.href = resumePaths[language];
+        element.href = resumePaths[language] || resumePaths.en;
         element.querySelector("span:last-child").textContent = content;
       } else {
         element.textContent = content;
@@ -193,3 +203,4 @@ document.addEventListener("click", e => {
     navContainer.classList.remove("active");
   }
 });
+

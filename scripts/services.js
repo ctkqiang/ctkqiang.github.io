@@ -134,6 +134,11 @@ function showPricingModal(service) {
     "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center";
 
   const currentLang = document.documentElement.lang || "en";
+
+  if (currentLang === "ja") {
+    window.location.href = "./no-jap.html";
+    return;
+  }
   const basic = servicePrices[service].basic;
   const dev = basic * 1.2;
   const features = servicePrices[service].features;
@@ -273,4 +278,22 @@ if (languageSelector) {
     updateServiceLanguage(selectedLang);
     localStorage.setItem("preferred-language", selectedLang);
   });
+}
+
+function updateServiceLanguage(language) {
+  if (language === "ja") {
+    window.location.href = "./no-jap.html";
+    return;
+  }
+
+  document
+    .querySelectorAll(
+      "[data-lang-en], [data-lang-zh], [data-lang-ru], [data-lang-de], [data-lang-ko]"
+    )
+    .forEach(element => {
+      const content = element.getAttribute(`data-lang-${language}`);
+      if (content) {
+        element.textContent = content;
+      }
+    });
 }
