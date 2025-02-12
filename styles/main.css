@@ -1370,3 +1370,141 @@ nav {
     padding: var(--spacing-sm);
   }
 }
+
+/* ... existing code ... */
+
+/* Enhanced Mobile Support */
+@media (max-width: 768px) {
+  .services-container {
+    margin: 4rem auto 1rem;
+    padding: var(--spacing-sm);
+  }
+
+  .services-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .service-card {
+    padding: var(--spacing-sm);
+    min-height: auto;
+  }
+
+  .service-card i {
+    font-size: 2rem;
+  }
+
+  .modal {
+    padding: var(--spacing-xs);
+  }
+
+  .modal-content {
+    margin: 5% auto;
+    padding: var(--spacing-md);
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .pricing-plans {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .plan {
+    padding: var(--spacing-sm);
+  }
+
+  .plan h3 {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+
+  .select-plan {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+  }
+
+  /* Improve touch targets */
+  .close-modal {
+    padding: var(--spacing-sm);
+    right: var(--spacing-xs);
+    top: var(--spacing-xs);
+  }
+
+  /* Better scrolling on mobile */
+  .modal-content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: var(--card-bg);
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: var(--radius-full);
+  }
+
+  /* Prevent body scroll when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  /* Improved touch feedback */
+  .service-card:active {
+    transform: scale(0.98);
+  }
+
+  .select-plan:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Additional mobile breakpoint for very small devices */
+@media (max-width: 380px) {
+  .services-title {
+    font-size: 1.5rem;
+  }
+
+  .service-card i {
+    font-size: 1.8rem;
+  }
+
+  .modal-content {
+    margin: 2% auto;
+    padding: var(--spacing-sm);
+  }
+
+  .plan {
+    padding: var(--spacing-xs);
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+}
+
+/* Landscape mode support */
+@media (max-height: 600px) and (orientation: landscape) {
+  .modal-content {
+    margin: 2% auto;
+    max-height: 85vh;
+  }
+
+  .pricing-plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .plan {
+    font-size: 0.9rem;
+  }
+}
