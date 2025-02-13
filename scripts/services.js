@@ -128,109 +128,86 @@ function updateServiceLanguage(language) {
 
 // Update showPricingModal function
 function showPricingModal(service) {
-  const modal = document.createElement("div");
-  modal.id = "pricing-modal";
-  modal.className =
-    "fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center";
-
+  const modal = document.getElementById("pricing-modal");
   const currentLang = document.documentElement.lang || "en";
 
   if (currentLang === "ja") {
     window.location.href = "./no-jap.html";
     return;
   }
+
   const basic = servicePrices[service].basic;
   const dev = basic * 1.2;
   const features = servicePrices[service].features;
 
-  modal.innerHTML = `
-        <div class="bg-gray-900 rounded-lg p-8 max-w-4xl w-11/12 relative border border-orange-500">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-          
-          <h2 class="text-2xl font-bold text-orange-500 mb-6">${servicePrices[
-            service
-          ].title[currentLang]}</h2>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gray-800 p-6 rounded-lg border border-orange-500/30 hover:border-orange-500 transition-all">
-              <h3 class="text-xl font-semibold text-white mb-4">${currentLang ===
-              "en"
-                ? "Basic Plan"
-                : "基础方案"}</h3>
-              <p class="text-3xl font-bold text-orange-500 mb-4">¥${basic}</p>
-              <ul class="text-gray-300 mb-6 text-left text-sm">
-                ${features.basic[currentLang]
-                  .map(feature => `<li class="mb-2">✓ ${feature}</li>`)
-                  .join("")}
-              </ul>
-              <button onclick="selectPlan('basic')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
-                ${currentLang === "en" ? "Select" : "选择"}
-              </button>
-            </div>
-            
-            <div class="bg-gray-800 p-6 rounded-lg border border-orange-500/30 hover:border-orange-500 transition-all">
-              <h3 class="text-xl font-semibold text-white mb-4">${currentLang ===
-              "en"
-                ? "Developer Plan"
-                : "开发者方案"}</h3>
-              <p class="text-3xl font-bold text-orange-500 mb-4">¥${dev}</p>
-              <ul class="text-gray-300 mb-6 text-left text-sm">
-                ${features.dev[currentLang]
-                  .map(feature => `<li class="mb-2">✓ ${feature}</li>`)
-                  .join("")}
-              </ul>
-              <button onclick="selectPlan('dev')" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition-colors">
-                ${currentLang === "en" ? "Select" : "选择"}
-              </button>
-            </div>
-            
-            <div class="bg-gray-800 p-6 rounded-lg border border-orange-500/30 hover:border-orange-500 transition-all">
-              <h3 class="text-xl font-semibold text-white mb-4">${currentLang ===
-              "en"
-                ? "Custom Plan"
-                : "定制方案"}</h3>
-              <p class="text-lg text-gray-400 mb-4">${currentLang === "en"
-                ? "Custom solutions tailored to your needs"
-                : "根据您的需求定制解决方案"}</p>
-              <ul class="text-gray-300 mb-6 text-left text-sm">
-                <li class="mb-2">✓ ${currentLang === "en"
-                  ? "Custom requirements"
-                  : "自定义需求"}</li>
-                <li class="mb-2">✓ ${currentLang === "en"
-                  ? "Priority support"
-                  : "优先支持"}</li>
-                <li class="mb-2">✓ ${currentLang === "en"
-                  ? "Flexible timeline"
-                  : "灵活时间表"}</li>
-                <li class="mb-2">✓ ${currentLang === "en"
-                  ? "Dedicated team"
-                  : "专属团队"}</li>
-              </ul>
-              <a href="mailto:johnmelodymel@qq.com" class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded text-center transition-colors">
-                ${currentLang === "en" ? "Contact" : "联系我们"}
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
+  // Set modal title
+  document.getElementById("modal-title").textContent =
+    servicePrices[service].title[currentLang];
 
-  document.body.appendChild(modal);
+  // Set prices
+  document.getElementById("basic-price").textContent = `¥${basic}`;
+  document.getElementById("dev-price").textContent = `¥${dev}`;
 
-  // Close button handler
-  modal.querySelector("button").onclick = () => {
-    modal.remove();
+  // Set features lists
+  const basicFeaturesList = document.getElementById("basic-features");
+  const devFeaturesList = document.getElementById("dev-features");
+
+  basicFeaturesList.innerHTML = features.basic[currentLang]
+    .map(feature => `<li>✓ ${feature}</li>`)
+    .join("");
+
+  devFeaturesList.innerHTML = features.dev[currentLang]
+    .map(feature => `<li>✓ ${feature}</li>`)
+    .join("");
+
+  // Show modal and prevent body scroll
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+
+  // Close modal handlers
+  const closeModal = () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
   };
 
-  // Click outside to close
-  modal.onclick = event => {
-    if (event.target === modal) {
-      modal.remove();
-    }
+  document.querySelector(".close-modal").onclick = closeModal;
+
+  // Close on outside click
+  modal.onclick = e => {
+    if (e.target === modal) closeModal();
   };
+
+  // Handle touch events for mobile
+  let touchStartY = 0;
+  modal.addEventListener(
+    "touchstart",
+    e => {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  modal.addEventListener(
+    "touchmove",
+    e => {
+      const touchY = e.touches[0].clientY;
+      const modalContent = modal.querySelector(".modal-content");
+      const isAtTop = modalContent.scrollTop === 0;
+      const isAtBottom =
+        modalContent.scrollHeight - modalContent.scrollTop ===
+        modalContent.clientHeight;
+
+      // Prevent pull-to-refresh when at the top of the modal
+      if (isAtTop && touchY > touchStartY) {
+        e.preventDefault();
+      }
+      // Prevent overscroll when at the bottom of the modal
+      if (isAtBottom && touchY < touchStartY) {
+        e.preventDefault();
+      }
+    },
+    { passive: false }
+  );
 }
 
 function selectPlan(plan) {

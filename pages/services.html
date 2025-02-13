@@ -36,6 +36,7 @@
     </header>
 
     <div class="services-container">
+        <div style="margin-top: 80px;"></div>
         <h1 class="services-title" data-lang-en="Our Services" data-lang-zh="我的服务">Our Services</h1>
         
         <div class="services-grid">
@@ -71,24 +72,37 @@
 
     <!-- Pricing Modal -->
     <div id="pricing-modal" class="modal">
+        <button class="close-modal" aria-label="Close modal">
+            <i class="fas fa-times"></i>
+        </button>
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title"></h2>
+            <h2 id="modal-title" class="text-2xl font-bold text-orange-500 mb-6"></h2>
             <div class="pricing-plans">
                 <div class="plan">
                     <h3 data-lang-en="Basic Plan" data-lang-zh="基础方案">Basic Plan</h3>
                     <div class="price" id="basic-price"></div>
-                    <button class="select-plan" onclick="selectPlan('basic')">Select</button>
+                    <ul class="features-list" id="basic-features"></ul>
+                    <button class="select-plan" onclick="selectPlan('basic')" 
+                            data-lang-en="Select" data-lang-zh="选择">Select</button>
                 </div>
                 <div class="plan">
                     <h3 data-lang-en="Developer Plan" data-lang-zh="开发者方案">Developer Plan</h3>
                     <div class="price" id="dev-price"></div>
-                    <button class="select-plan" onclick="selectPlan('dev')">Select</button>
+                    <ul class="features-list" id="dev-features"></ul>
+                    <button class="select-plan" onclick="selectPlan('dev')"
+                            data-lang-en="Select" data-lang-zh="选择">Select</button>
                 </div>
                 <div class="plan">
                     <h3 data-lang-en="Custom Plan" data-lang-zh="定制方案">Custom Plan</h3>
                     <p data-lang-en="Contact for pricing" data-lang-zh="联系获取报价">Contact for pricing</p>
-                    <button class="select-plan" onclick="window.location.href='mailto:johnmelodymel@qq.com'">Contact</button>
+                    <ul class="features-list">
+                        <li data-lang-en="Custom requirements" data-lang-zh="自定义需求">✓ Custom requirements</li>
+                        <li data-lang-en="Priority support" data-lang-zh="优先支持">✓ Priority support</li>
+                        <li data-lang-en="Flexible timeline" data-lang-zh="灵活时间表">✓ Flexible timeline</li>
+                        <li data-lang-en="Dedicated team" data-lang-zh="专属团队">✓ Dedicated team</li>
+                    </ul>
+                    <button class="select-plan" onclick="window.location.href='mailto:johnmelodymel@qq.com'"
+                            data-lang-en="Contact" data-lang-zh="联系我们">Contact</button>
                 </div>
             </div>
         </div>
