@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /pages/
+Allow: /assets/
+Allow: /styles/
+Disallow: /pages/no-jap.html
+
+Sitemap: https://ctkqiang.github.io/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1000
+
+# Host
+Host: https://ctkqiang.github.io
