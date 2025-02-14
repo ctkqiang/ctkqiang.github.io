@@ -302,19 +302,116 @@ nav {
   animation: fadeIn 1s ease-out;
 }
 
-/* Profile Section */
-.profile-header {
-  margin-bottom: var(--spacing-lg);
+.profile-image-container {
+  position: relative;
+  margin: 0 auto;
+  width: 160px;
+  height: 160px;
+}
+
+.profile-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(45deg, var(--primary-color), var(--flame-color));
+}
+
+.profile-image-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at center,
+    var(--primary-color) 0%,
+    transparent 70%
+  );
+  opacity: 0.3;
+  filter: blur(15px);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.profile-image-ring {
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: ringPulse 5s ease-in-out infinite;
 }
 
 .avatar {
-  width: 180px;
-  height: 180px;
-  border-radius: var(--radius-full);
-  border: 4px solid var(--primary-color);
-  box-shadow: var(--glow);
-  transition: transform var(--transition);
-  margin-bottom: var(--spacing-md);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--background-color);
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.profile-image-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-image-wrapper:hover .avatar {
+  transform: scale(1.05);
+}
+
+.profile-image-wrapper:hover .profile-image-overlay {
+  opacity: 1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(2);
+  }
+}
+
+@keyframes ringPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-image-wrapper,
+  .profile-image-glow,
+  .profile-image-ring {
+    animation: none;
+  }
 }
 
 .avatar:hover {

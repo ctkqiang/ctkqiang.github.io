@@ -73,9 +73,22 @@
     <section class="hero">
         <div class="hero-content">
             <div class="profile-header">
-                <div class="profile-image">
-                    <img src="./assets/WechatIMG23.jpg" alt="Cheng Tze Keong" class="avatar">
-                </div>
+                <div class="profile-image-container">
+                                    <div class="profile-image-wrapper" role="img" aria-label="Profile photo of Cheng Tze Keong">
+                                        <div class="profile-image-glow"></div>
+                                        <img src="./assets/WechatIMG23.jpg" 
+                                             alt="Cheng Tze Keong" 
+                                             class="avatar"
+                                             width="150" 
+                                             height="150"
+                                             loading="eager"
+                                             decoding="async"
+                                             fetchpriority="high"
+                                             onerror="this.src='./assets/ai_generated_of_my_pic.png'">
+                                        <div class="profile-image-overlay"></div>
+                                        <div class="profile-image-ring"></div>
+                                    </div>
+                                </div>
                 <div class="profile-text">
                     <h1 data-lang-en="Cheng Tze Keong" data-lang-zh="钟智强">Cheng Tze Keong</h1>
                     <h2 class="title" 
