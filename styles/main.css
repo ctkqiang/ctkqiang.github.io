@@ -1651,3 +1651,21 @@ nav {
     font-size: 0.9rem;
   }
 }
+
+.icp-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.icp-info p {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  opacity: 0.5;
+  font-size: 11px;
+}
+
+.icp-info a:hover {
+  opacity: 1;
+}
