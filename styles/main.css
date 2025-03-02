@@ -1669,3 +1669,40 @@ nav {
 .icp-info a:hover {
   opacity: 1;
 }
+
+canvas#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Update existing styles */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 70%
+  );
+  z-index: 1;
+}
+
+.section {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 102, 0, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.profile-image-wrapper img.avatar {
+  transform: none !important;
+  animation: none !important;
+  transition: transform 0.3s ease-out;
+}
+
+.profile-image-wrapper:hover img.avatar {
+  transform: scale(1.05) !important;
+}

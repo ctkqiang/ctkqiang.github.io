@@ -39,8 +39,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
+
+    <canvas id="bg"></canvas>
+
     <header role="banner">
         <div class="nav">
             <a href="/" class="logo" aria-label="Home">
@@ -74,21 +83,22 @@
         <div class="hero-content">
             <div class="profile-header">
                 <div class="profile-image-container">
-                                    <div class="profile-image-wrapper" role="img" aria-label="Profile photo of Cheng Tze Keong">
-                                        <div class="profile-image-glow"></div>
-                                        <img src="./assets/WechatIMG23.jpg" 
-                                             alt="Cheng Tze Keong" 
-                                             class="avatar"
-                                             width="150" 
-                                             height="150"
-                                             loading="eager"
-                                             decoding="async"
-                                             fetchpriority="high"
-                                             onerror="this.src='./assets/ai_generated_of_my_pic.png'">
-                                        <div class="profile-image-overlay"></div>
-                                        <div class="profile-image-ring"></div>
-                                    </div>
-                                </div>
+                    <div class="profile-image-wrapper" role="img" aria-label="Profile photo of Cheng Tze Keong">
+                        <div class="profile-image-glow"></div>
+                        <img src="./assets/WechatIMG23.jpg" 
+                             alt="Cheng Tze Keong" 
+                             class="avatar"
+                             width="150" 
+                             height="150"
+                             loading="eager"
+                             decoding="async"
+                             fetchpriority="high"
+                             onerror="this.src='./assets/ai_generated_of_my_pic.png'"
+                             style="transform: none; animation: none;">
+                        <div class="profile-image-overlay"></div>
+                        <div class="profile-image-ring"></div>
+                    </div>
+                </div>
                 <div class="profile-text">
                     <h1 data-lang-en="Cheng Tze Keong" data-lang-zh="钟智强">Cheng Tze Keong</h1>
                     <h2 class="title" 
@@ -191,7 +201,15 @@
                        data-lang-zh="基于Spring Boot的链家房源数据爬虫系统。支持自动采集房源信息，提供Excel/CSV导出功能和数据可视化界面。">
                         Spring Boot-based web scraper for LianJia real estate data. Features automated collection of property listings with Excel/CSV export and data visualization.
                     </p>
-                    <a class="view-repo-link" href="https://github.com/ctkqiang/LianJiaScraper" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/LianJiaScraper" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="WangZhongZhi" data-lang-zh="汪种知">WangZhongZhi</h3>
+                    <p data-lang-en="An innovative dog breed identification application developed using the Flutter framework. It integrates deep learning models to support real-time recognition of 60 dog breeds, providing convenient and accurate breed identification services for dog enthusiasts and professionals."
+                    data-lang-zh="一款使用 Flutter 框架开发的创新性犬种识别应用。集成深度学习模型，支持 60 种犬种的实时识别，为爱犬人士和专业人员提供便捷、准确的犬种鉴定服务。">
+                        An innovative dog breed identification application developed using the Flutter framework. It integrates deep learning models to support real-time recognition of 60 dog breeds, providing convenient and accurate breed identification services for dog enthusiasts and professionals.
+                    </p>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/WangZhongZhi" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
                 </div>
 
                 <div class="project-card">
@@ -208,7 +226,7 @@
                        data-lang-zh="新一代智能视觉平台，融合深度学习与迁移学习技术，基于 MobileNetV2 预训练模型，实现快速部署和精准识别。">
                         Next-generation intelligent vision platform combining deep learning and transfer learning, powered by MobileNetV2 for efficient deployment and precise recognition.
                     </p>
-                    <a class="view-repo-link" href="https://github.com/ctkqiang/YingYanAI" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/YingYanAI" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
                 </div>
                 <div class="project-card">
                     <h3 data-lang-en="Pawlyn Pet" data-lang-zh="Pawlyn 宠物平台">Pawlyn Pet</h3>
@@ -241,7 +259,7 @@
                        data-lang-zh="基于人工智能的中药图像分类系统。">
                         AI-based system for classifying traditional Chinese medicine images.
                     </p>
-                    <a class="view-repo-link" href="https://github.com/ctkqiang/HuaTuoAI.git" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/HuaTuoAI" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
                 </div>
                 <div class="project-card">
                     <h3 data-lang-en="YanJiAI" data-lang-zh="研机 AI">YanJiAI</h3>
@@ -249,7 +267,7 @@
                        data-lang-zh="用于安全监控的人脸识别和目标检测 AI 系统。">
                         AI system for facial recognition and object detection for safety monitoring.
                     </p>
-                    <a class="view-repo-link" href="https://github.com/ctkqiang/YanJiAI.git" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/YanJiAI" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
                 </div>
                 <div class="project-card">
                     <h3 data-lang-en="AEDPenang" data-lang-zh="槟城 AED 平台">AEDPenang</h3>
@@ -707,5 +725,6 @@
     </footer>
 
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/background.js"></script>
 </body>
 </html>
