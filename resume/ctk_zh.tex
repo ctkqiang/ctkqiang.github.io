@@ -1,0 +1,98 @@
+% CHENG TZE KEONG - ATS-Compatible Resume (LaTeX, Unicode Chinese Support)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{xeCJK} % <-- Enable Chinese Characters
+\usepackage{fontspec}
+\setCJKmainfont{Noto Sans CJK SC} % You can change this to any available CJK font
+\setCJKsansfont{Microsoft YaHei} % 微软雅黑，无衬线字体
+\setCJKmonofont{FangSong} % 仿宋，等宽字体可选
+
+% Formatting
+\titleformat{\section}{\normalfont\Large\bfseries\color{black}}{}{0em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{}{0em}{}
+\renewcommand{\labelitemi}{--}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=black,
+  linkcolor=blue
+}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\begin{document}
+
+% ===== Header =====
+\begin{center}
+    {\LARGE\textbf{钟智强}} \\
+    \href{mailto:johnmelodymel@qq.com}{johnmelodymel@qq.com} \textbar{} +6013-739-7193 \textbar{} \href{https://www.ctkqiang.xin}{ctkqiang.xin}
+\end{center}
+
+% ===== 求职意向 =====
+\section*{求职意向}
+资深软件工程师，擅长全栈开发、移动应用及网络安全，期望在人工智能领域发挥技术优势，推动创新与可扩展的软件解决方案。
+
+% ===== 技能与能力 =====
+\section*{技能与能力}
+\subsection*{技术技能}
+\textbf{编程语言：} Java, Swift, Python, Golang, PHP, Dart, COBOL, Erlang, Elixir, C/C++, JavaScript, TypeScript, Zig, Bash, 仓颉 \\
+\textbf{前端开发：} Flutter, SwiftUI, 微信小程序, HBuilder, VueJS, ArkTS（鸿蒙）, Next.js, TailwindCSS, TDesign \\
+\textbf{后端开发：} Node.js, Express.js, NestJS, FastAPI, Phoenix（Elixir）, Rebar（Erlang）, GraphQL, gRPC, Spring Boot（Java）, Gin（Go）, Laravel（PHP）, Java Servlet（企业项目） \\
+\textbf{数据库：} MySQL, OracleDB, Firestore, CouchDB, MongoDB, Redis, Supabase \\
+\textbf{人工智能/机器学习：} TensorFlow, PyTorch, OpenCV, Hugging Face, 自然语言处理, 大语言模型, Transformer \\
+\textbf{区块链：} Solidity, 智能合约, XRP SDK, TON, IPFS, DeFi, 去中心化应用（dApps）
+
+\subsection*{软技能}
+问题解决，团队领导，沟通协调，项目管理，时间管理
+
+% ===== 工作经历 =====
+\section*{工作经历}
+\subsection*{高级全栈开发工程师 \\ 自由职业 \hfill 2023年8月 -- 至今}
+\begin{itemize}[leftmargin=1.5em]
+    \item 开发 NLP 智能客服系统，降低人工工单量 40\%。
+    \item 为红队/蓝队开发网络安全工具（详见 GitHub）。
+    \item 在医疗场景中应用机器学习进行预测建模。
+    \item 使用 Spring Boot 构建 ERP 系统。
+    \item 设计跨链 DeFi 支付系统（Stripe + 加密货币，5000 TPS）。
+    \item 为医疗公司执行渗透测试，协助完成 ISO 27001 合规。
+    \item 编写汇编 x64、C/C++ 系统监控工具，设计基于 Arduino 的入侵检测系统。
+\end{itemize}
+
+\subsection*{高级移动开发工程师 \\ Sleekflow Pte. Ltd. \hfill 2022年8月 -- 2023年12月}
+\begin{itemize}[leftmargin=1.5em]
+    \item 开发电商 App 新功能，集成支付系统。
+    \item 使用 WhatsApp API、微信 API、Stripe 进行服务端集成。
+    \item 客户端使用 Flutter、Swift、Kotlin。
+    \item 后端使用 Redis、MySQL、Kafka、Spring Boot。
+\end{itemize}
+
+\subsection*{高级软件工程师 \\ Mynapse Sdn Bhd \hfill 2020年4月 -- 2022年6月}
+\begin{itemize}[leftmargin=1.5em]
+    \item 开发短信服务、SIP 实时语音通信及 WebRTC-Janus 视频通话功能。
+    \item 客户端使用 Kotlin、Java、Flutter。
+    \item 后端使用 Elixir、Erlang、CouchDB。
+\end{itemize}
+
+\subsection*{软件工程师 \\ Braintech (M) Sdn Bhd (伯锐德有限公司) \hfill 2018年1月 -- 2020年3月}
+\begin{itemize}[leftmargin=1.5em]
+    \item 开发脑电（EEG）与脑机接口（BCI）科研软件。
+    \item 在 Android 项目中集成 Nordic 与 Qualcomm SDK（Java 和 C/C++）。
+    \item 构建 Firebase / MySQL 服务端。
+\end{itemize}
+
+\subsection*{武装安保人员 \\ G4S \hfill 2014年6月 -- 2017年11月}
+\begin{itemize}[leftmargin=1.5em]
+    \item 负责设施及数据安全。
+    \item 管理人员识别与访问控制系统。
+\end{itemize}
+
+% ===== 教育背景 =====
+\section*{教育背景}
+\textbf{SMK Hamid Khan 中学} \hfill 马来西亚高等教育证书（2013年） \\
+曾在体育组织实习，积累活动策划、赞助执行与粉丝运营经验。
+
+\end{document}
