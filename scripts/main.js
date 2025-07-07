@@ -197,9 +197,3 @@ document.querySelectorAll("nav a").forEach(link => {
 });
 
 // Close mobile menu when clicking outside
-document.addEventListener("click", e => {
-  if (!e.target.closest(".nav") && navContainer.classList.contains("active")) {
-    mobileMenuToggle.classList.remove("active");
-    navContainer.classList.remove("active");
-  }
-});

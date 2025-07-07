@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff6600">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheng Tze Keong | Portfolio">
+    <meta name="twitter:description" content="Senior Software Engineer, Data Scientist, and Tech Enthusiast">
+    <meta property="og:image" content="./assets/ai_generated_of_my_pic.png">
+    <meta property="og:image:alt" content="Cheng Tze Keong Portfolio">
+    
+
+    <meta name="description" content="Cheng Tze Keong's portfolio. Senior Software Engineer, Data Scientist, and Tech Enthusiast. Projects in machine learning, AI, web development, and more.">
+    <meta name="description" lang="zh" content="钟智强的个人网站。资深软件工程师，数据科学家及技术爱好者。包括机器学习、人工智能、网页开发等项目。">
+
+    <meta name="author" content="Cheng Tze Keong">
+    <meta name="keywords" content="Software Engineer, Data Scientist, Machine Learning, AI, Web Development, Portfolio">
+    <meta name="keywords" lang="zh" content="软件工程师, 数据科学家, 机器学习, 人工智能, 网页开发, 个人网站">
+
+    <link rel="alternate" href="https://ctkqiang.github.io/" hreflang="en" />
+    <link rel="alternate" href="https://ctkqiang.github.io/" hreflang="zh" />
+    <!-- Title tag for SEO -->
+    <title data-lang-en="Cheng Tze Keong | Portfolio" data-lang-zh="钟智强 | 个人网站">Cheng Tze Keong | Portfolio</title>
+
+    <meta property="og:title" content="Cheng Tze Keong | Portfolio">
+    <meta property="og:title" lang="zh" content="钟智强 | 个人网站">
+    <meta property="og:description" content="Cheng Tze Keong's portfolio. Senior Software Engineer, Data Scientist, and Tech Enthusiast.">
+    <meta property="og:description" lang="zh" content="钟智强的个人网站。资深软件工程师，数据科学家及技术爱好者。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctkqiang.github.io/">
+    <!-- Favicon and touch icons -->
+    <link rel="icon" href="./assets/ai_generated_of_my_pic.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./assets/WechatIMG23.jpg">
+
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b75c308fa828895bc8ccbb85d8cd5868";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+
+    <canvas id="bg"></canvas>
+
+    <header role="banner">
+        <div class="nav">
+            <a href="/" class="logo" aria-label="Home">
+                <img src="./assets/WechatIMG23.jpg" alt="CTK Logo" width="32" height="32">
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-container">
+                <nav role="navigation" aria-label="Main navigation">
+                    <a href="#about" data-lang-en="About" data-lang-zh="关于我" aria-current="page">About</a>
+                    <a href="#projects" data-lang-en="Projects" data-lang-zh="项目">Projects</a>
+                    <a href="#skills" data-lang-en="Skills" data-lang-zh="技能">Skills</a>
+                    <a href="./pages/services.html" data-lang-en="Services" data-lang-zh="服务">Services</a>
+                    <a href="/bug-bounty-journal/" data-lang-en="Bug Bounty" data-lang-zh="漏洞赏金">Bug Bounty</a>
+                    <a href="#contact" data-lang-en="Contact" data-lang-zh="联系我">Contact</a>
+                </nav>
+                <div class="language-wrapper">
+                    <select id="language-selector" aria-label="Select language">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="ko">🇰🇷 한국어</option>
+                        <option value="ja">🇯🇵 日本語</option> 
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <div class="profile-image-wrapper" role="img" aria-label="Profile photo of Cheng Tze Keong">
+                        <div class="profile-image-glow"></div>
+                        <img src="./assets/WechatIMG23.jpg" 
+                             alt="Cheng Tze Keong" 
+                             class="avatar"
+                             width="150" 
+                             height="150"
+                             loading="eager"
+                             decoding="async"
+                             fetchpriority="high"
+                             onerror="this.src='./assets/ai_generated_of_my_pic.png'"
+                             style="transform: none; animation: none;">
+                        <div class="profile-image-overlay"></div>
+                        <div class="profile-image-ring"></div>
+                    </div>
+                </div>
+                <div class="profile-text">
+                    <h1 data-lang-en="Cheng Tze Keong" data-lang-zh="钟智强">Cheng Tze Keong</h1>
+                    <h2 class="title" 
+                       data-lang-en="Senior Software Engineer | Computer Vision Specialist" 
+                       data-lang-zh="高级全栈开发工程师  |  计算机视觉专家">Senior Software Engineer | Computer Vision Specialist</h2>
+                    <p class="tagline" 
+                       data-lang-en="Crafting innovative AI solutions and robust software systems" 
+                       data-lang-zh="打造创新的人工智能解决方案和强大的软件系统">Crafting innovative AI solutions and robust software systems</p>
+                </div>
+            </div>
+
+            <div class="social-links-container">
+                <div class="social-links primary-links">
+                    <a href="https://linkedin.com/in/ctkqiang" target="_blank" class="social-link linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/ctkqiang" target="_blank" class="social-link github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="mailto:johnmelodymel@qq.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="./assets/CHENG_TZE_KEONG_RESUME.pdf" id="resume-button" class="resume-button" 
+                       data-en-resume="./assets/resume/CHENGTZEKEONG_RESUME.pdf.pdf" 
+                       data-zh-resume="./assets/resume/钟智强_简历.pdf" target="_blank">
+                        <span class="resume-icon">📄</span>
+                        <span data-lang-en="Download Resume" data-lang-zh="下载简历">Download Resume</span>
+                    </a>
+                </div>
+
+                <div class="social-links secondary-links">
+                    <a href="https://wa.me/60137397193" target="_blank" class="social-link whatsapp" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://raw.githubusercontent.com/ctkqiang/ctkqiang/refs/heads/main/assets/IMG_9245.JPG" target="_blank" class="social-link wechat" title="WeChat">
+                        <i class="fab fa-weixin"></i>
+                    </a>
+                    <a href="https://discord.com/invite/6nZ2QJEvAF" target="_blank" class="social-link discord" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://line.me/ti/p/RN0P0mtQOg" target="_blank" class="social-link line" title="Line">
+                        <i class="fab fa-line"></i>
+                    </a>
+                    <a href="https://mastodon.social/@ctkqiang" target="_blank" class="social-link mastodon" title="Mastodon">
+                        <i class="fab fa-mastodon"></i>
+                    </a>
+                    <a href="https://stackoverflow.com/users/10758321/钟智强" target="_blank" class="social-link stackoverflow" title="Stack Overflow">
+                        <i class="fab fa-stack-overflow"></i>
+                    </a>
+                    <a href="https://weibo.com/u/7815275485" target="_blank" class="social-link weibo" title="微博">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a href="https://live.kuaishou.com/profile/ctkqiang" target="_blank" class="social-link kuaishou" title="快手">
+                        <i class="fas fa-video"></i>
+                    </a>
+                    <a href="https://www.xiaohongshu.com/user/profile/5dd25c5e000000000100bd7c" target="_blank" class="social-link xiaohongshu" title="小红书">
+                        <i class="fas fa-book-open"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@ctkqiang" target="_blank" class="social-link tiktok" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.douyin.com/user/MS4wLjABAAAAzkGUTJlbNAvSD6ONcWxVwUJPAiqWPO5GjhpdCUNYJXo" target="_blank" class="social-link douyin" title="抖音">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="container">
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2 data-lang-en="About Me" data-lang-zh="关于我">About Me</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        <span data-lang-en="As a Senior Software Engineer and Computer Vision Engineer, I bring over 5 years of expertise in AI, machine learning, and full-stack development. My work spans from developing enterprise-level applications to creating cutting-edge computer vision solutions. I specialize in building scalable systems that bridge the gap between innovative technology and practical business needs."
+                           data-lang-zh="作为一名资深软件工程师和计算机视觉专家，我在人工智能、机器学习和全栈开发领域拥有超过5年的专业经验。我的工作范围涵盖从企业级应用开发到前沿计算机视觉解决方案的创建。我专注于构建可扩展的系统，致力于将创新技术与实际业务需求完美结合。">
+                            As a Senior Software Engineer and Computer Vision Engineer, I bring over 5 years of expertise in AI, machine learning, and full-stack development. My work spans from developing enterprise-level applications to creating cutting-edge computer vision solutions. I specialize in building scalable systems that bridge the gap between innovative technology and practical business needs.
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2 data-lang-en="Featured Projects" data-lang-zh="特色项目">Featured Projects</h2>
+                <div class="section-underline"></div>
+            </div>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 data-lang-en="HSC License Plate Recognition" data-lang-zh="华视车牌识别">HSC License Plate Recognition</h3>
+                    <p data-lang-en="Computer vision-based Chinese license plate recognition system built with FastAPI backend, providing a simple web interface for plate image upload and recognition."
+                       data-lang-zh="基于计算机视觉的中国车牌识别系统，使用 FastAPI 构建后端服务，提供简单的 Web 界面进行车牌图片上传和识别。">
+                        Computer vision-based Chinese license plate recognition system built with FastAPI backend, providing a simple web interface for plate image upload and recognition.
+                    </p>
+                    <a class="view-repo-link" href="/HSC_License/" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="BBTool" data-lang-zh="漏洞赏金工具">BBTool</h3>
+                    <p data-lang-en="The BBTool is a graphical penetration testing suite designed specifically for security researchers and white-hat hackers. It integrates multiple commonly used security testing tools and offers an intuitive user interface, making vulnerability discovery simpler and more efficient."
+                       data-lang-zh="漏洞赏金工具是一款专为安全研究人员和白帽子黑客设计的图形化渗透测试工具集。它集成了多个常用的安全测试工具，提供了直观的用户界面，让漏洞挖掘变得更加简单和高效。">
+                        漏洞赏金工具是一款专为安全研究人员和白帽子黑客设计的图形化渗透测试工具集。它集成了多个常用的安全测试工具，提供了直观的用户界面，让漏洞挖掘变得更加简单和高效。
+                    </p>
+                    <a class="view-repo-link" href="https://www.ctkqiang.xin/BBtool/public/" target="_blank" data-lang-en="View Project" data-lang-zh="查看项目">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="LianJiaScraper" data-lang-zh="链家房源数据爬虫">LianJiaScraper</h3>
+                    <p data-lang-en="Spring Boot-based web scraper for LianJia real estate data. Features automated collection of property listings with Excel/CSV export and data visualization."
+                       data-lang-zh="基于Spring Boot的链家房源数据爬虫系统。支持自动采集房源信息，提供Excel/CSV导出功能和数据可视化界面。">
+                        Spring Boot-based web scraper for LianJia real estate data. Features automated collection of property listings with Excel/CSV export and data visualization.
+                    </p>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/LianJiaScraper" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="WangZhongZhi" data-lang-zh="汪种知">WangZhongZhi</h3>
+                    <p data-lang-en="An innovative dog breed identification application developed using the Flutter framework. It integrates deep learning models to support real-time recognition of 60 dog breeds, providing convenient and accurate breed identification services for dog enthusiasts and professionals."
+                    data-lang-zh="一款使用 Flutter 框架开发的创新性犬种识别应用。集成深度学习模型，支持 60 种犬种的实时识别，为爱犬人士和专业人员提供便捷、准确的犬种鉴定服务。">
+                        An innovative dog breed identification application developed using the Flutter framework. It integrates deep learning models to support real-time recognition of 60 dog breeds, providing convenient and accurate breed identification services for dog enthusiasts and professionals.
+                    </p>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/WangZhongZhi" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="NeZhaAI" data-lang-zh="哪吒 AI">NeZhaAI</h3>
+                    <p data-lang-en="Comprehensive cybersecurity platform with powerful tools for malware scanning, data breach detection, password generation, and digital defense."
+                       data-lang-zh="全方位网络安全平台，提供文件和URL恶意软件扫描、数据泄露检测、密码生成等数字安全防护工具。">
+                        Comprehensive cybersecurity platform with powerful tools for malware scanning, data breach detection, password generation, and digital defense.
+                    </p>
+                    <a class="view-repo-link" href="https://nezha-ai.vercel.app/" target="_blank" data-lang-en="View Project" data-lang-zh="查看项目">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="YingYanAI" data-lang-zh="鹰眼 AI">YingYanAI</h3>
+                    <p data-lang-en="Next-generation intelligent vision platform combining deep learning and transfer learning, powered by MobileNetV2 for efficient deployment and precise recognition."
+                       data-lang-zh="新一代智能视觉平台，融合深度学习与迁移学习技术，基于 MobileNetV2 预训练模型，实现快速部署和精准识别。">
+                        Next-generation intelligent vision platform combining deep learning and transfer learning, powered by MobileNetV2 for efficient deployment and precise recognition.
+                    </p>
+                    <a class="view-repo-link" href="https://ctkqiang.xin/YingYanAI" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="Pawlyn Pet" data-lang-zh="Pawlyn 宠物平台">Pawlyn Pet</h3>
+                    <p data-lang-en="A digital platform for managing pet clinics and hospitals."
+                       data-lang-zh="一个用于管理宠物诊所和医院的数字平台。">
+                        A digital platform for managing pet clinics and hospitals.
+                    </p>
+                    <a class="view-repo-link" href="https://pawlynpet.vercel.app" target="_blank" data-lang-en="View Project" data-lang-zh="查看项目">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="TGIGS" data-lang-zh="TGIGS 平台">TGIGS</h3>
+                    <p data-lang-en="A freelance platform leveraging the TON blockchain."
+                       data-lang-zh="一个利用 TON 区块链的自由职业者平台。">
+                        A freelance platform leveraging the TON blockchain.
+                    </p>
+                    <a class="view-repo-link" href="https://man-xing-telegram.vercel.app/" target="_blank" data-lang-en="View Project" data-lang-zh="查看项目">View Project</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="LDoS Protection" data-lang-zh="DDoS 防护系统">DDoS Protection</h3>
+                    <p data-lang-en="Advanced DDoS protection system implementing rate limiting and traffic analysis for network security."
+                       data-lang-zh="先进的 DDoS 防护系统，实现流量限制和分析，保障网络安全。">
+                        Advanced DDoS protection system implementing rate limiting and traffic analysis for network security.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/ddos-protection" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="LQZ Digital Forensics" data-lang-zh="灵取证">LQZ Digital Forensics</h3>
+                    <p data-lang-en="Professional Android device forensics tool designed for law enforcement, judicial institutions, and security investigators. Features advanced forensic techniques ensuring data extraction integrity and accuracy, while strictly adhering to legal frameworks."
+                       data-lang-zh="专业的安卓设备数据取证工具，专为执法部门、司法机构和安全调查人员设计。采用先进的取证技术，确保数据提取的完整性和准确性，严格遵循相关法律法规框架。">
+                        Professional Android device forensics tool designed for law enforcement, judicial institutions, and security investigators. Features advanced forensic techniques ensuring data extraction integrity and accuracy, while strictly adhering to legal frameworks.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/LQZ" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="BOSS Zhipin Crawler" data-lang-zh="BOSS直聘爬虫">BOSS Zhipin Crawler</h3>
+                    <p data-lang-en="Automated data extraction system for BOSS Zhipin platform with comprehensive job market analysis."
+                       data-lang-zh="BOSS直聘平台的自动数据提取系统，提供全面的就业市场分析。">
+                        Automated data extraction system for BOSS Zhipin platform with comprehensive job market analysis.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/boss_zhipin_pachong" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="TongXinZhiZhou" data-lang-zh="通信之轴">TongXinZhiZhou</h3>
+                    <p data-lang-en="Communication protocol analysis and implementation tool for network security testing."
+                       data-lang-zh="用于网络安全测试的通信协议分析和实现工具。">
+                        Communication protocol analysis and implementation tool for network security testing.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/TongXinZhiZhou" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="PublicEEGCN" data-lang-zh="公共脑电图分类网络">PublicEEGCN</h3>
+                    <p data-lang-en="EEG signal classification using Graph Convolutional Networks for neurological analysis."
+                       data-lang-zh="使用图卷积网络进行脑电信号分类的神经科学分析工具。">
+                        EEG signal classification using Graph Convolutional Networks for neurological analysis.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/PublicEEGCN" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="Asian SME Directory" data-lang-zh="亚洲中小企业目录">Asian SME Directory</h3>
+                    <p data-lang-en="Comprehensive data analysis of Asian SMEs using Jupyter Notebook for business intelligence."
+                       data-lang-zh="使用 Jupyter Notebook 对亚洲中小企业进行全面数据分析的商业智能工具。">
+                        Comprehensive data analysis of Asian SMEs using Jupyter Notebook for business intelligence.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/AsianSMEDirectory/blob/main/SMEDirectory.ipynb" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 data-lang-en="AEDPenang" data-lang-zh="槟城 AED 平台">AEDPenang</h3>
+                    <p data-lang-en="Platform for locating AED devices during emergencies."
+                       data-lang-zh="一个在紧急情况下定位自动体外除颤器（AED）设备的平台。">
+                        Platform for locating AED devices during emergencies.
+                    </p>
+                    <a class="view-repo-link" href="https://aedpenang.onrender.com/" target="_blank" data-lang-en="View Project" data-lang-zh="查看项目">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="MobileAppAnalyzer" data-lang-zh="移动应用分析器">MobileAppAnalyzer</h3>
+                    <p data-lang-en="Ruby script for analyzing mobile application files (APK & IPA)."
+                       data-lang-zh="用于分析移动应用文件（APK 和 IPA）的 Ruby 脚本。">
+                        Ruby script for analyzing mobile application files (APK & IPA).
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/MobileAppAnalyzer.git" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="KeyloggerZGHK" data-lang-zh="键盘记录器 ZGHK">KeyloggerZGHK</h3>
+                    <p data-lang-en="Python script for capturing keyboard inputs and sending to a server."
+                       data-lang-zh="用于捕获键盘输入并发送到服务器的 Python 脚本。">
+                        Python script for capturing keyboard inputs and sending to a server.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/KeyloggerZGHK.git" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="MaybankAutomation" data-lang-zh="马来亚银行自动化脚本">MaybankAutomation</h3>
+                    <p data-lang-en="Automation script for querying bank info and executing transactions."
+                       data-lang-zh="用于查询银行信息和执行交易的自动化脚本。">
+                        Automation script for querying bank info and executing transactions.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/MaybankAutomation" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="StockAnalysis" data-lang-zh="股票分析">StockAnalysis</h3>
+                    <p data-lang-en="Jupyter Notebook for analyzing stock market data and providing insights."
+                       data-lang-zh="用于分析股票市场数据并提供见解的 Jupyter Notebook。">
+                        Jupyter Notebook for analyzing stock market data and providing insights.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/StockAnalysis/blob/main/Stocks/Stock_analysis.ipynb" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+                <div class="project-card">
+                    <h3 data-lang-en="RFID" data-lang-zh="RFID 项目">RFID</h3>
+                    <p data-lang-en="Project for reading and verifying RFID cards using an RC522 module."
+                       data-lang-zh="使用 RC522 模块读取和验证 RFID 卡的项目。">
+                        Project for reading and verifying RFID cards using an RC522 module.
+                    </p>
+                    <a class="view-repo-link" href="https://github.com/ctkqiang/RFID.git" target="_blank" data-lang-en="View Repository" data-lang-zh="查看仓库">View Repository</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="section">
+            <div class="section-header">
+                <h2 data-lang-en="Skills" data-lang-zh="技能">Skills</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="skills-container">
+
+                <div class="skills-category">
+                    <h3 data-lang-en="Programming Languages" data-lang-zh="编程语言">Programming Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill" data-lang-en="Dart" data-lang-zh="Dart">
+                            <i class="devicon-python-original"></i>
+                            <span>Dart</span>
+                        </div>
+                        <div class="skill" data-lang-en="Swift" data-lang-zh="Swift">
+                            <i class="devicon-python-original"></i>
+                            <span>Swift</span>
+                        </div>
+                        <div class="skill" data-lang-en="Python" data-lang-zh="Python">
+                            <i class="devicon-python-original"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill" data-lang-en="Java" data-lang-zh="Java">
+                            <i class="devicon-java-original colored"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill" data-lang-en="JavaScript" data-lang-zh="JavaScript">
+                            <i class="devicon-javascript-original colored"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill" data-lang-en="TypeScript" data-lang-zh="TypeScript">
+                            <i class="devicon-typescript-original colored"></i>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill" data-lang-en="Kotlin" data-lang-zh="Kotlin">
+                            <i class="devicon-kotlin-original colored"></i>
+                            <span>Kotlin</span>
+                        </div>
+                        <div class="skill" data-lang-en="C++" data-lang-zh="C++">
+                            <i class="devicon-cplusplus-original colored"></i>
+                            <span>C++</span>
+                        </div>
+                        <div class="skill" data-lang-en="Go" data-lang-zh="Go">
+                            <i class="devicon-go-original colored"></i>
+                            <span>Go</span>
+                        </div>
+                        <div class="skill" data-lang-en="Ruby" data-lang-zh="Ruby">
+                            <i class="devicon-ruby-original colored"></i>
+                            <span>Ruby</span>
+                        </div>
+                        <div class="skill" data-lang-en="Elixir" data-lang-zh="Elixir">
+                            <i class="devicon-elixir-original colored"></i>
+                            <span>Elixir</span>
+                        </div>
+                        <div class="skill" data-lang-en="Rust" data-lang-zh="Rust">
+                            <i class="devicon-rust-original colored"></i>
+                            <span>Rust</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frameworks & Technologies -->
+                <div class="skills-category">
+                    <h3 data-lang-en="Frameworks & Technologies" data-lang-zh="框架和技术">Frameworks & Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill" data-lang-en="Flutter" data-lang-zh="Flutter">
+                            <i class="devicon-flutter-original"></i>
+                            <span>Flutter</span>
+                        </div>
+                        <div class="skill" data-lang-en="Node.js" data-lang-zh="Node.js">
+                            <i class="devicon-nodejs-plain"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill" data-lang-en="Vue.js" data-lang-zh="Vue.js">
+                            <i class="devicon-vuejs-plain"></i>
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="skill" data-lang-en="SwiftUI" data-lang-zh="SwiftUI">
+                            <i class="fab fa-swift"></i>
+                            <span>SwiftUI</span>
+                        </div>
+                        <div class="skill" data-lang-en="GraphQL" data-lang-zh="GraphQL">
+                            <i class="devicon-graphql-plain"></i>
+                            <span>GraphQL</span>
+                        </div>
+                        <div class="skill" data-lang-en="Spring" data-lang-zh="Spring ">
+                            <i class="devicon-spring-plain"></i>
+                            <span>Spring</span>
+                        </div>
+                        <div class="skill" data-lang-en="Metasploit" data-lang-zh="Metasploit">
+                            <i class="fas fa-bug"></i>
+                            <span>Metasploit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & Machine Learning -->
+                <div class="skills-category">
+                    <h3 data-lang-en="AI & Machine Learning" data-lang-zh="人工智能和机器学习">AI & Machine Learning</h3>
+                    <div class="skills-grid">
+                        <div class="skill" data-lang-en="TensorFlow" data-lang-zh="TensorFlow">
+                            <i class="devicon-tensorflow-original"></i>
+                            <span>TensorFlow</span>
+                        </div>
+                        <div class="skill" data-lang-en="PyTorch" data-lang-zh="PyTorch">
+                            <i class="devicon-pytorch-original"></i>
+                            <span>PyTorch</span>
+                        </div>
+                        <div class="skill" data-lang-en="Keras" data-lang-zh="Keras">
+                            <i class="fas fa-brain"></i>
+                            <span>Keras</span>
+                        </div>
+                        <div class="skill" data-lang-en="OpenVINO" data-lang-zh="OpenVINO">
+                            <i class="fas fa-brain"></i>
+                            <span>OpenVINO</span>
+                        </div>
+                        <div class="skill" data-lang-en="OpenCV" data-lang-zh="OpenCV">
+                            <i class="fas fa-brain"></i>
+                            <span>OpenCV</span>
+                        </div>
+                        <div class="skill" data-lang-en="JavaML" data-lang-zh="JavaML">
+                            <i class="fas fa-brain"></i>
+                            <span>JavaML</span>
+                        </div>
+                        <div class="skill" data-lang-en="TinyML" data-lang-zh="TinyML">
+                            <i class="fas fa-brain"></i>
+                            <span>TinyML</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="skills-category">
+                    <h3 data-lang-en="Cloud & DevOps" data-lang-zh="云服务和开发运维">Cloud & DevOps</h3>
+                    <div class="skills-grid">
+                        <!-- 现有的云服务 -->
+                        <div class="skill" data-lang-en="AWS" data-lang-zh="亚马逊云服务">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill" data-lang-en="Azure" data-lang-zh="微软 Azure">
+                            <i class="devicon-azure-plain"></i>
+                            <span>Azure</span>
+                        </div>
+                        <div class="skill" data-lang-en="GCP" data-lang-zh="谷歌云平台">
+                            <i class="devicon-googlecloud-plain"></i>
+                            <span>GCP</span>
+                        </div>
+                        <div class="skill" data-lang-en="DigitalOcean" data-lang-zh="DigitalOcean">
+                            <i class="fab fa-digital-ocean"></i>
+                            <span>DigitalOcean</span>
+                        </div>
+                        <div class="skill" data-lang-en="Firebase" data-lang-zh="Firebase">
+                            <i class="devicon-firebase-plain"></i>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="skill" data-lang-en="Supabase" data-lang-zh="Supabase">
+                            <i class="fas fa-database"></i>
+                            <span>Supabase</span>
+                        </div>
+                        <div class="skill" data-lang-en="Vercel" data-lang-zh="Vercel">
+                            <i class="fas fa-server"></i>
+                            <span>Vercel</span>
+                        </div>
+                        <div class="skill" data-lang-en="Render" data-lang-zh="Render">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Render</span>
+                        </div>
+
+                        <!-- 容器技术 -->
+                        <div class="skill" data-lang-en="Docker" data-lang-zh="Docker">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill" data-lang-en="Kubernetes" data-lang-zh="Kubernetes">
+                            <i class="devicon-kubernetes-plain"></i>
+                            <span>Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chinese Platforms -->
+                <div class="skills-category">
+                    <h3 data-lang-en="Chinese Platforms" data-lang-zh="中国平台">Chinese Platforms</h3>
+                    <div class="skills-grid">
+                        <div class="skill" data-lang-en="WeChat Mini Program" data-lang-zh="微信小程序">
+                            <i class="fab fa-weixin"></i>
+                            <span>WeChat Mini Program</span>
+                        </div>
+                        <div class="skill" data-lang-en="TikTok Mini Program" data-lang-zh="抖音小程序">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok Mini Program</span>
+                        </div>
+                        <div class="skill" data-lang-en="Tencent Cloud" data-lang-zh="腾讯云">
+                            <i class="fas fa-cloud"></i>
+                            <span>Tencent Cloud</span>
+                        </div>
+                        <div class="skill" data-lang-en="CSDN Cloud" data-lang-zh="CSDN 开发云">
+                            <i class="fas fa-cloud"></i>
+                            <span>CSDN Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="testimonials" class="section">
+            <div class="section-header">
+                <h2 data-lang-en="What My Customers Say" data-lang-zh="客户评价">What My Customers Say</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Cheng's dedication and expertise exceeded all my expectations. He solved a problem I had been struggling with for months."'
+                           data-lang-zh='"他的敬业板和专业知识超过了我的所有预期。他解决了几个月一直困扰的问题。"'>
+                            "Cheng's dedication and expertise exceeded all my expectations. He solved a problem I had been struggling with for months."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AV</div>
+                        <div class="author-info">
+                            <strong>Annika Vogel</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Germany" data-lang-zh="德国">Germany</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Quick, efficient, and always professional. I highly recommend his services to anyone in need of a reliable developer."'
+                           data-lang-zh='"快速、高效，而且始终很专业。我强烈向任何需要可靠开发者的人推荐他的服务。"'>
+                            "Quick, efficient, and always professional. I highly recommend his services to anyone in need of a reliable developer."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LX</div>
+                        <div class="author-info">
+                            <strong>Liang Xiu</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="China" data-lang-zh="中国">China</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Cheng provided excellent guidance and delivered exactly what I needed. I couldn't be happier with the results."'
+                           data-lang-zh='"智强提供了出色的指导，并且准确地交付了我所需要的东西。我对结果非常满意。"'>
+                            "Cheng provided excellent guidance and delivered exactly what I needed. I couldn't be happier with the results."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AF</div>
+                        <div class="author-info">
+                            <strong>Aiman Farid</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Malaysia" data-lang-zh="马来西亚">Malaysia</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Working with Cheng was a pleasure. His attention to detail and creative problem-solving made all the difference."'
+                           data-lang-zh='"与智强合作很愉快。他对细节的关注和创造性的问题解决能力起到了关键作用。"'>
+                            "Working with Cheng was a pleasure. His attention to detail and creative problem-solving made all the difference."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">GC</div>
+                        <div class="author-info">
+                            <strong>Grace Chou</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Singapore" data-lang-zh="新加坡">Singapore</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Cheng transformed our ideas into reality with his expert skills and insight. Highly recommended!"'
+                           data-lang-zh='"智强凭借他的专业技能和洞察力将我们的想法变成了现实。强烈推荐！"'>
+                            "Cheng transformed our ideas into reality with his expert skills and insight. Highly recommended!"
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">VL</div>
+                        <div class="author-info">
+                            <strong>Victor Leung</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Hong Kong" data-lang-zh="中国香港">Hong Kong</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"I appreciate Cheng's patience and ability to explain complex concepts in a way that was easy to understand."'
+                           data-lang-zh='"我很欣赏智强的耐心以及他能用简单易懂的方式解释复杂概念的能力。"'>
+                            "I appreciate Cheng's patience and ability to explain complex concepts in a way that was easy to understand."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MB</div>
+                        <div class="author-info">
+                            <strong>Matthias Breuer</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Germany" data-lang-zh="德国">Germany</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"He exceeded all expectations, delivering quality work on time. I will definitely work with him again."'
+                           data-lang-zh='"他超出了所有预期，按时交付了高质量的工作。我肯定会再次和他合作。"'>
+                            "He exceeded all expectations, delivering quality work on time. I will definitely work with him again."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CM</div>
+                        <div class="author-info">
+                            <strong>Chen Mei-Yun</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="China" data-lang-zh="中国">China</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p data-lang-en='"Cheng is the kind of developer you can trust to get the job done right the first time. Fantastic experience."'
+                           data-lang-zh='"智强是那种你可以信任能一次性把工作做好的开发者。体验很棒。"'>
+                            "Cheng is the kind of developer you can trust to get the job done right the first time. Fantastic experience."
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <strong>Roshan Kumar</strong>
+                            <span class="author-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span data-lang-en="Malaysia" data-lang-zh="马来西亚">Malaysia</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+        <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p class="copyright" data-lang-en="&copy; 2025 Cheng Tze Keong. All rights reserved."
+                   data-lang-zh="&copy; 2025 钟智强。保留所有权利。">
+                    &copy; 2025 Cheng Tze Keong. All rights reserved.
+                </p>
+                <p class="location" data-lang-en="Based in Shangrao, Jiangxi, China"
+                   data-lang-zh="永丰街道广丰上饶市江西中国">
+                    Based in Shangrao, Jiangxi, China
+                </p>
+                <p class="contact-info">
+                    <span data-lang-en="Email: " data-lang-zh="邮箱：">Email: </span>
+                    <a href="mailto:johnmelodymel@qq.com">johnmelodymel@qq.com</a>
+                    <span class="separator">|</span>
+                    <span data-lang-en="WeChat: " data-lang-zh="微信号：">WeChat: </span>
+                    <span>ctkqiang</span>
+                </p>
+                    <!-- <p class="icp-info">
+                        <p class="icp-info">
+                            <img src="assets/2018guohui03.png" alt="工信部备案" width="20" height="20" style="vertical-align: middle; margin-right: 5px;">
+                        赣ICP备20250515000001号-1
+                    </p>
+                </p> -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/background.js"></script>
+</body>
+</html>
