@@ -180,20 +180,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Mobile menu functionality
-const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
-const navContainer = document.querySelector(".nav-container");
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
 
-mobileMenuToggle.addEventListener("click", () => {
-  mobileMenuToggle.classList.toggle("active");
-  navContainer.classList.toggle("active");
+menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
 });
 
 // Close mobile menu when clicking a link
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    mobileMenuToggle.classList.remove("active");
-    navContainer.classList.remove("active");
-  });
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
 });
 
 // Close mobile menu when clicking outside
