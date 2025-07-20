@@ -6,10 +6,13 @@ Allow: /assets/
 Allow: /styles/
 Disallow: /pages/no-jap.html
 
+User-agent: Baiduspider
+Allow: /
+
 Sitemap: https://ctkqiang.github.io/sitemap.xml
 
 # Crawl-delay
-Crawl-delay: 1000
+Crawl-delay: 1000000
 
 # Host
-Host: https://ctkqiang.github.io
+Host: https://www.ctkqiang.xin
