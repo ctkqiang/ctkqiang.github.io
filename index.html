@@ -793,6 +793,19 @@
         </div>
     </section>
 
+    <!-- RSS Feed Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">最新博客文章</h2>
+                <div class="w-24 h-1 bg-nezha-orange mx-auto"></div>
+            </div>
+            <div id="rss-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- RSS articles will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
     <!-- 联系我 -->
     <section id="contact" class="py-20 bg-nezha-dark relative">
         <div class="absolute inset-0 z-0">
@@ -810,6 +823,7 @@
                     若有项目合作或技术交流，欢迎随时联系吾。吾当以火尖枪之锐，破代码之难；以混天绫之柔，筑用户之需。
                 </p>
             </div>
+            
             
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- 联系表单 -->
@@ -1245,6 +1259,74 @@
             window.location.href = mailtoLink;
           });
           
+    </script>
+    <script>
+        // RSS Feed Loading and Rendering
+        async function loadRSSFeed() {
+            try {
+                const corsProxy = 'https://api.allorigins.win/raw?url=';
+                const rssUrl = encodeURIComponent('https://rss.csdn.net/tsz520eee/rss/map');
+                const response = await fetch(corsProxy + rssUrl);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(text, 'text/xml');
+                const items = xmlDoc.getElementsByTagName('item');
+                
+                const rssContent = document.getElementById('rss-content');
+                rssContent.innerHTML = ''; // Clear existing content
+                
+                // Convert items to array and process all items
+                Array.from(items).forEach(item => {
+                    const title = item.getElementsByTagName('title')[0].textContent.replace('<![CDATA[', '').replace(']]>', '');
+                    const link = item.getElementsByTagName('link')[0].textContent;
+                    const description = item.getElementsByTagName('description')[0].textContent.replace('<![CDATA[', '').replace(']]>', '');
+                    const pubDate = new Date(item.getElementsByTagName('pubDate')[0].textContent);
+                    const author = item.getElementsByTagName('author')[0].textContent;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer';
+                    card.innerHTML = `
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 line-clamp-2">
+                                <a href="${link}" 
+                                   class="hover:text-nezha-orange transition-colors duration-300"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    ${title}
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">${description}</p>
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>钟智强</span>
+                                <span>${pubDate.toLocaleDateString('zh-CN')}</span>
+                            </div>
+                        </div>
+                    `;
+
+                    // 添加点击事件处理
+                    card.addEventListener('click', (e) => {
+                        // 如果点击的不是链接本身，则模拟点击链接
+                        if (!e.target.closest('a')) {
+                            const link = card.querySelector('a');
+                            window.open(link.href, '_blank');
+                        }
+                    });
+                    
+                    rssContent.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Failed to load RSS feed:', error);
+                const rssContent = document.getElementById('rss-content');
+                rssContent.innerHTML = `
+                    <div class="col-span-full text-center text-gray-500">
+                        <p>暂时无法加载博客内容，请稍后再试。</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Load RSS feed when page is ready
+        document.addEventListener('DOMContentLoaded', loadRSSFeed);
     </script>
 </body>
 </html>
