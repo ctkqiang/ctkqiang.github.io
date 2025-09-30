@@ -5,30 +5,120 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lexi Drop — 隐私政策 / Privacy Policy</title>
   <style>
+    /* VARIABLES */
     :root{
       --bg:#f7f8fb;
       --card:#ffffff;
       --muted:#6b7280;
       --accent:#0753a6;
+      --accent-hover:#064082;
+      --text-main:#1f2937; /* Darker text for readability */
+      --text-heading:#0f172a;
       --radius:12px;
       color-scheme: light;
     }
+    /* BASE STYLES */
     html,body{height:100%;margin:0;font-family:Inter,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
-    body{background:var(--bg);display:flex;align-items:center;justify-content:center;padding:28px;}
-    .wrap{max-width:900px;width:100%;}
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 30px rgba(15,23,42,0.08);padding:28px;}
-    h1{margin:0 0 8px;font-size:20px;color:#0f172a;}
-    .meta{color:var(--muted);font-size:13px;margin-bottom:18px;}
-    h2{font-size:16px;margin:18px 0 8px;color:#0f172a;}
-    p{margin:8px 0;color:#111827;line-height:1.55;}
-    ul{margin:8px 0 8px 18px;color:#111827;}
-    .muted{color:var(--muted);font-size:13px;}
-    .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;align-items:center;}
-    .btn{background:var(--accent);color:#fff;padding:10px 12px;border-radius:8px;text-decoration:none;font-weight:600;}
-    footer{margin-top:20px;font-size:13px;color:var(--muted);}
+    body{
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px 16px;
+    }
+    .wrap{
+      max-width:850px; /* Slightly adjusted max width */
+      width:100%;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      /* Softer Shadow */
+      box-shadow: 0 6px 20px rgba(15,23,42,0.05), 0 2px 8px rgba(15,23,42,0.03);
+      padding:32px;
+    }
+
+    /* TYPOGRAPHY */
+    h1{
+      margin:0 0 10px;
+      font-size:24px;
+      color:var(--text-heading);
+    }
+    .meta{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:20px;
+    }
+    h2{
+      font-size:18px;
+      margin:28px 0 10px; /* Increased top margin for separation */
+      color:var(--text-heading);
+      font-weight:700;
+    }
+    p{
+      margin:10px 0;
+      color:var(--text-main);
+      line-height:1.7; /* Increased line height for comfort */
+      font-size:16px; /* Increased base font size */
+    }
+    ul{
+      margin:10px 0 10px 24px;
+      color:var(--text-main);
+      line-height:1.7;
+      font-size:16px;
+    }
+    .note{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:20px;
+      padding:12px;
+      background: #fcfcfd;
+      border-left: 3px solid var(--accent);
+    }
+    .bilingual{
+      font-weight:600;
+      color:var(--text-heading);
+    }
+
+    /* CTA & FOOTER */
+    .row{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:24px;
+      align-items:center;
+      padding-top:16px;
+      border-top:1px solid #eef2f7; /* Visual separation for contact area */
+    }
+    .btn{
+      background:var(--accent);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      transition:background 0.2s;
+      display:flex;
+      align-items:center;
+    }
+    .btn:hover{
+        background: var(--accent-hover);
+    }
+    .contact-info{
+      color:var(--muted);
+      font-size:14px;
+    }
+    footer{
+      margin-top:16px;
+      font-size:14px;
+      color:var(--muted);
+      text-align: center; /* Center the copyright */
+    }
+    /* MOBILE ADJUSTMENTS */
     @media (max-width:640px){
-      body{padding:16px;}
-      .card{padding:18px;}
+      .card{padding:24px;}
+      h1{font-size:22px;}
+      p, ul{font-size:15px;}
     }
   </style>
 </head>
@@ -36,96 +126,80 @@
   <div class="wrap">
     <div class="card">
       <h1>Lexi Drop — 隐私政策 / Privacy Policy</h1>
-      <div class="meta">生效日期 Effective Date: <strong id="date">2025-09-30</strong></div>
+      <div class="meta">
+        生效日期 Effective Date: <strong id="date">2025-09-30</strong>
+      </div>
 
-      <h2>简要说明（中文）</h2>
-      <p class="muted">本页面为 Lexi Drop 应用的隐私政策摘要与完整条款并列。此应用当前<b>不使用用户认证</b>，即无强制登录或账户机制（No authentication）。</p>
+      <div class="note">
+        <strong class="bilingual">简要说明 Summary:</strong> 本页面为 Lexi Drop 应用的隐私政策。此应用当前**不使用用户认证**，即无强制登录或账户机制 (No authentication). 聊天内容仅用于生成 AI 回复。
+      </div>
 
-      <h2>1. 我们收集的信息</h2>
+      <h2>1. 我们收集的信息 / Information We Collect</h2>
       <ul>
-        <li><strong>聊天内容</strong>：你发送给应用的文本会被用于生成 AI 回复。除非你主动选择“保存记录”，否则我们不会长期存储你的对话。</li>
-        <li><strong>匿名分析数据</strong>：我们可能收集非个人化的崩溃日志与使用统计，用于改进应用稳定性与体验。</li>
-        <li><strong>不收集</strong>：不要求电子邮件、姓名或其他身份凭证（应用无认证）。</li>
+        <li>
+          <strong class="bilingual">聊天内容 Messages</strong>
+          <p>你发送给应用的文本会被用于生成 AI 回复。除非你主动选择“保存记录”，否则我们不会长期存储你的对话。 / Text you submit is sent to AI services to produce responses. We do not retain conversations long-term unless you explicitly choose to save them.</p>
+        </li>
+        <li>
+          <strong class="bilingual">匿名分析数据 Anonymous Analytics</strong>
+          <p>我们可能收集非个人化的崩溃日志与使用统计，用于改进应用稳定性与体验。 / Non-personal crash logs and usage metrics may be collected to improve app stability and experience.</p>
+        </li>
+        <li>
+          <strong class="bilingual">不收集 No Account Data</strong>
+          <p>我们不要求电子邮件、姓名或其他身份凭证，应用无需登录。 / The app does not require email, name, or any login credentials.</p>
+        </li>
       </ul>
 
-      <h2>2. 我们如何使用数据</h2>
+      <h2>2. 数据的使用方式 / How We Use Information</h2>
       <ul>
-        <li>生成 AI 回复并优化对话质量。</li>
-        <li>修复错误并改进功能。</li>
-        <li>不向第三方出售或交易用户个人数据。</li>
+        <li>生成 AI 回复并优化对话质量。 / To generate AI responses and improve conversation quality.</li>
+        <li>修复错误并改进功能。 / To fix bugs and enhance functionality.</li>
+        <li>我们**不**向第三方出售或交易用户个人数据。 / We **do not** sell user personal data to third parties.</li>
       </ul>
 
-      <h2>3. 第三方服务</h2>
-      <p>本应用可能使用下列第三方服务，它们会按照各自政策处理数据：</p>
+      <h2>3. 第三方服务 / Third-Party Services</h2>
+      <p>本应用可能使用下列第三方服务，它们会按照各自政策处理数据： / The app may use third-party services that process data according to their own policies:</p>
       <ul>
-        <li><strong>Google Generative AI（Gemini）</strong>：用于生成 AI 回复。发送到该服务的文本用于即时生成回答，可能被该服务处理以改进模型，具体请参见其隐私与使用条款。</li>
-        <li><strong>可选分析/崩溃上报</strong>：例如 Firebase Analytics 或 Crashlytics，当你未禁用时它们会收集匿名事件或崩溃信息。</li>
+        <li>
+          <strong class="bilingual">Google Generative AI (Gemini)</strong>
+          <p>用于生成 AI 回复。发送到该服务的文本用于即时生成回答，可能被该服务处理以改进模型，具体请参见其隐私与使用条款。 / For generating AI replies. Submitted text is processed by that service per its policies.</p>
+        </li>
+        <li>
+          <strong class="bilingual">可选分析 / 崩溃上报 Optional Analytics / Crash Reporting</strong>
+          <p>例如 Firebase Analytics 或 Crashlytics，当你未禁用时它们会收集匿名事件或崩溃信息。 / e.g. Firebase, if enabled, collects anonymous event or crash information.</p>
+        </li>
       </ul>
 
-      <h2>4. 数据保存与删除</h2>
+      <h2>4. 数据保存与删除 / Data Retention and Deletion</h2>
       <p>默认情况下，除非你在应用内主动保存对话或导出内容，我们不会长期保留你的聊天记录。如果你需要删除已保存的数据，请通过下方联系方式提出请求，我们会在合理时间内响应。</p>
+      <p>By default, we do not persist chats unless you save them. To request deletion of any saved data, contact us using the details below, and we will respond in a reasonable timeframe.</p>
 
-      <h2>5. 未成年人</h2>
-      <p>此应用不针对 13 岁以下儿童。若发现未成年人数据被不适当地收集，可联系我们请求删除。</p>
+      <h2>5. 未成年人政策 / Children's Policy</h2>
+      <p>此应用不针对 13 岁以下儿童。若发现未成年人数据被不适当地收集，请联系我们请求删除。 / Not intended for children under 13. If you believe we collected data from a child, please contact us to request its removal.</p>
 
-      <h2>6. 安全</h2>
-      <p>我们使用业界标准措施保护数据安全，但无法保证绝对安全。敏感或极其重要的法律事务，请勿仅依赖本应用的 AI 输出，务必咨询专业律师。</p>
-
-      <h2>7. 免责声明（中文）</h2>
-      <p>Lexi Drop 提供的信息仅供参考，不构成法律意见或律师建议。对任何因使用本应用产生的行为后果，我们不承担法律责任。</p>
-
-      <hr style="margin:18px 0;border:none;border-top:1px solid #eef2f7" />
-
-      <!-- English section -->
-      <h2>Summary (English)</h2>
-      <p class="muted">This is the privacy policy for Lexi Drop. The app currently uses <strong>no authentication</strong>. Chat messages are used to generate AI responses.</p>
-
-      <h2>1. Information We Collect</h2>
-      <ul>
-        <li><strong>Messages</strong>: Text you submit is sent to AI services to produce responses. Unless you explicitly save conversations, we do not retain them long-term.</li>
-        <li><strong>Anonymous analytics</strong>: Non-personal crash logs and usage metrics may be collected to improve the app.</li>
-        <li><strong>No account data</strong>: The app does not require email, name, or any login credentials.</li>
-      </ul>
-
-      <h2>2. How We Use Information</h2>
-      <ul>
-        <li>To generate AI responses and improve conversation quality.</li>
-        <li>To fix bugs and enhance functionality.</li>
-        <li>We do not sell user personal data to third parties.</li>
-      </ul>
-
-      <h2>3. Third-Party Services</h2>
-      <p>The app may use third-party services such as:</p>
-      <ul>
-        <li><strong>Google Generative AI (Gemini)</strong>: For generating AI replies. Submitted text is processed by that service per its policies.</li>
-        <li><strong>Optional analytics / crash reporting</strong>: e.g. Firebase, if enabled.</li>
-      </ul>
-
-      <h2>4. Data Retention and Deletion</h2>
-      <p>By default we do not persist chats unless you save them. To request deletion of any saved data, contact us below and we will respond.</p>
-
-      <h2>5. Children</h2>
-      <p>Not intended for children under 13. If you believe we collected data from a child, contact us to remove it.</p>
-
-      <h2>6. Security</h2>
-      <p>We use standard industry practices to protect data but cannot guarantee absolute security. For critical legal matters consult a qualified attorney.</p>
-
-      <h2>7. Legal Disclaimer</h2>
-      <p>Information provided by Lexi Drop is for reference only and does not constitute legal advice. We are not responsible for actions you take based on app output.</p>
+      <h2>6. 安全与免责 / Security and Disclaimer</h2>
+      <p>我们使用业界标准措施保护数据安全，但无法保证绝对安全。Lexi Drop 提供的信息仅供参考，不构成法律意见或律师建议。对任何因使用本应用产生的行为后果，我们不承担法律责任。</p>
+      <p>We use standard industry practices to protect data but cannot guarantee absolute security. Information provided by Lexi Drop is for reference only and does not constitute legal advice. We are not responsible for actions you take based on the app's output. For critical legal matters, consult a qualified attorney.</p>
 
       <div class="row">
-        <a class="btn" href="mailto:ctkqiang@dingtalk.com">Contact: ctkqiang@dingtalk.com</a>
-        <span class="muted">Developer: ctkqiang · GitHub: <a href="https://github.com/ctkqiang" target="_blank" rel="noopener">ctkqiang</a></span>
+        <a class="btn" href="mailto:ctkqiang@dingtalk.com">
+          <svg style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          联系方式 Contact
+        </a>
+        <span class="contact-info">
+          Developer: ctkqiang
+          · GitHub: <a href="https://github.com/ctkqiang" target="_blank" rel="noopener">ctkqiang</a>
+        </span>
       </div>
 
       <footer>
-        © <span id="year"></span> Lexi Drop. All rights reserved.
+        © <span id="year"></span> ctkqiang. All rights reserved.
       </footer>
     </div>
   </div>
 
   <script>
-    // inject dates
+    // Inject dates (moved to the end of the body for faster rendering)
     const now = new Date();
     document.getElementById('date').textContent = now.toISOString().slice(0,10);
     document.getElementById('year').textContent = now.getFullYear();
