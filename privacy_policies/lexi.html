@@ -4,121 +4,237 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lexi Drop — 隐私政策 / Privacy Policy</title>
+  <!-- 引入Inter字体，提升文字质感 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* VARIABLES */
+    /* VARIABLES - 优化色彩体系，更显专业 */
     :root{
-      --bg:#f7f8fb;
+      --bg:#f5f7fa;
       --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#0753a6;
-      --accent-hover:#064082;
-      --text-main:#1f2937; /* Darker text for readability */
+      --muted:#64748b;
+      --accent:#0a66c2; /* 更柔和的蓝色主调 */
+      --accent-hover:#0855a0;
+      --accent-light:#e8f0fe; /* 强调色辅助色，用于高亮 */
+      --text-main:#1e293b; 
       --text-heading:#0f172a;
-      --radius:12px;
+      --border-light:#e2e8f0; /* 更浅的边框色，减少压迫感 */
+      --radius:16px; /* 更圆润的边角，提升现代感 */
+      --shadow-sm: 0 2px 8px rgba(15,23,42,0.04);
+      --shadow-md: 0 4px 20px rgba(15,23,42,0.06), 0 1px 6px rgba(15,23,42,0.03);
       color-scheme: light;
     }
-    /* BASE STYLES */
-    html,body{height:100%;margin:0;font-family:Inter,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    /* BASE STYLES - 优化基础样式，提升页面呼吸感 */
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: 'Inter', -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      scroll-behavior: smooth; /* 平滑滚动 */
+    }
     body{
       background:var(--bg);
       display:flex;
-      align-items:center;
+      align-items:flex-start; /* 顶部对齐，避免小屏幕内容被截断 */
       justify-content:center;
-      padding:28px 16px;
+      padding:32px 16px;
+      box-sizing:border-box;
     }
     .wrap{
-      max-width:850px; /* Slightly adjusted max width */
+      max-width:880px;
       width:100%;
+      margin:0 auto;
     }
     .card{
       background:var(--card);
       border-radius:var(--radius);
-      /* Softer Shadow */
-      box-shadow: 0 6px 20px rgba(15,23,42,0.05), 0 2px 8px rgba(15,23,42,0.03);
-      padding:32px;
+      box-shadow:var(--shadow-md);
+      padding:40px;
+      border:1px solid var(--border-light); /* 细边框提升精致度 */
+      transition:box-shadow 0.3s ease; /* 阴影过渡效果 */
+    }
+    .card:hover{
+      box-shadow: 0 8px 30px rgba(15,23,42,0.08), 0 2px 10px rgba(15,23,42,0.05);
     }
 
-    /* TYPOGRAPHY */
+    /* TYPOGRAPHY - 优化字体层级，提升阅读体验 */
     h1{
-      margin:0 0 10px;
-      font-size:24px;
+      margin:0 0 12px;
+      font-size:28px;
       color:var(--text-heading);
+      font-weight:700;
+      line-height:1.3;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    /* 添加标题图标，增强视觉识别 */
+    h1::before{
+      content:'';
+      width:28px;
+      height:28px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230a66c2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");
+      background-size:contain;
+      background-repeat:no-repeat;
     }
     .meta{
       color:var(--muted);
       font-size:14px;
-      margin-bottom:20px;
+      margin-bottom:24px;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--border-light); /* 分割线增强结构感 */
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .meta strong{
+      color:var(--accent);
+      font-weight:600;
     }
     h2{
-      font-size:18px;
-      margin:28px 0 10px; /* Increased top margin for separation */
+      font-size:20px;
+      margin:36px 0 16px;
       color:var(--text-heading);
-      font-weight:700;
+      font-weight:600;
+      position:relative;
+      padding-left:16px;
+    }
+    /* 标题左侧装饰线，增强层级 */
+    h2::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:4px;
+      height:20px;
+      background-color:var(--accent);
+      border-radius:2px;
     }
     p{
-      margin:10px 0;
+      margin:12px 0;
       color:var(--text-main);
-      line-height:1.7; /* Increased line height for comfort */
-      font-size:16px; /* Increased base font size */
+      line-height:1.8;
+      font-size:16px;
+      letter-spacing:0.02em; /* 微调字距，提升可读性 */
     }
     ul{
-      margin:10px 0 10px 24px;
+      margin:12px 0 12px 28px;
       color:var(--text-main);
-      line-height:1.7;
+      line-height:1.8;
       font-size:16px;
     }
+    ul li{
+      margin-bottom:10px;
+      position:relative;
+    }
+    /* 自定义列表项图标 */
+    ul li::marker{
+      color:var(--accent);
+      font-size:18px;
+    }
     .note{
-      color:var(--muted);
-      font-size:14px;
-      margin-bottom:20px;
-      padding:12px;
-      background: #fcfcfd;
-      border-left: 3px solid var(--accent);
+      color:var(--text-main);
+      font-size:15px;
+      margin:0 0 28px;
+      padding:16px 20px;
+      background:var(--accent-light);
+      border-left:4px solid var(--accent);
+      border-radius:0 8px 8px 0; /* 单侧圆角，增强设计感 */
+      line-height:1.7;
     }
     .bilingual{
       font-weight:600;
-      color:var(--text-heading);
+      color:var(--accent);
+      margin-right:8px;
     }
 
-    /* CTA & FOOTER */
+    /* CTA & FOOTER - 优化交互区域，提升点击意愿 */
     .row{
       display:flex;
-      gap:16px;
+      gap:20px;
       flex-wrap:wrap;
-      margin-top:24px;
+      margin-top:40px;
+      padding-top:24px;
+      border-top:1px solid var(--border-light);
       align-items:center;
-      padding-top:16px;
-      border-top:1px solid #eef2f7; /* Visual separation for contact area */
+      justify-content:space-between;
     }
     .btn{
       background:var(--accent);
       color:#fff;
-      padding:12px 18px;
+      padding:12px 24px;
       border-radius:10px;
       text-decoration:none;
       font-weight:600;
-      transition:background 0.2s;
-      display:flex;
+      transition:all 0.25s ease;
+      display:inline-flex;
       align-items:center;
+      gap:8px;
+      border:none;
+      cursor:pointer;
+      font-size:15px;
+      font-family:inherit;
+      box-shadow:var(--shadow-sm);
     }
     .btn:hover{
-        background: var(--accent-hover);
+      background:var(--accent-hover);
+      transform:translateY(-2px); /* 轻微上浮，增强交互感 */
+      box-shadow:0 4px 12px rgba(10,102,194,0.2);
+    }
+    .btn:active{
+      transform:translateY(0);
     }
     .contact-info{
       color:var(--muted);
       font-size:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .contact-info a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:500;
+      transition:color 0.2s ease;
+    }
+    .contact-info a:hover{
+      color:var(--accent-hover);
+      text-decoration:underline;
+      text-underline-offset:4px;
     }
     footer{
-      margin-top:16px;
+      margin-top:24px;
       font-size:14px;
       color:var(--muted);
-      text-align: center; /* Center the copyright */
+      text-align:center;
+      padding-top:16px;
+      border-top:1px solid var(--border-light);
     }
-    /* MOBILE ADJUSTMENTS */
-    @media (max-width:640px){
-      .card{padding:24px;}
-      h1{font-size:22px;}
-      p, ul{font-size:15px;}
+
+    /* 内容块动画 - 滚动时渐入，提升体验 */
+    .content-section{
+      opacity:0;
+      transform:translateY(15px);
+      transition:opacity 0.5s ease, transform 0.5s ease;
+    }
+    .content-section.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* MOBILE ADJUSTMENTS - 优化移动端体验 */
+    @media (max-width:768px){
+      .card{padding:28px 20px;}
+      h1{font-size:24px;}
+      h1::before{width:24px;height:24px;}
+      h2{font-size:18px;margin:30px 0 14px;padding-left:12px;}
+      h2::before{height:18px;}
+      p, ul{font-size:15px;line-height:1.7;}
+      .row{flex-direction:column;align-items:flex-start;gap:16px;}
+      .contact-info{width:100%;flex-direction:column;gap:8px;}
+      .note{padding:14px 16px;font-size:14px;}
+      body{padding:24px 12px;}
     }
   </style>
 </head>
@@ -127,69 +243,84 @@
     <div class="card">
       <h1>Lexi Drop — 隐私政策 / Privacy Policy</h1>
       <div class="meta">
-        生效日期 Effective Date: <strong id="date">2025-09-30</strong>
+        <span>生效日期 Effective Date: <strong id="date">2025-09-30</strong></span>
+        <span>最后更新 Last Updated: <strong id="last-update">2025-09-30</strong></span>
       </div>
 
-      <div class="note">
-        <strong class="bilingual">简要说明 Summary:</strong> 本页面为 Lexi Drop 应用的隐私政策。此应用当前**不使用用户认证**，即无强制登录或账户机制 (No authentication). 聊天内容仅用于生成 AI 回复。
+      <div class="note content-section">
+        <strong class="bilingual">简要说明 Summary:</strong> 本页面为 Lexi Drop 应用的隐私政策。此应用当前<strong>不使用用户认证</strong>，即无强制登录或账户机制 (No authentication)。聊天内容仅用于生成 AI 回复，我们重视并保护你的数据安全。
       </div>
 
-      <h2>1. 我们收集的信息 / Information We Collect</h2>
-      <ul>
-        <li>
-          <strong class="bilingual">聊天内容 Messages</strong>
-          <p>你发送给应用的文本会被用于生成 AI 回复。除非你主动选择“保存记录”，否则我们不会长期存储你的对话。 / Text you submit is sent to AI services to produce responses. We do not retain conversations long-term unless you explicitly choose to save them.</p>
-        </li>
-        <li>
-          <strong class="bilingual">匿名分析数据 Anonymous Analytics</strong>
-          <p>我们可能收集非个人化的崩溃日志与使用统计，用于改进应用稳定性与体验。 / Non-personal crash logs and usage metrics may be collected to improve app stability and experience.</p>
-        </li>
-        <li>
-          <strong class="bilingual">不收集 No Account Data</strong>
-          <p>我们不要求电子邮件、姓名或其他身份凭证，应用无需登录。 / The app does not require email, name, or any login credentials.</p>
-        </li>
-      </ul>
+      <!-- 为每个内容块添加动画类 -->
+      <div class="content-section">
+        <h2>1. 我们收集的信息 / Information We Collect</h2>
+        <ul>
+          <li>
+            <strong class="bilingual">聊天内容 Messages</strong>
+            <p>你发送给应用的文本会被用于生成 AI 回复。除非你主动选择“保存记录”，否则我们不会长期存储你的对话。 / Text you submit is sent to AI services to produce responses. We do not retain conversations long-term unless you explicitly choose to save them.</p>
+          </li>
+          <li>
+            <strong class="bilingual">匿名分析数据 Anonymous Analytics</strong>
+            <p>我们可能收集非个人化的崩溃日志与使用统计，用于改进应用稳定性与体验。此类数据不包含任何可识别你身份的信息。 / Non-personal crash logs and usage metrics may be collected to improve app stability and experience, which do not contain any personally identifiable information.</p>
+          </li>
+          <li>
+            <strong class="bilingual">不收集 No Account Data</strong>
+            <p>我们不要求电子邮件、姓名或其他身份凭证，应用无需登录即可使用。 / The app does not require email, name, or any login credentials to use.</p>
+          </li>
+        </ul>
+      </div>
 
-      <h2>2. 数据的使用方式 / How We Use Information</h2>
-      <ul>
-        <li>生成 AI 回复并优化对话质量。 / To generate AI responses and improve conversation quality.</li>
-        <li>修复错误并改进功能。 / To fix bugs and enhance functionality.</li>
-        <li>我们**不**向第三方出售或交易用户个人数据。 / We **do not** sell user personal data to third parties.</li>
-      </ul>
+      <div class="content-section">
+        <h2>2. 数据的使用方式 / How We Use Information</h2>
+        <ul>
+          <li>生成 AI 回复并优化对话质量，确保你获得准确、有效的交互体验。 / To generate AI responses and improve conversation quality for an accurate and effective experience.</li>
+          <li>修复应用错误、优化功能性能，提升整体使用流畅度。 / To fix bugs, optimize performance, and enhance overall app smoothness.</li>
+          <li>我们<strong>不</strong>向第三方出售或交易用户个人数据，也不会将你的信息用于政策外的其他用途。 / We <strong>do not</strong> sell or trade user personal data to third parties, nor use your information for purposes beyond this policy.</li>
+        </ul>
+      </div>
 
-      <h2>3. 第三方服务 / Third-Party Services</h2>
-      <p>本应用可能使用下列第三方服务，它们会按照各自政策处理数据： / The app may use third-party services that process data according to their own policies:</p>
-      <ul>
-        <li>
-          <strong class="bilingual">Google Generative AI (Gemini)</strong>
-          <p>用于生成 AI 回复。发送到该服务的文本用于即时生成回答，可能被该服务处理以改进模型，具体请参见其隐私与使用条款。 / For generating AI replies. Submitted text is processed by that service per its policies.</p>
-        </li>
-        <li>
-          <strong class="bilingual">可选分析 / 崩溃上报 Optional Analytics / Crash Reporting</strong>
-          <p>例如 Firebase Analytics 或 Crashlytics，当你未禁用时它们会收集匿名事件或崩溃信息。 / e.g. Firebase, if enabled, collects anonymous event or crash information.</p>
-        </li>
-      </ul>
+      <div class="content-section">
+        <h2>3. 第三方服务 / Third-Party Services</h2>
+        <p>本应用可能使用下列第三方服务，它们会按照各自的隐私政策处理数据。我们仅允许这些服务获取必要的信息以实现功能： / The app may use third-party services that process data according to their own privacy policies. We only allow these services to access necessary information to implement functions:</p>
+        <ul>
+          <li>
+            <strong class="bilingual">Google Generative AI (Gemini)</strong>
+            <p>用于生成 AI 回复。发送到该服务的文本仅用于即时生成回答，可能被该服务处理以改进其模型，具体请参见其<a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="link">隐私政策</a>与使用条款。 / For generating AI replies. Submitted text is only used to generate instant answers and may be processed by the service to improve its models. See its <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="link">privacy policy</a> for details.</p>
+          </li>
+          <li>
+            <strong class="bilingual">可选分析 / 崩溃上报 Optional Analytics / Crash Reporting</strong>
+            <p>例如 Firebase Analytics 或 Crashlytics，当你未禁用时，它们会收集匿名事件或崩溃信息，帮助我们定位并解决问题。 / e.g. Firebase Analytics or Crashlytics, which collect anonymous event or crash information (if not disabled) to help us identify and fix issues.</p>
+          </li>
+        </ul>
+      </div>
 
-      <h2>4. 数据保存与删除 / Data Retention and Deletion</h2>
-      <p>默认情况下，除非你在应用内主动保存对话或导出内容，我们不会长期保留你的聊天记录。如果你需要删除已保存的数据，请通过下方联系方式提出请求，我们会在合理时间内响应。</p>
-      <p>By default, we do not persist chats unless you save them. To request deletion of any saved data, contact us using the details below, and we will respond in a reasonable timeframe.</p>
+      <div class="content-section">
+        <h2>4. 数据保存与删除 / Data Retention and Deletion</h2>
+        <p>默认情况下，除非你在应用内主动保存对话或导出内容，我们不会长期保留你的聊天记录。所有未保存的对话会在会话结束后清除。 / By default, we do not persist chats long-term unless you actively save or export them in the app. All unsaved conversations will be cleared after the session ends.</p>
+        <p>如果你需要删除已保存的数据，请通过下方联系方式提出请求，我们会在 7 个工作日内响应并完成处理。 / If you need to delete saved data, please contact us using the details below, and we will respond and complete the process within 7 business days.</p>
+      </div>
 
-      <h2>5. 未成年人政策 / Children's Policy</h2>
-      <p>此应用不针对 13 岁以下儿童。若发现未成年人数据被不适当地收集，请联系我们请求删除。 / Not intended for children under 13. If you believe we collected data from a child, please contact us to request its removal.</p>
+      <div class="content-section">
+        <h2>5. 未成年人政策 / Children's Policy</h2>
+        <p>此应用不针对 13 岁以下儿童设计或推广。若发现未成年人数据被不适当地收集，请立即联系我们，我们将第一时间删除相关数据并采取预防措施。 / This app is not designed or promoted for children under 13. If you believe we have collected data from a child inappropriately, please contact us immediately, and we will delete the relevant data and take preventive measures promptly.</p>
+      </div>
 
-      <h2>6. 安全与免责 / Security and Disclaimer</h2>
-      <p>我们使用业界标准措施保护数据安全，但无法保证绝对安全。Lexi Drop 提供的信息仅供参考，不构成法律意见或律师建议。对任何因使用本应用产生的行为后果，我们不承担法律责任。</p>
-      <p>We use standard industry practices to protect data but cannot guarantee absolute security. Information provided by Lexi Drop is for reference only and does not constitute legal advice. We are not responsible for actions you take based on the app's output. For critical legal matters, consult a qualified attorney.</p>
+      <div class="content-section">
+        <h2>6. 安全与免责 / Security and Disclaimer</h2>
+        <p>我们使用业界标准措施（如数据加密、访问权限控制）保护数据安全，但由于网络环境的复杂性，无法保证绝对安全。我们会持续更新安全策略，尽力降低风险。 / We use industry-standard measures (such as data encryption and access control) to protect data security, but due to the complexity of the network environment, absolute security cannot be guaranteed. We will continuously update security policies to minimize risks.</p>
+        <p>Lexi Drop 提供的信息仅供参考，不构成法律意见或专业建议。对任何因使用本应用产生的行为后果，我们不承担法律责任。涉及重要决策时，请咨询专业人士。 / Information provided by Lexi Drop is for reference only and does not constitute legal or professional advice. We are not liable for any consequences of actions taken based on the app's output. Consult professionals for important decisions.</p>
+      </div>
 
       <div class="row">
-        <a class="btn" href="mailto:ctkqiang@dingtalk.com">
-          <svg style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <button class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           联系方式 Contact
-        </a>
-        <span class="contact-info">
-          Developer: ctkqiang
-          · GitHub: <a href="https://github.com/ctkqiang" target="_blank" rel="noopener">ctkqiang</a>
-        </span>
+        </button>
+        <div class="contact-info">
+          <span>Developer: ctkqiang</span>
+          <span>GitHub: <a href="https://github.com/ctkqiang" target="_blank" rel="noopener">ctkqiang</a></span>
+          <span>Email: <a href="mailto:ctkqiang@dingtalk.com">ctkqiang@dingtalk.com</a></span>
+        </div>
       </div>
 
       <footer>
@@ -199,10 +330,29 @@
   </div>
 
   <script>
-    // Inject dates (moved to the end of the body for faster rendering)
+    // 日期注入与动态更新
     const now = new Date();
-    document.getElementById('date').textContent = now.toISOString().slice(0,10);
+    const dateStr = now.toISOString().slice(0,10);
+    document.getElementById('date').textContent = dateStr;
+    document.getElementById('last-update').textContent = dateStr;
     document.getElementById('year').textContent = now.getFullYear();
+
+    // 滚动渐入动画 - 提升页面交互感
+    function handleScroll() {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.85) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    // 初始加载时触发一次，确保可见内容显示
+    window.addEventListener('load', handleScroll);
+    // 滚动时触发
+    window.addEventListener('scroll', handleScroll);
   </script>
 </body>
 </html>
