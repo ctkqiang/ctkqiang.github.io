@@ -1387,7 +1387,7 @@
                 try {
                     await original();
                     const cards = document.querySelectorAll('#rss-content > div');
-                    log(`加载完成，共渲染 ${cards.length} 篇文章`);
+                    //log(`加载完成，共渲染 ${cards.length} 篇文章`);
                     if (cards.length === 0) log('⚠️ 文章数为 0，请检查 RSS 内容或代理');
                 } catch (e) {
                     log(`❌ 捕获异常: ${e.message}`);
