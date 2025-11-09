@@ -1263,70 +1263,139 @@
     <script>
         // RSS Feed Loading and Rendering
         async function loadRSSFeed() {
+            const rssContent = document.getElementById('rss-content');
+            // 先显示骨架屏
+            rssContent.innerHTML = Array(3).fill(0).map(() => `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 animate-pulse">
+                    <div class="h-6 bg-gray-200 rounded mb-3"></div>
+                    <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded mb-4"></div>
+                    <div class="flex justify-between items-center">
+                        <div class="h-4 w-20 bg-gray-200 rounded"></div>
+                        <div class="h-4 w-24 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 备选代理列表，按优先级排序
+            const proxies = [
+                'https://api.allorigins.win/raw?url=',
+                'https://corsproxy.io/?',
+                'https://cors-anywhere.herokuapp.com/'
+            ];
+            const rssUrl = 'https://rss.csdn.net/tsz520eee/rss/map?spm=1001.2014.3001.5494';
+
+            let text = '';
+            // 依次尝试代理，直到成功
+            for (const proxy of proxies) {
+                try {
+                    const res = await fetch(proxy + encodeURIComponent(rssUrl), { timeout: 8000 });
+                    if (!res.ok) throw new Error('代理返回非 200');
+                    text = await res.text();
+                    break; // 成功就跳出
+                } catch (e) {
+                    console.warn('代理失败:', proxy, e.message);
+                }
+            }
+
+            // 如果全部代理失败，尝试本地缓存（localStorage 保存 1 小时）
+            const cacheKey = 'rssCache';
+            const cacheExpiry = 60 * 60 * 1000; // 1h
+            if (!text) {
+                const cached = localStorage.getItem(cacheKey);
+                const cachedTime = localStorage.getItem(cacheKey + '_time');
+                if (cached && cachedTime && Date.now() - parseInt(cachedTime) < cacheExpiry) {
+                    text = cached;
+                }
+            }
+
+            if (!text) {
+                rssContent.innerHTML = `
+                    <div class="col-span-full text-center text-gray-500">
+                        <p>暂时无法加载博客内容，请稍后再试。</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 缓存成功数据
             try {
-                const corsProxy = 'https://api.allorigins.win/raw?url=';
-                const rssUrl = encodeURIComponent('https://rss.csdn.net/tsz520eee/rss/map?spm=1001.2014.3001.5494');
-                const response = await fetch(corsProxy + rssUrl);
-                const text = await response.text();
+                localStorage.setItem(cacheKey, text);
+                localStorage.setItem(cacheKey + '_time', Date.now());
+            } catch {}
+
+            try {
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(text, 'text/xml');
-                const items = xmlDoc.getElementsByTagName('item');
-                
-                const rssContent = document.getElementById('rss-content');
-                rssContent.innerHTML = ''; // Clear existing content
-                
-                // Convert items to array and process all items
-                Array.from(items).forEach(item => {
-                    const title = item.getElementsByTagName('title')[0].textContent.replace('<![CDATA[', '').replace(']]>', '');
-                    const link = item.getElementsByTagName('link')[0].textContent;
-                    const description = item.getElementsByTagName('description')[0].textContent.replace('<![CDATA[', '').replace(']]>', '');
-                    const pubDate = new Date(item.getElementsByTagName('pubDate')[0].textContent);
-                    const author = item.getElementsByTagName('author')[0].textContent;
-                    
+                const items = xmlDoc.querySelectorAll('item');
+
+                rssContent.innerHTML = '';
+                items.forEach(item => {
+                    const title   = (item.querySelector('title')?.textContent || '').replace(/<!\[CDATA\[|]]>/g, '').trim();
+                    const link    = item.querySelector('link')?.textContent || '#';
+                    const desc    = (item.querySelector('description')?.textContent || '').replace(/<!\[CDATA\[|]]>/g, '').trim();
+                    const pubDate = new Date(item.querySelector('pubDate')?.textContent || Date.now());
+
                     const card = document.createElement('div');
                     card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer';
                     card.innerHTML = `
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-3 line-clamp-2">
-                                <a href="${link}" 
-                                   class="hover:text-nezha-orange transition-colors duration-300"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    ${title}
-                                </a>
+                                <a href="${link}" class="hover:text-nezha-orange transition-colors duration-300"
+                                   target="_blank" rel="noopener noreferrer">${title}</a>
                             </h3>
-                            <p class="text-gray-600 mb-4 line-clamp-3">${description}</p>
+                            <p class="text-gray-600 mb-4 line-clamp-3">${desc}</p>
                             <div class="flex justify-between items-center text-sm text-gray-500">
                                 <span>钟智强</span>
                                 <span>${pubDate.toLocaleDateString('zh-CN')}</span>
                             </div>
                         </div>
                     `;
-
-                    // 添加点击事件处理
-                    card.addEventListener('click', (e) => {
-                        // 如果点击的不是链接本身，则模拟点击链接
+                    card.addEventListener('click', e => {
                         if (!e.target.closest('a')) {
-                            const link = card.querySelector('a');
-                            window.open(link.href, '_blank');
+                            window.open(link, '_blank');
                         }
                     });
-                    
                     rssContent.appendChild(card);
                 });
-            } catch (error) {
-                console.error('Failed to load RSS feed:', error);
-                const rssContent = document.getElementById('rss-content');
+            } catch (e) {
+                console.error('RSS 解析失败:', e);
                 rssContent.innerHTML = `
                     <div class="col-span-full text-center text-gray-500">
-                        <p>暂时无法加载博客内容，请稍后再试。</p>
+                        <p>博客内容解析出错，请稍后再试。</p>
                     </div>
                 `;
             }
         }
         
         // Load RSS feed when page is ready
-        document.addEventListener('DOMContentLoaded', loadRSSFeed);
+        document.addEventListener('DOMContentLoaded', () => {
+            // 现场体检：把关键日志直接打在页面上，方便弟弟肉眼排查
+            const debugBox = document.createElement('div');
+            debugBox.id = 'rss-debug';
+            debugBox.className = 'fixed top-4 right-4 z-50 bg-yellow-100 border border-yellow-300 text-yellow-800 text-xs p-3 rounded shadow max-w-xs';
+            document.body.appendChild(debugBox);
+            const log = (msg) => {
+                debugBox.innerHTML += `<div>${new Date().toLocaleTimeString()} ${msg}</div>`;
+                console.log('[RSS-DEBUG]', msg);
+            };
+
+            // 把 loadRSSFeed 包一层诊断
+            const original = loadRSSFeed;
+            loadRSSFeed = async function() {
+                log('开始加载 RSS...');
+                try {
+                    await original();
+                    const cards = document.querySelectorAll('#rss-content > div');
+                    log(`加载完成，共渲染 ${cards.length} 篇文章`);
+                    if (cards.length === 0) log('⚠️ 文章数为 0，请检查 RSS 内容或代理');
+                } catch (e) {
+                    log(`❌ 捕获异常: ${e.message}`);
+                }
+            };
+
+            loadRSSFeed();
+        });
     </script>
 </body>
 </html>
