@@ -1383,7 +1383,7 @@
             // 把 loadRSSFeed 包一层诊断
             const original = loadRSSFeed;
             loadRSSFeed = async function() {
-                log('开始加载 RSS...');
+            //    log('开始加载 RSS...');
                 try {
                     await original();
                     const cards = document.querySelectorAll('#rss-content > div');
