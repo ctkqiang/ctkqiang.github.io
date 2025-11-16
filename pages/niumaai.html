@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牛马AI - 打工人的快乐源泉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* 欢迎页 */
+        .welcome-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .welcome-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .enter-btn {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: #333;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        /* 聊天页 */
+        .chat-page {
+            display: none;
+            height: 100vh;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .chat-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .chat-title {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 100px);
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafafa;
+            min-height: 200px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.ai {
+            justify-content: flex-start;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #333;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.ai .message-bubble {
+            background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
+            color: #333;
+            border-bottom-left-radius: 5px;
+        }
+
+        .input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .input-field:focus {
+            border-color: #667eea;
+            background: white;
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 动画 */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 2.2rem;
+            }
+            
+            .message-bubble {
+                max-width: 85%;
+            }
+            
+            .chat-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 欢迎页 -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-title">🐄🐴 牛马AI</div>
+        <div class="welcome-subtitle">
+            打工人专属的快乐源泉<br>
+            不是AI，胜似AI！<br>
+            来和你的牛马兄弟唠唠职场那些事儿～
+        </div>
+        <button class="enter-btn" onclick="enterChat()">进入牛马世界</button>
+    </div>
+
+    <!-- 聊天页 -->
+    <div class="chat-page" id="chatPage">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span>🐄🐴</span>
+                牛马AI聊天室
+                <span>🐄🐴</span>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="messages-container" id="messagesContainer">
+                <div class="message ai">
+                    <div class="message-bubble">
+                        哈喽打工人！我是你的牛马兄弟 🐄🐴<br>
+                        不是啥高大上的AI，就是个懂你的老油条<br>
+                        有啥憋屈的、搞笑的、想吐槽的，尽管说！<br>
+                        我们牛马之间，就是要互相取暖～ 😂
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" class="input-field" id="messageInput" placeholder="说说你今天的牛马日常..." maxlength="500">
+                <button class="send-btn" onclick="sendMessage()">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 100条牛马风格搞笑回复
+        const funnyReplies = [
+            "啊对对对，老板画的饼真香，我都吃饱了三年了还饿着呢！",
+            "上班就像谈恋爱，明明不合适还要硬在一起，还要假装很幸福！",
+            "今天又是为公司免费加班的一天，老板说这是福报，我说是活该！",
+            "同事甩锅给我？没事，我锅多着呢，再给他加个盖！",
+            "工资就像大姨妈，一个月来一次，一周就没了！",
+            "上班摸鱼是我的专业技能，老板查岗是我的生存挑战！",
+            "早安打工人！今天的KPI是活着下班！",
+            "老板说要有梦想，我说我的梦想就是不上班！",
+            "同事说帮我带饭，结果带了个寂寞，这就是职场友情！",
+            "开会就像听天书，领导说的每个字我都认识，连起来就听不懂了！",
+            "加班费？不存在的！情怀？老板说我们有！",
+            "今天又被老板夸了，夸我任劳任怨，我心想：废话，不给钱谁愿意干！",
+            "同事说这个项目很简单，我信了，然后加班到凌晨三点！",
+            "工资条就像体检报告，看着数字越来越小，心情越来越差！",
+            "上班就像坐牢，老板是狱警，工资是放风时间！",
+            "今天又被安排了不可能完成的任务，我说好的，然后等着看奇迹！",
+            "同事说帮我顶班，结果我帮他顶了一周，这就是职场信任！",
+            "老板说公司是大家庭，我说那为什么我是免费劳动力！",
+            "上班就像等公交，等了很久不来，来了还挤不上！",
+            "今天又迟到了，原因是起床困难症犯了，老板说是态度问题！",
+            "同事说帮我问问，问了一周没结果，这就是职场效率！",
+            "工资就像爱情，承诺很多，实际很少！",
+            "今天又被要求改方案，改到第8版，老板说还是第一版好！",
+            "同事说帮我带杯咖啡，结果我请了一周，这就是职场人情！",
+            "上班就像马拉松，跑不完还不能停，还没有电梯！",
+            "今天又加班了，老板说年轻人要多奋斗，我说我奋斗不动了！",
+            "同事说一起吃饭，结果他先走了，这就是职场伙伴！",
+            "上班就像爬山，越爬越高，越爬越累，还没有缆车！",
+            "今天又迟到了，原因是地铁故障，老板说是借口！",
+            "同事说帮我保密，结果全公司都知道了，这就是职场保密！",
+            "工资就像彩票，偶尔中一次，大部分时候是空气！",
+            "今天又加班了，老板说这是常态，我说我常态不了！",
+            "同事说一起学习，结果他玩手机，这就是职场学习！",
+            "工资不涨，物价飞涨，这就是我们牛马的生活水平！",
+            "今天又被要求改PPT，改到第10版，老板说还是第一版好！",
+            "同事说帮我带饭，结果我请了，这就是职场人情！",
+            "上班就像过山车，刺激但是不安全，还没有保险！",
+            "今天又开会了，老板说要有创新精神，我说我的创新就是准时下班！",
+            "同事说这个项目很有前景，我说是的，关系到我能不能准时吃饭！",
+            "老板说公司是大家庭，我说那我什么时候能分家产！",
+            "上班就像等车，等了很久不来，来了还超载！",
+            "今天又加班到深夜，老板说这是奋斗，我说我奋斗不动了！",
+            "同事说一起合作，结果他甩锅，这就是职场合作！",
+            "上班就像骑车，骑得快累死，骑得慢落后！",
+            "今天又迟到了，原因是睡过头，老板说是态度问题！",
+            "同事说帮我看看，看了一小时没结果，这就是职场求助！",
+            "工资就像青春，一去不复返！",
+            "今天又被要求加班，我说好的，心里想着是辞职！",
+            "同事说一起吃饭，结果他AA，这就是职场友谊！",
+            "上班就像游泳，游不动还不能上岸！",
+            "今天又开会了，开了两小时，说了两句话，总结：继续努力！",
+            "同事说这个很简单，我信了，然后加班到怀疑人生！",
+            "老板说要有梦想，我说我的梦想是双休！",
+            "今天又被安排了额外的工作，我说好的，心里想着是加薪！",
+            "同事说一起加班，结果他先溜了，这就是职场伙伴！",
+            "上班就像坐车，坐得久想下车！",
+            "今天又迟到了，原因是起晚了，老板说是懒惰！",
+            "同事说帮我保密，结果全公司都知道了，这就是职场信任！",
+            "工资就像雨水，下得少还蒸发快！",
+            "今天又加班了，老板说年轻人要多吃苦，我说我吃苦吃够了！",
+            "同事说一起吃饭，结果他买单，这就是职场奇迹！",
+            "上班就像跑步，跑得快累死，跑得慢落后！",
+            "今天又开会了，开了三小时，说了三句话，总结：加油！",
+            "同事说这个很简单，我做了，然后他说还是他来做吧！",
+            "工资就像记忆，越来越模糊！",
+            "今天又加班了，老板说这是福报，我说我受够了！",
+            "同事说一起学习，结果他睡觉，这就是职场学习！",
+            "工资不涨，要求越来越高，这就是我们牛马的生活！"
+        ];
+
+        let currentPage = 'welcome';
+
+        function enterChat() {
+            document.getElementById('welcomePage').style.display = 'none';
+            document.getElementById('chatPage').style.display = 'block';
+            currentPage = 'chat';
+            // 聚焦输入框
+            setTimeout(() => {
+                document.getElementById('messageInput').focus();
+            }, 100);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+
+            // 添加用户消息
+            addMessage(message, 'user');
+            input.value = '';
+
+            // 延迟添加AI回复
+            setTimeout(() => {
+                const randomReply = funnyReplies[Math.floor(Math.random() * funnyReplies.length)];
+                addMessage(randomReply, 'ai');
+            }, 500 + Math.random() * 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('messagesContainer');
+            if (!messagesContainer) {
+                console.error('消息容器未找到');
+                return;
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'message-bubble';
+            bubbleDiv.textContent = text;
+            
+            messageDiv.appendChild(bubbleDiv);
+            messagesContainer.appendChild(messageDiv);
+
+            // 滚动到底部
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+
+        // 回车发送消息
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // 页面加载完成后聚焦输入框
+        window.addEventListener('load', function() {
+            if (currentPage === 'chat') {
+                setTimeout(() => {
+                    document.getElementById('messageInput').focus();
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
