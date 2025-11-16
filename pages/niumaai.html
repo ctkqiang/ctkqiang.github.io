@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>牛马AI - 打工人的快乐源泉</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #ff9a9e;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            color: var(--dark);
+            overflow-x: hidden;
         }
 
         /* 欢迎页 */
@@ -27,36 +45,102 @@
             text-align: center;
             padding: 20px;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
         }
 
         .welcome-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: bounce 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
         .welcome-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 40px;
             line-height: 1.6;
-            max-width: 500px;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            width: 160px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .enter-btn {
-            background: linear-gradient(45deg, #ff9a9e, #fecfef);
-            color: #333;
+            background: linear-gradient(45deg, var(--accent), #fad0c4);
+            color: var(--dark);
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 15px 50px;
+            font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .enter-btn:hover::before {
+            left: 100%;
         }
 
         .enter-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 12px 35px rgba(0,0,0,0.3);
         }
 
@@ -65,47 +149,78 @@
             display: none;
             height: 100vh;
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            position: relative;
         }
 
         .chat-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .chat-title {
             font-size: 1.8rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 10px;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chat-action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .chat-container {
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 100px);
-            max-width: 800px;
+            height: calc(100vh - 80px);
+            max-width: 1000px;
             margin: 0 auto;
             width: 100%;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .messages-container {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            background: #fafafa;
+            background: #f8f9fa;
             min-height: 200px;
+            scroll-behavior: smooth;
         }
 
         .message {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
-            animation: fadeIn 0.3s ease;
+            animation: fadeInUp 0.4s ease;
         }
 
         .message.user {
@@ -116,66 +231,160 @@
             justify-content: flex-start;
         }
 
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(45deg, var(--accent), #fad0c4);
+            order: 2;
+        }
+
+        .message.ai .message-avatar {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            order: 1;
+        }
+
         .message-bubble {
             max-width: 70%;
-            padding: 12px 18px;
-            border-radius: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             word-wrap: break-word;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            font-size: 1rem;
+            line-height: 1.5;
+            position: relative;
         }
 
         .message.user .message-bubble {
             background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            color: #333;
+            color: var(--dark);
             border-bottom-right-radius: 5px;
         }
 
         .message.ai .message-bubble {
             background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
-            color: #333;
+            color: var(--dark);
             border-bottom-left-radius: 5px;
         }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .typing-indicator.active {
+            opacity: 1;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
 
         .input-container {
             padding: 20px;
             background: white;
             border-top: 1px solid #eee;
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            align-items: center;
         }
 
         .input-field {
             flex: 1;
-            padding: 12px 18px;
+            padding: 15px 20px;
             border: 2px solid #e0e0e0;
             border-radius: 25px;
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s ease;
             background: #fafafa;
+            transition: all 0.3s ease;
         }
 
         .input-field:focus {
-            border-color: #667eea;
+            border-color: var(--primary);
             background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .send-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:active {
+            transform: scale(0.95);
+        }
+
+        .quick-replies {
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            overflow-x: auto;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .quick-reply {
+            background: #f1f3f5;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .quick-reply:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* 动画 */
@@ -186,14 +395,29 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: scale(1); opacity: 0.5; }
+            30% { transform: scale(1.2); opacity: 1; }
         }
 
         /* 响应式 */
         @media (max-width: 768px) {
             .welcome-title {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                flex-direction: column;
+                align-items: center;
             }
             
             .message-bubble {
@@ -203,19 +427,70 @@
             .chat-title {
                 font-size: 1.5rem;
             }
+            
+            .chat-header {
+                padding: 15px;
+            }
+            
+            .quick-replies {
+                padding: 10px 15px;
+            }
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
         }
     </style>
 </head>
 <body>
     <!-- 欢迎页 -->
     <div class="welcome-page" id="welcomePage">
-        <div class="welcome-title">🐄🐴 牛马AI</div>
-        <div class="welcome-subtitle">
-            打工人专属的快乐源泉<br>
-            不是AI，胜似AI！<br>
-            来和你的牛马兄弟唠唠职场那些事儿～
+        <div class="welcome-content">
+            <div class="welcome-title">
+                <span>🐄</span>
+                牛马AI
+                <span>🐴</span>
+            </div>
+            <div class="welcome-subtitle">
+                打工人专属的快乐源泉<br>
+                不是AI，胜似AI！<br>
+                来和你的牛马兄弟唠唠职场那些事儿～
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-comment-dots"></i>
+                    <div>智能吐槽</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-laugh-beam"></i>
+                    <div>幽默回复</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heart"></i>
+                    <div>情感共鸣</div>
+                </div>
+            </div>
+            
+            <button class="enter-btn" onclick="enterChat()">
+                <i class="fas fa-door-open"></i> 进入牛马世界
+            </button>
         </div>
-        <button class="enter-btn" onclick="enterChat()">进入牛马世界</button>
     </div>
 
     <!-- 聊天页 -->
@@ -224,103 +499,194 @@
             <div class="chat-title">
                 <span>🐄🐴</span>
                 牛马AI聊天室
-                <span>🐄🐴</span>
+            </div>
+            <div class="chat-actions">
+                <button class="chat-action-btn" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="chat-action-btn" onclick="clearChat()">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button class="chat-action-btn" onclick="showHelp()">
+                    <i class="fas fa-question"></i>
+                </button>
             </div>
         </div>
         
         <div class="chat-container">
             <div class="messages-container" id="messagesContainer">
                 <div class="message ai">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
                     <div class="message-bubble">
                         哈喽打工人！我是你的牛马兄弟 🐄🐴<br>
                         不是啥高大上的AI，就是个懂你的老油条<br>
                         有啥憋屈的、搞笑的、想吐槽的，尽管说！<br>
                         我们牛马之间，就是要互相取暖～ 😂
+                        <div class="message-time" id="initialTime"></div>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-bubble">
+                        牛马AI正在输入...
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             
+            <div class="quick-replies" id="quickReplies">
+                <button class="quick-reply" onclick="quickReply('今天又被老板骂了')">老板骂我</button>
+                <button class="quick-reply" onclick="quickReply('又要加班了')">又要加班</button>
+                <button class="quick-reply" onclick="quickReply('工资太低了')">工资太低</button>
+                <button class="quick-reply" onclick="quickReply('同事甩锅给我')">同事甩锅</button>
+                <button class="quick-reply" onclick="quickReply('不想上班')">不想上班</button>
+            </div>
+            
             <div class="input-container">
                 <input type="text" class="input-field" id="messageInput" placeholder="说说你今天的牛马日常..." maxlength="500">
-                <button class="send-btn" onclick="sendMessage()">发送</button>
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        // 100条牛马风格搞笑回复
-        const funnyReplies = [
-            "啊对对对，老板画的饼真香，我都吃饱了三年了还饿着呢！",
-            "上班就像谈恋爱，明明不合适还要硬在一起，还要假装很幸福！",
-            "今天又是为公司免费加班的一天，老板说这是福报，我说是活该！",
-            "同事甩锅给我？没事，我锅多着呢，再给他加个盖！",
-            "工资就像大姨妈，一个月来一次，一周就没了！",
-            "上班摸鱼是我的专业技能，老板查岗是我的生存挑战！",
-            "早安打工人！今天的KPI是活着下班！",
-            "老板说要有梦想，我说我的梦想就是不上班！",
-            "同事说帮我带饭，结果带了个寂寞，这就是职场友情！",
-            "开会就像听天书，领导说的每个字我都认识，连起来就听不懂了！",
-            "加班费？不存在的！情怀？老板说我们有！",
-            "今天又被老板夸了，夸我任劳任怨，我心想：废话，不给钱谁愿意干！",
-            "同事说这个项目很简单，我信了，然后加班到凌晨三点！",
-            "工资条就像体检报告，看着数字越来越小，心情越来越差！",
-            "上班就像坐牢，老板是狱警，工资是放风时间！",
-            "今天又被安排了不可能完成的任务，我说好的，然后等着看奇迹！",
-            "同事说帮我顶班，结果我帮他顶了一周，这就是职场信任！",
-            "老板说公司是大家庭，我说那为什么我是免费劳动力！",
-            "上班就像等公交，等了很久不来，来了还挤不上！",
-            "今天又迟到了，原因是起床困难症犯了，老板说是态度问题！",
-            "同事说帮我问问，问了一周没结果，这就是职场效率！",
-            "工资就像爱情，承诺很多，实际很少！",
-            "今天又被要求改方案，改到第8版，老板说还是第一版好！",
-            "同事说帮我带杯咖啡，结果我请了一周，这就是职场人情！",
-            "上班就像马拉松，跑不完还不能停，还没有电梯！",
-            "今天又加班了，老板说年轻人要多奋斗，我说我奋斗不动了！",
-            "同事说一起吃饭，结果他先走了，这就是职场伙伴！",
-            "上班就像爬山，越爬越高，越爬越累，还没有缆车！",
-            "今天又迟到了，原因是地铁故障，老板说是借口！",
-            "同事说帮我保密，结果全公司都知道了，这就是职场保密！",
-            "工资就像彩票，偶尔中一次，大部分时候是空气！",
-            "今天又加班了，老板说这是常态，我说我常态不了！",
-            "同事说一起学习，结果他玩手机，这就是职场学习！",
-            "工资不涨，物价飞涨，这就是我们牛马的生活水平！",
-            "今天又被要求改PPT，改到第10版，老板说还是第一版好！",
-            "同事说帮我带饭，结果我请了，这就是职场人情！",
-            "上班就像过山车，刺激但是不安全，还没有保险！",
-            "今天又开会了，老板说要有创新精神，我说我的创新就是准时下班！",
-            "同事说这个项目很有前景，我说是的，关系到我能不能准时吃饭！",
-            "老板说公司是大家庭，我说那我什么时候能分家产！",
-            "上班就像等车，等了很久不来，来了还超载！",
-            "今天又加班到深夜，老板说这是奋斗，我说我奋斗不动了！",
-            "同事说一起合作，结果他甩锅，这就是职场合作！",
-            "上班就像骑车，骑得快累死，骑得慢落后！",
-            "今天又迟到了，原因是睡过头，老板说是态度问题！",
-            "同事说帮我看看，看了一小时没结果，这就是职场求助！",
-            "工资就像青春，一去不复返！",
-            "今天又被要求加班，我说好的，心里想着是辞职！",
-            "同事说一起吃饭，结果他AA，这就是职场友谊！",
-            "上班就像游泳，游不动还不能上岸！",
-            "今天又开会了，开了两小时，说了两句话，总结：继续努力！",
-            "同事说这个很简单，我信了，然后加班到怀疑人生！",
-            "老板说要有梦想，我说我的梦想是双休！",
-            "今天又被安排了额外的工作，我说好的，心里想着是加薪！",
-            "同事说一起加班，结果他先溜了，这就是职场伙伴！",
-            "上班就像坐车，坐得久想下车！",
-            "今天又迟到了，原因是起晚了，老板说是懒惰！",
-            "同事说帮我保密，结果全公司都知道了，这就是职场信任！",
-            "工资就像雨水，下得少还蒸发快！",
-            "今天又加班了，老板说年轻人要多吃苦，我说我吃苦吃够了！",
-            "同事说一起吃饭，结果他买单，这就是职场奇迹！",
-            "上班就像跑步，跑得快累死，跑得慢落后！",
-            "今天又开会了，开了三小时，说了三句话，总结：加油！",
-            "同事说这个很简单，我做了，然后他说还是他来做吧！",
-            "工资就像记忆，越来越模糊！",
-            "今天又加班了，老板说这是福报，我说我受够了！",
-            "同事说一起学习，结果他睡觉，这就是职场学习！",
-            "工资不涨，要求越来越高，这就是我们牛马的生活！"
-        ];
+        // 设置初始消息的时间
+        document.getElementById('initialTime').textContent = getCurrentTime();
+        
+        // 智能回复系统 - 根据用户输入内容生成针对性回复
+        const replySystem = {
+            // 关键词匹配和回复
+            patterns: [
+                {
+                    keywords: ['加班', '熬夜', '通宵', '晚下班'],
+                    replies: [
+                        "又加班？老板说这是福报，我说这是噩梦！",
+                        "加班费？不存在的！我们靠爱发电！",
+                        "加班就像借钱，借了就不打算还了，还了还要借！",
+                        "你说'年轻人要多奋斗'？我奋斗了，老板的宝马换新的了！",
+                        "加班？我的生活除了工作就是工作，老板却说我效率低！"
+                    ]
+                },
+                {
+                    keywords: ['工资', '薪水', '薪资', '收入', '工资条'],
+                    replies: [
+                        "你说'能力越大责任越大'？那为什么我责任越来越大，能力却不见涨工资？",
+                        "工资就像大姨妈，一个月来一次，一周就没了！",
+                        "工资不涨，物价飞涨，这就是我们牛马的生活水平！",
+                        "工资就像爱情，承诺很多，实际很少！",
+                        "老板说'不要计较眼前得失'——意思就是'画饼管饱，现金没有'呗？"
+                    ]
+                },
+                {
+                    keywords: ['老板', '领导', '上司', '主管'],
+                    replies: [
+                        "老板说'不要计较眼前得失'——意思就是'画饼管饱，现金没有'呗？",
+                        "跟我谈'狼性文化'？狼是吃肉的好吗！你天天喂草，还指望我嗷嗷叫？",
+                        "老板说'公司是大家庭'——所以就可以理直气壮地让我无偿加班？",
+                        "你说'眼光要放长远'？我眼前都快吃不上饭了，你跟我谈未来？",
+                        "老板说'要有梦想'，我说我的梦想就是不上班还能拿工资！"
+                    ]
+                },
+                {
+                    keywords: ['同事', '团队', '合作', '甩锅'],
+                    replies: [
+                        "说好的'团队协作'呢？怎么最后变成我'团队协作'，他们'坐享其成'？",
+                        "同事甩锅给我？没事，我锅多着呢，再给他加个盖！",
+                        "同事说帮我带饭，结果带了个寂寞，这就是职场友情！",
+                        "同事说一起合作，结果他甩锅，这就是职场合作！",
+                        "同事说帮我保密，结果全公司都知道了，这就是职场信任！"
+                    ]
+                },
+                {
+                    keywords: ['开会', '会议', '早会', '晚会'],
+                    replies: [
+                        "开会就像听天书，领导说的每个字我都认识，连起来就听不懂了！",
+                        "今天又开会了，开了两小时，说了两句话，总结：继续努力！",
+                        "开会？不就是把简单的事情复杂化，再把复杂的事情搞砸吗？",
+                        "老板说要有创新精神，我说我的创新就是准时下班！",
+                        "开会三小时，有效内容三分钟，这就是职场效率！"
+                    ]
+                },
+                {
+                    keywords: ['摸鱼', '偷懒', '划水'],
+                    replies: [
+                        "上班摸鱼是我的专业技能，老板查岗是我的生存挑战！",
+                        "摸鱼？我这是在为公司的电费和网费做贡献！",
+                        "你说我摸鱼？我这是在养精蓄锐，为了更好地被剥削！",
+                        "摸鱼是打工人的基本权利，就像呼吸一样自然！",
+                        "不摸鱼怎么对得起我那微薄的工资？"
+                    ]
+                },
+                {
+                    keywords: ['辞职', '离职', '跳槽', '不干了'],
+                    replies: [
+                        "想辞职？先看看银行卡余额再说！",
+                        "你说'你不干有的是人干'——那你去找别人啊！",
+                        "辞职？换个地方继续当牛马而已！",
+                        "今天又想辞职了？正常，我每天想800遍！",
+                        "辞职的念头是支撑我上班的唯一动力！"
+                    ]
+                },
+                {
+                    keywords: ['KPI', '绩效', '考核', '目标'],
+                    replies: [
+                        "KPI？就是老板画的大饼的具体数字版！",
+                        "早安打工人！今天的KPI是活着下班！",
+                        "KPI完成了有奖励吗？没有？那完不成有惩罚吗？有！",
+                        "你说KPI要挑战自我？我挑战了，结果就是加班更久了！",
+                        "KPI就像驴前面的胡萝卜，看得见吃不着！"
+                    ]
+                }
+            ],
+
+            // 通用回复，当没有匹配到关键词时使用
+            genericReplies: [
+                "啊对对对，老板画的饼真香，我都吃饱了三年了还饿着呢！",
+                "上班就像谈恋爱，明明不合适还要硬在一起，还要假装很幸福！",
+                "今天又是为公司免费加班的一天，老板说这是福报，我说是活该！",
+                "工资就像大姨妈，一个月来一次，一周就没了！",
+                "上班就像坐牢，老板是狱警，工资是放风时间！",
+                "今天又被安排了不可能完成的任务，我说好的，然后等着看奇迹！",
+                "上班就像等公交，等了很久不来，来了还挤不上！",
+                "工资就像彩票，偶尔中一次，大部分时候是空气！",
+                "上班就像过山车，刺激但是不安全，还没有保险！",
+                "工资就像青春，一去不复返！",
+                "上班就像游泳，游不动还不能上岸！",
+                "工资就像记忆，越来越模糊！",
+                "工资不涨，要求越来越高，这就是我们牛马的生活！"
+            ],
+
+            // 根据用户消息生成回复
+            generateReply(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // 查找匹配的关键词模式
+                for (const pattern of this.patterns) {
+                    if (pattern.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                        const randomIndex = Math.floor(Math.random() * pattern.replies.length);
+                        return pattern.replies[randomIndex];
+                    }
+                }
+                
+                // 如果没有匹配到特定模式，使用通用回复
+                const randomIndex = Math.floor(Math.random() * this.genericReplies.length);
+                return this.genericReplies[randomIndex];
+            }
+        };
 
         let currentPage = 'welcome';
+        let isDarkMode = false;
 
         function enterChat() {
             document.getElementById('welcomePage').style.display = 'none';
@@ -342,11 +708,20 @@
             addMessage(message, 'user');
             input.value = '';
 
+            // 显示正在输入指示器
+            showTypingIndicator();
+            
             // 延迟添加AI回复
             setTimeout(() => {
-                const randomReply = funnyReplies[Math.floor(Math.random() * funnyReplies.length)];
-                addMessage(randomReply, 'ai');
-            }, 500 + Math.random() * 1000);
+                const reply = replySystem.generateReply(message);
+                hideTypingIndicator();
+                addMessage(reply, 'ai');
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function quickReply(text) {
+            document.getElementById('messageInput').value = text;
+            sendMessage();
         }
 
         function addMessage(text, sender) {
@@ -356,20 +731,134 @@
                 return;
             }
 
+            // 隐藏正在输入指示器
+            hideTypingIndicator();
+
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}`;
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'message-avatar';
+            avatarDiv.innerHTML = sender === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
             
             const bubbleDiv = document.createElement('div');
             bubbleDiv.className = 'message-bubble';
             bubbleDiv.textContent = text;
             
-            messageDiv.appendChild(bubbleDiv);
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            
+            bubbleDiv.appendChild(timeDiv);
+            
+            if (sender === 'user') {
+                messageDiv.appendChild(bubbleDiv);
+                messageDiv.appendChild(avatarDiv);
+            } else {
+                messageDiv.appendChild(avatarDiv);
+                messageDiv.appendChild(bubbleDiv);
+            }
+            
             messagesContainer.appendChild(messageDiv);
 
             // 滚动到底部
             setTimeout(() => {
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }, 100);
+        }
+
+        function showTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.add('active');
+            
+            // 滚动到底部
+            const messagesContainer = document.getElementById('messagesContainer');
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.remove('active');
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            const chatPage = document.getElementById('chatPage');
+            const chatContainer = document.querySelector('.chat-container');
+            
+            if (isDarkMode) {
+                body.style.background = 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)';
+                chatPage.style.background = 'linear-gradient(135deg, #34495e 0%, #2c3e50 100%)';
+                chatContainer.style.background = '#2c3e50';
+                chatContainer.style.color = '#ecf0f1';
+                document.querySelector('.messages-container').style.background = '#34495e';
+                document.querySelector('.input-container').style.background = '#2c3e50';
+                document.querySelector('.input-container').style.borderTopColor = '#34495e';
+                document.querySelector('.input-field').style.background = '#34495e';
+                document.querySelector('.input-field').style.borderColor = '#34495e';
+                document.querySelector('.input-field').style.color = '#ecf0f1';
+                document.querySelectorAll('.quick-reply').forEach(btn => {
+                    btn.style.background = '#34495e';
+                    btn.style.color = '#ecf0f1';
+                });
+            } else {
+                body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                chatPage.style.background = 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)';
+                chatContainer.style.background = 'white';
+                chatContainer.style.color = '#343a40';
+                document.querySelector('.messages-container').style.background = '#f8f9fa';
+                document.querySelector('.input-container').style.background = 'white';
+                document.querySelector('.input-container').style.borderTopColor = '#eee';
+                document.querySelector('.input-field').style.background = '#fafafa';
+                document.querySelector('.input-field').style.borderColor = '#e0e0e0';
+                document.querySelector('.input-field').style.color = '#343a40';
+                document.querySelectorAll('.quick-reply').forEach(btn => {
+                    btn.style.background = '#f1f3f5';
+                    btn.style.color = '#343a40';
+                });
+            }
+        }
+
+        function clearChat() {
+            if (confirm('确定要清空聊天记录吗？')) {
+                const messagesContainer = document.getElementById('messagesContainer');
+                messagesContainer.innerHTML = `
+                    <div class="message ai">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-bubble">
+                            聊天记录已清空！有什么想吐槽的尽管说～
+                            <div class="message-time">${getCurrentTime()}</div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-bubble">
+                            牛马AI正在输入...
+                            <div class="typing-dots">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function showHelp() {
+            alert('牛马AI使用说明：\n\n1. 输入你的职场困扰或吐槽\n2. AI会以幽默方式回应\n3. 使用快捷回复快速开始对话\n4. 点击右上角按钮切换主题或清空聊天');
         }
 
         // 回车发送消息
