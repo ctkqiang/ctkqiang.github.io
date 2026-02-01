@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支持我们 | TDEISGN风格捐款页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .donation-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .payment-method {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+        
+        .method-header {
+            margin-bottom: 30px;
+        }
+        
+        .method-icon {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .wechat .method-icon {
+            color: #07c160;
+        }
+        
+        .alipay .method-icon {
+            color: #1677ff;
+        }
+        
+        .method-title {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .method-description {
+            color: #777;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        .qr-container {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .qr-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+        
+        .qr-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .qr-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            background-color: #f5f5f5;
+        }
+        
+        .qr-placeholder i {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+        
+        .qr-instruction {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .steps {
+            margin-top: 25px;
+            text-align: left;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .step-text {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            width: 100%;
+            max-width: 800px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .thank-you {
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        /* TDEISGN风格强调 */
+        .tdesign-accent {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tdesign-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #07c160;
+            opacity: 0.3;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .donation-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-method {
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .payment-method {
+                padding: 30px 20px;
+            }
+            
+            .qr-image {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .payment-method {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .wechat {
+            animation-delay: 0.1s;
+        }
+        
+        .alipay {
+            animation-delay: 0.2s;
+        }
+        
+        /* 极简按钮样式 */
+        .copy-btn {
+            background: transparent;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 18px;
+            color: #666;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #f8f8f8;
+            border-color: #ccc;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>支持<span class="tdesign-accent">我项目</span></h1>
+            <p class="subtitle">我致力于提供优质服务，您的支持将帮助我持续发展。感谢您的慷慨捐助。</p>
+        </header>
+        
+        <div class="donation-section">
+            <div class="payment-method wechat">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <h2 class="method-title">微信支付</h2>
+                    <p class="method-description">使用微信扫描二维码完成支付</p>
+                </div>
+                
+                <div class="qr-container">
+                    <div class="qr-image">
+                        <!-- 将您的微信支付二维码图片放在这里 -->
+                        <!-- 将src="wechat.png"替换为您的图片路径 -->
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <img src="../assets/wx.png" alt="微信支付二维码">
+                            <p style="font-size: 0.8rem; margin-top: 8px;">请替换为您的微信二维码</p>
+                        </div>
+                        <!-- 实际使用时，请取消注释下面的img标签，并注释掉上面的qr-placeholder div -->
+                        <!-- <img src="wechat.png" alt="微信支付二维码"> -->
+                    </div>
+                    <p class="qr-instruction">打开微信，扫描上方二维码</p>
+                    
+                    <button class="copy-btn">
+                        <i class="fas fa-copy"></i> 复制微信号
+                    </button>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">打开微信，点击右上角"+"号</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">选择"扫一扫"，扫描上方二维码</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">输入金额并完成支付</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-method alipay">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fab fa-alipay"></i>
+                    </div>
+                    <h2 class="method-title">支付宝</h2>
+                    <p class="method-description">使用支付宝扫描二维码完成支付</p>
+                </div>
+                
+                <div class="qr-container">
+                    <div class="qr-image">
+                        <!-- 将您的支付宝二维码图片放在这里 -->
+                        <!-- 将src="alipay.png"替换为您的图片路径 -->
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <img src="../assets/zfb.png" alt="支付宝二维码">
+                            <p style="font-size: 0.8rem; margin-top: 8px;">请替换为您的支付宝二维码</p>
+                        </div>
+                        <!-- 实际使用时，请取消注释下面的img标签，并注释掉上面的qr-placeholder div -->
+                        <!-- <img src="alipay.png" alt="支付宝二维码"> -->
+                    </div>
+                    <p class="qr-instruction">打开支付宝，扫描上方二维码</p>
+                    
+                    <button class="copy-btn">
+                        <i class="fas fa-copy"></i> 复制支付宝账号
+                    </button>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">打开支付宝，点击"扫一扫"</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">扫描上方二维码</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">确认金额并完成支付</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>如有任何问题，请联系我: johnmelodymel@qq.com </p>
+            <p class="thank-you">感谢您的支持与信任</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #aaa;">© 2026 钟智强保留所有权利</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 复制按钮点击效果
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const method = this.closest('.payment-method').classList.contains('wechat') ? '微信' : '支付宝';
+                    const originalText = this.innerHTML;
+                    
+                    // 临时更改按钮文本
+                    this.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                    this.style.color = '#07c160';
+                    this.style.borderColor = '#07c160';
+                    
+                    // 3秒后恢复原状
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.color = '';
+                        this.style.borderColor = '';
+                    }, 3000);
+                    
+                    // 在实际使用中，这里可以添加实际的复制功能
+                    // 例如：navigator.clipboard.writeText('您的账号信息');
+                    
+                    // 提示用户
+                    alert(`已复制${method}账号到剪贴板`);
+                });
+            });
+            
+            // 为支付方式卡片添加点击效果
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // 移除所有卡片的激活状态
+                    paymentMethods.forEach(m => m.style.border = '');
+                    
+                    // 为当前点击的卡片添加边框
+                    this.style.border = '1px solid #07c160';
+                    
+                    // 3秒后移除边框
+                    setTimeout(() => {
+                        this.style.border = '';
+                    }, 3000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
