@@ -141,48 +141,77 @@
 
         /* App-like Header */
         .app-header {
-            height: var(--nav-height);
+            min-height: var(--nav-height);
+            height: auto;
             padding: 0 var(--container-padding);
             padding-left: calc(var(--container-padding) + env(safe-area-inset-left, 0px));
             padding-right: calc(var(--container-padding) + env(safe-area-inset-right, 0px));
+            padding-top: env(safe-area-inset-top, 0px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            width: 100%;
+            width: 100%; /* Back to 100% for better compatibility */
             top: 0;
+            left: 0;
+            right: 0; /* Ensure it stretches fully */
             background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background-color: var(--bg-card); /* Fallback */
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             box-shadow: 0 1px 10px var(--shadow-color);
             z-index: 1000;
             box-sizing: border-box;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        [theme-mode='dark'] .app-header {
-            background: rgba(30, 30, 30, 0.8);
+        .header-logo-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
-        .app-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--border-color);
+        .header-logo-img {
+            height: 32px;
+            width: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .header-title-text {
+            font-weight: 700;
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2vw, 16px);
         }
 
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: transparent;
+            background: var(--bg-light);
             border: none;
             color: var(--text-primary);
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            padding: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: none; /* Controlled by media query */
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu-btn:active {
+            transform: scale(0.9);
+            background: var(--border-color);
         }
 
         /* Mobile Navigation Overlay */
@@ -197,9 +226,13 @@
             display: flex;
             flex-direction: column;
             padding: 24px;
+            padding-top: calc(24px + env(safe-area-inset-top, 0px));
+            padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+            padding-left: calc(24px + env(safe-area-inset-left, 0px));
+            padding-right: calc(24px + env(safe-area-inset-right, 0px));
             box-sizing: border-box;
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .mobile-nav-overlay.active {
@@ -210,20 +243,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .mobile-nav-links {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
         }
 
         .mobile-nav-link {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
+            padding: 16px 20px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-nav-link::after {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 14px;
+            opacity: 0.3;
+        }
+
+        .mobile-nav-link:active {
+            background: var(--border-color);
+            transform: scale(0.98);
         }
 
         /* Hero Section */
@@ -381,9 +434,8 @@
             box-shadow: 0 12px 24px rgba(0, 82, 217, 0.4);
         }
 
-        /* Features Masonry */
         .news-section {
-            padding: 100px 10%;
+            padding: var(--section-padding) var(--container-padding);
             background: var(--bg-card);
         }
 
@@ -464,22 +516,26 @@
 
         /* Privacy Badges Section */
         .privacy-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: clamp(12px, 3vw, 24px);
+            margin-top: 40px;
             padding: 24px;
             background: rgba(0, 82, 217, 0.05);
             border-radius: 16px;
+            width: 100%;
+            max-width: 800px;
         }
 
         .privacy-item {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             font-weight: 600;
             color: var(--brand-color);
+            font-size: clamp(12px, 2vw, 14px);
+            white-space: nowrap;
         }
 
         /* Carousel Styles */
@@ -503,41 +559,39 @@
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Xiaomi Phone Frame Mockup */
+        /* Xiaomi Phone Frame Mockup - Fluid Scaling */
         .phone-mockup {
-            width: 320px;
-            height: 650px;
+            width: clamp(180px, 60vw, 320px);
+            aspect-ratio: 9 / 18.5; /* Typical phone aspect ratio */
+            height: auto;
             background: #000;
-            border-radius: 40px;
-            padding: 12px;
+            border-radius: clamp(24px, 5vw, 40px);
+            padding: clamp(6px, 1.5vw, 12px);
             position: relative;
             box-shadow: 0 50px 100px -20px rgba(0,0,0,0.3);
-            border: 4px solid #333;
-            margin-bottom: 40px;
+            border: clamp(2px, 0.5vw, 4px) solid #333;
+            margin-bottom: 24px;
             transition: box-shadow 0.3s ease;
-        }
-
-        [theme-mode='dark'] .phone-mockup {
-            border-color: #444;
-            box-shadow: 0 0 40px rgba(0, 82, 217, 0.2);
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .phone-screen {
             width: 100%;
             height: 100%;
             background: #fff;
-            border-radius: 32px;
+            border-radius: clamp(18px, 4vw, 32px);
             overflow: hidden;
             position: relative;
         }
 
         .phone-camera {
             position: absolute;
-            top: 15px;
+            top: clamp(8px, 2vw, 15px);
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
+            width: clamp(6px, 1.5vw, 12px);
+            height: clamp(6px, 1.5vw, 12px);
             background: #1a1a1a;
             border-radius: 50%;
             z-index: 10;
@@ -552,7 +606,7 @@
 
         .carousel-slide {
             flex: 0 0 100%;
-            padding: 60px 20px;
+            padding: clamp(20px, 5vw, 60px) var(--container-padding);
             box-sizing: border-box;
             text-align: center;
             display: flex;
@@ -628,7 +682,7 @@
 
         /* Features Section */
         .features {
-            padding: 120px 10%;
+            padding: var(--section-padding) var(--container-padding);
             background: var(--bg-light);
         }
 
@@ -689,19 +743,26 @@
             background: #003dab;
         }
 
-        /* Responsive Media Queries - Corrected Order */
+        /* Responsive Media Queries - Universal Fluid Approach */
          @media (max-width: 768px) {
-             .app-header {
-                 padding-left: 5%;
-                 padding-right: 5%;
-                 padding-left: calc(5% + env(safe-area-inset-left, 0px));
-                 padding-right: calc(5% + env(safe-area-inset-right, 0px));
-             }
-             .app-header #nav-actions .nz-btn-primary {
-                 display: none;
+             .header-actions .nz-btn-primary {
+                 display: none !important;
              }
              .mobile-menu-btn {
-                 display: block;
+                 display: flex !important; /* Use flex for centering icons */
+             }
+             .header-title-text {
+                 font-size: 16px;
+             }
+             .header-actions {
+                 gap: 8px;
+             }
+             .header-logo-section {
+                 gap: 6px;
+             }
+             .header-logo-img {
+                 height: 28px;
+                 width: 28px;
              }
              .mobile-nav-overlay {
                  padding: 24px;
@@ -710,93 +771,31 @@
                  padding-left: calc(24px + env(safe-area-inset-left, 0px));
                  padding-right: calc(24px + env(safe-area-inset-right, 0px));
              }
-             .hero {
-                 padding: 100px 5% 40px;
-                 padding-top: calc(100px + env(safe-area-inset-top, 0px));
-             }
-             .hero-title {
-                 font-size: 28px !important;
-                 line-height: 1.2;
-                 padding: 0 16px;
-             }
-             .hero-subtitle {
-                 font-size: 15px !important;
-                 margin-bottom: 32px;
-                 padding: 0 20px;
-                 line-height: 1.6;
-             }
              .download-btn-android {
-                 height: 54px;
+                 width: 100%;
+                 max-width: 300px;
                  padding: 0 24px;
-                 font-size: 16px;
-                 width: 85%;
-                 max-width: 280px;
-             }
-             .privacy-bar {
-                 gap: 12px;
-                 padding: 16px;
-                 margin-top: 24px;
-                 width: 90%;
-                 margin-left: auto;
-                 margin-right: auto;
-             }
-             .privacy-item {
-                 font-size: 12px;
-                 flex: 1 1 40%;
-                 justify-content: center;
-             }
-             .carousel-slide {
-                 padding: 20px 10px;
-             }
-             .carousel-slide h3 {
-                 font-size: 18px !important;
-                 margin-top: 0;
-             }
-             .carousel-slide p {
-                 font-size: 13px;
-                 margin-bottom: 16px;
-             }
-             .phone-mockup {
-                 width: 220px;
-                 height: 450px;
-                 margin-bottom: 16px;
              }
              .carousel-btn {
-                 width: 32px;
-                 height: 32px;
-                 font-size: 12px;
+                 width: 36px;
+                 height: 36px;
+                 font-size: 14px;
              }
              .carousel-btn.prev { left: 10px; }
              .carousel-btn.next { right: 10px; }
-             .news-section, .features {
-                 padding: 40px 20px;
-             }
+             
              .news-masonry {
                  column-count: 1;
                  column-gap: 0;
              }
+             
              .back-to-top {
                  right: 16px;
-                 bottom: 20px;
                  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
              }
              .theme-toggle {
                  right: 16px;
-                 bottom: 80px;
                  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-             }
-         }
-
-         @media (max-width: 414px) {
-             .hero-title {
-                 font-size: 24px !important;
-             }
-             .phone-mockup {
-                 width: 190px;
-                 height: 390px;
-             }
-             .privacy-item {
-                 flex: 1 1 100%;
              }
          }
     </style>
@@ -806,11 +805,11 @@
     <div id="app">
         <!-- Header / Nav -->
         <header class="app-header">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" style="height: 32px; border-radius: 6px;">
-                <span style="font-weight: 700; font-size: 20px; color: var(--text-primary);">哪吒网络安全</span>
+            <div class="header-logo-section">
+                <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" class="header-logo-img">
+                <span class="header-title-text">哪吒网络安全</span>
             </div>
-            <div id="nav-actions" style="display: flex; align-items: center; gap: 12px;">
+            <div class="header-actions">
                 <button class="nz-btn nz-btn-text nz-btn-circle" @click="toggleTheme" :aria-label="isDarkMode ? '切换到浅色模式' : '切换到深色模式'">
                     <i :class="['fa-solid', isDarkMode ? 'fa-sun' : 'fa-moon']"></i>
                 </button>
@@ -826,9 +825,9 @@
         <!-- Mobile Nav Overlay -->
         <div :class="['mobile-nav-overlay', { active: isMobileMenuOpen }]">
             <div class="mobile-nav-header">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" style="height: 32px; border-radius: 6px;">
-                    <span style="font-weight: 700; font-size: 20px;">哪吒网络安全</span>
+                <div class="header-logo-section">
+                    <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" class="header-logo-img">
+                    <span class="header-title-text">哪吒网络安全</span>
                 </div>
                 <button class="nz-btn nz-btn-text nz-btn-circle" @click="isMobileMenuOpen = false" aria-label="关闭菜单">
                     <i class="fa-solid fa-xmark"></i>
@@ -838,9 +837,9 @@
                 <a href="#" class="mobile-nav-link" @click="isMobileMenuOpen = false">首页</a>
                 <a href="#download" class="mobile-nav-link" @click="isMobileMenuOpen = false">下载应用</a>
                 <a href="https://github.com/ctkqiang" target="_blank" class="mobile-nav-link">开源社区</a>
-                <div style="margin-top: 40px;">
-                    <button class="nz-btn nz-btn-primary" style="width: 100%; height: 48px;" @click="scrollToDownloadMobile">
-                        获取 Android 安装包
+                <div style="margin-top: 32px;">
+                    <button class="nz-btn nz-btn-primary" style="width: 100%; height: 56px; border-radius: 16px; font-size: 16px;" @click="scrollToDownloadMobile">
+                        <i class="fa-brands fa-android"></i> 获取 Android 安装包
                     </button>
                 </div>
             </div>
