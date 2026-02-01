@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>哪吒网络安全 - 守护您的移动数字边境</title>
+    <meta name="description" content="哪吒网络安全是一款基于 C++ 20 核心引擎与 Dart FFI 技术构建的高性能 Android 安全防护工具。提供毫秒级系统监控、隐私权限分析及 WiFi/蓝牙安全检测。">
+    <meta name="keywords" content="哪吒网络安全, Android安全, C++, Dart FFI, 系统监控, 隐私保护, 开源安全工具">
+    <meta name="author" content="钟智强 (ctkqiang)">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ctkqiang.github.io/pages/nezha_wanluoanquan.html">
+    <meta property="og:title" content="哪吒网络安全 - 守护您的移动数字边境">
+    <meta property="og:description" content="极简、纯粹、高性能的 Android 安全看板。基于 C++ 20 核心，让设备回归本质。">
+    <meta property="og:image" content="../assets/nezhawangluanquan/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ctkqiang.github.io/pages/nezha_wanluoanquan.html">
+    <meta property="twitter:title" content="哪吒网络安全 - 守护您的移动数字边境">
+    <meta property="twitter:description" content="极简、纯粹、高性能的 Android 安全看板。基于 C++ 20 核心，让设备回归本质。">
+    <meta property="twitter:image" content="../assets/nezhawangluanquan/logo.png">
+
+    <!-- Preconnect to CDNs -->
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-color: #0052D9;
+            --text-primary: rgba(0, 0, 0, 0.9);
+            --text-secondary: rgba(0, 0, 0, 0.6);
+            --bg-light: #F3F6F9;
+            --bg-card: #ffffff;
+            --bg-body: #ffffff;
+            --nav-height: 64px;
+            --hero-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --border-color: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            /* Fluid spacing */
+            --section-padding: clamp(40px, 8vw, 100px);
+            --container-padding: clamp(16px, 5vw, 10%);
+        }
+
+        /* Dark Mode Overrides */
+        [theme-mode='dark'] {
+            --text-primary: rgba(255, 255, 255, 0.9);
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --bg-light: #121212;
+            --bg-card: #1e1e1e;
+            --bg-body: #121212;
+            --hero-gradient: linear-gradient(135deg, #1a1a1a 0%, #0d1117 100%);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s, color 0.3s;
+            width: 100%;
+        }
+
+        /* Announcement Animation */
+        .notice-content-wrapper {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .notice-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee-scroll 25s linear infinite;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        .notice-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            right: 24px;
+            bottom: 80px;
+            width: 48px;
+            height: 48px;
+            background: var(--brand-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 82, 217, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 82, 217, 0.4);
+        }
+
+        /* App-like Header */
+        .app-header {
+            height: var(--nav-height);
+            padding: 0 var(--container-padding);
+            padding-left: calc(var(--container-padding) + env(safe-area-inset-left, 0px));
+            padding-right: calc(var(--container-padding) + env(safe-area-inset-right, 0px));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 10px var(--shadow-color);
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        [theme-mode='dark'] .app-header {
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        .app-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            box-sizing: border-box;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-nav-overlay.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-nav-link {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: calc(var(--nav-height) + 60px) var(--container-padding) var(--section-padding);
+            padding-top: calc(var(--nav-height) + 60px + env(safe-area-inset-top, 0px));
+            background: var(--hero-gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 82, 217, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(50px);
+            animation: blob-float 20s infinite alternate;
+        }
+
+        .hero-blob-1 { top: -100px; left: -100px; }
+        .hero-blob-2 { bottom: -100px; right: -100px; animation-delay: -10s; }
+
+        @keyframes blob-float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 82, 217, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: clamp(24px, 6vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(14px, 2.5vw, 20px);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        /* Common Components Replacement */
+        .nz-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .nz-btn-primary {
+            background-color: var(--brand-color);
+            color: #fff;
+        }
+
+        .nz-btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .nz-btn-text {
+            background: transparent;
+            color: var(--brand-color);
+        }
+
+        .nz-btn-circle {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        .nz-notice-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 8px;
+            color: rgba(0,0,0,0.85);
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        [theme-mode='dark'] .nz-notice-bar {
+            background: #2b2111;
+            border-color: #594214;
+            color: #d89614;
+        }
+
+        .nz-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .nz-tag-success { background: rgba(82, 196, 26, 0.1); color: #52c41a; }
+        .nz-tag-warning { background: rgba(250, 173, 20, 0.1); color: #faad14; }
+        .nz-tag-primary { background: rgba(0, 82, 217, 0.1); color: var(--brand-color); }
+        .nz-tag-danger { background: rgba(255, 77, 79, 0.1); color: #ff4d4f; }
+        .nz-tag-default { background: rgba(0, 0, 0, 0.05); color: var(--text-secondary); }
+
+        /* Android Focus Button Custom */
+        .download-btn-android {
+            background-color: var(--brand-color);
+            color: white;
+            height: 60px;
+            padding: 0 56px;
+            font-size: 18px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(0, 82, 217, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .download-btn-android:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 82, 217, 0.4);
+        }
+
+        /* Features Masonry */
+        .news-section {
+            padding: 100px 10%;
+            background: var(--bg-card);
+        }
+
+        .news-masonry {
+            column-count: 2;
+            column-gap: 32px;
+            margin-top: 48px;
+        }
+
+        @media (max-width: 992px) {
+            .news-masonry { column-count: 2; }
+            .news-section, .features { padding: 80px 5%; }
+        }
+
+        /* Synced with Flutter NewsCard.dart */
+        .news-card-mock {
+            break-inside: avoid;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 32px;
+            padding: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        /* Decorative circle from NewsCard.dart */
+        .news-card-mock::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+        }
+
+        .news-card-mock:hover {
+            transform: translateY(-8px);
+        }
+
+        .news-tag-container {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 4px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .news-title-mock {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .news-divider-mock {
+            height: 2px;
+            width: 40px;
+            border-radius: 1px;
+            margin-bottom: 16px;
+        }
+
+        .news-footer-mock {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            margin-top: auto;
+        }
+
+        /* Privacy Badges Section */
+        .privacy-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 48px;
+            padding: 24px;
+            background: rgba(0, 82, 217, 0.05);
+            border-radius: 16px;
+        }
+
+        .privacy-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--brand-color);
+        }
+
+        /* Carousel Styles */
+        .carousel-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 32px;
+            background: transparent;
+            border: none;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Xiaomi Phone Frame Mockup */
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: #000;
+            border-radius: 40px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.3);
+            border: 4px solid #333;
+            margin-bottom: 40px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        [theme-mode='dark'] .phone-mockup {
+            border-color: #444;
+            box-shadow: 0 0 40px rgba(0, 82, 217, 0.2);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-camera {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide:hover .carousel-image {
+            transform: scale(1.02);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--text-secondary);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            width: 24px;
+            opacity: 1;
+            background: var(--brand-color);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .carousel-btn:hover {
+            background: var(--brand-color);
+            color: #fff;
+        }
+
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+
+        /* Glassmorphism utility */
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        [theme-mode='dark'] .glass-effect {
+            background: rgba(30, 30, 30, 0.7);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 10%;
+            background: var(--bg-light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--brand-color);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 10% 40px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .t-tag {
+            margin: 6px;
+        }
+
+        /* Dark mode toggle button */
+        .theme-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brand-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #003dab;
+        }
+
+        /* Responsive Media Queries - Corrected Order */
+         @media (max-width: 768px) {
+             .app-header {
+                 padding-left: 5%;
+                 padding-right: 5%;
+                 padding-left: calc(5% + env(safe-area-inset-left, 0px));
+                 padding-right: calc(5% + env(safe-area-inset-right, 0px));
+             }
+             .app-header #nav-actions .nz-btn-primary {
+                 display: none;
+             }
+             .mobile-menu-btn {
+                 display: block;
+             }
+             .mobile-nav-overlay {
+                 padding: 24px;
+                 padding-top: calc(24px + env(safe-area-inset-top, 0px));
+                 padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+                 padding-left: calc(24px + env(safe-area-inset-left, 0px));
+                 padding-right: calc(24px + env(safe-area-inset-right, 0px));
+             }
+             .hero {
+                 padding: 100px 5% 40px;
+                 padding-top: calc(100px + env(safe-area-inset-top, 0px));
+             }
+             .hero-title {
+                 font-size: 28px !important;
+                 line-height: 1.2;
+                 padding: 0 16px;
+             }
+             .hero-subtitle {
+                 font-size: 15px !important;
+                 margin-bottom: 32px;
+                 padding: 0 20px;
+                 line-height: 1.6;
+             }
+             .download-btn-android {
+                 height: 54px;
+                 padding: 0 24px;
+                 font-size: 16px;
+                 width: 85%;
+                 max-width: 280px;
+             }
+             .privacy-bar {
+                 gap: 12px;
+                 padding: 16px;
+                 margin-top: 24px;
+                 width: 90%;
+                 margin-left: auto;
+                 margin-right: auto;
+             }
+             .privacy-item {
+                 font-size: 12px;
+                 flex: 1 1 40%;
+                 justify-content: center;
+             }
+             .carousel-slide {
+                 padding: 20px 10px;
+             }
+             .carousel-slide h3 {
+                 font-size: 18px !important;
+                 margin-top: 0;
+             }
+             .carousel-slide p {
+                 font-size: 13px;
+                 margin-bottom: 16px;
+             }
+             .phone-mockup {
+                 width: 220px;
+                 height: 450px;
+                 margin-bottom: 16px;
+             }
+             .carousel-btn {
+                 width: 32px;
+                 height: 32px;
+                 font-size: 12px;
+             }
+             .carousel-btn.prev { left: 10px; }
+             .carousel-btn.next { right: 10px; }
+             .news-section, .features {
+                 padding: 40px 20px;
+             }
+             .news-masonry {
+                 column-count: 1;
+                 column-gap: 0;
+             }
+             .back-to-top {
+                 right: 16px;
+                 bottom: 20px;
+                 bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+             }
+             .theme-toggle {
+                 right: 16px;
+                 bottom: 80px;
+                 bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+             }
+         }
+
+         @media (max-width: 414px) {
+             .hero-title {
+                 font-size: 24px !important;
+             }
+             .phone-mockup {
+                 width: 190px;
+                 height: 390px;
+             }
+             .privacy-item {
+                 flex: 1 1 100%;
+             }
+         }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Header / Nav -->
+        <header class="app-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" style="height: 32px; border-radius: 6px;">
+                <span style="font-weight: 700; font-size: 20px; color: var(--text-primary);">哪吒网络安全</span>
+            </div>
+            <div id="nav-actions" style="display: flex; align-items: center; gap: 12px;">
+                <button class="nz-btn nz-btn-text nz-btn-circle" @click="toggleTheme" :aria-label="isDarkMode ? '切换到浅色模式' : '切换到深色模式'">
+                    <i :class="['fa-solid', isDarkMode ? 'fa-sun' : 'fa-moon']"></i>
+                </button>
+                <button class="nz-btn nz-btn-primary" @click="scrollToDownload" aria-label="滚动到下载区域">
+                    获取 Android 版
+                </button>
+                <button class="mobile-menu-btn" @click="isMobileMenuOpen = true" aria-label="打开菜单">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Nav Overlay -->
+        <div :class="['mobile-nav-overlay', { active: isMobileMenuOpen }]">
+            <div class="mobile-nav-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="../assets/nezhawangluanquan/logo.png" alt="Logo" style="height: 32px; border-radius: 6px;">
+                    <span style="font-weight: 700; font-size: 20px;">哪吒网络安全</span>
+                </div>
+                <button class="nz-btn nz-btn-text nz-btn-circle" @click="isMobileMenuOpen = false" aria-label="关闭菜单">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="#" class="mobile-nav-link" @click="isMobileMenuOpen = false">首页</a>
+                <a href="#download" class="mobile-nav-link" @click="isMobileMenuOpen = false">下载应用</a>
+                <a href="https://github.com/ctkqiang" target="_blank" class="mobile-nav-link">开源社区</a>
+                <div style="margin-top: 40px;">
+                    <button class="nz-btn nz-btn-primary" style="width: 100%; height: 48px;" @click="scrollToDownloadMobile">
+                        获取 Android 安装包
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <h1 class="hero-title" data-aos="fade-up">更专业，更纯粹的 Android 安全</h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                基于 C++ 20 核心引擎与 Dart FFI 零开销调用技术，为您提供极致性能的系统状态看板与安全防护。
+                <br><b>为解决基础安全痛点而生，让您的设备回归纯粹。</b>
+            </p>
+            
+            <div id="download" data-aos="zoom-in" data-aos-delay="200">
+                <button class="download-btn-android">
+                    <i class="fa-brands fa-android"></i>
+                    立即获取 Android 安装包
+                </button>
+            </div>
+
+            <!-- Marketing Badges -->
+            <div class="privacy-bar" data-aos="fade-up" data-aos-delay="300">
+                <div class="privacy-item"><i class="fa-solid fa-shield-halved"></i> 无数据采集</div>
+                <div class="privacy-item"><i class="fa-solid fa-user-slash"></i> 无需注册登录</div>
+                <div class="privacy-item"><i class="fa-solid fa-chart-line"></i> 无任何埋点分析</div>
+                <div class="privacy-item"><i class="fa-solid fa-code"></i> 100% 开源透明</div>
+            </div>
+
+            <!-- Notice Bar (Real Tech Info) -->
+            <div style="max-width: 600px; margin: 40px auto 0;" data-aos="fade-up" data-aos-delay="400">
+                <div class="nz-notice-bar" role="alert">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <div class="notice-content-wrapper">
+                        <div class="notice-content">系统状态：C++ 性能引擎已就绪，正在通过 Android NDK 提供毫秒级监控支持。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Facts Section -->
+        <section class="news-section">
+            <!-- Carousel Showcase -->
+            <div class="carousel-section" style="position: relative;" data-aos="fade-up">
+                <div class="hero-blob" style="width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.5;"></div>
+                <div style="margin-bottom: 40px; position: relative; z-index: 1;">
+                    <h2 style="font-size: 32px; font-weight: 600;">应用预览</h2>
+                    <p style="color: var(--text-secondary)">极致纯粹的交互体验，掌控系统每一分毫</p>
+                </div>
+                
+                <div class="carousel-container" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+                    <button class="carousel-btn prev" @click="prevSlide" aria-label="上一张">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" @click="nextSlide" aria-label="下一张">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="carousel-wrapper" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+                        <div v-for="(slide, index) in slides" :key="index" class="carousel-slide">
+                            <div class="phone-mockup">
+                                <div class="phone-camera"></div>
+                                <div class="phone-screen">
+                                    <img :src="slide.image" :alt="slide.title" class="carousel-image" loading="lazy">
+                                </div>
+                            </div>
+                            <h3 style="font-size: 24px; margin-bottom: 12px; font-weight: 600;">{{ slide.title }}</h3>
+                            <p style="color: var(--text-secondary); max-width: 500px; line-height: 1.6;">{{ slide.description }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-dots">
+                        <div v-for="(_, index) in slides" :key="index" 
+                             :class="['dot', { active: currentSlide === index }]"
+                             @click="currentSlide = index">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 48px; margin-top: 80px;" data-aos="fade-up">
+                <h2 style="font-size: 32px; font-weight: 600;">核心技术实现</h2>
+                <p style="color: var(--text-secondary)">基于真实代码架构的技术方案</p>
+            </div>
+            
+            <div class="news-masonry">
+                <div v-for="(item, index) in techFacts" :key="index" 
+                     class="news-card-mock" 
+                     :style="{ 
+                        backgroundColor: isDarkMode ? item.darkBg : item.lightBg, 
+                        boxShadow: `0 10px 30px ${isDarkMode ? 'rgba(0,0,0,0.3)' : item.brandColor + '15'}`
+                     }"
+                     data-aos="fade-up" :data-aos-delay="index * 100">
+                    
+                    <div class="news-tag-container" :style="{ 
+                        color: isDarkMode ? '#fff' : item.brandColor,
+                        backgroundColor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.5)'
+                    }">
+                        {{ item.category }}
+                    </div>
+                    
+                    <h4 class="news-title-mock" :style="{ color: isDarkMode ? '#fff' : 'var(--text-primary)' }">
+                        {{ item.title }}
+                    </h4>
+                    
+                    <div class="news-divider-mock" :style="{ backgroundColor: isDarkMode ? 'rgba(255,255,255,0.3)' : item.brandColor + '40' }"></div>
+                    
+                    <p :style="{ 
+                        margin: 0, 
+                        fontSize: '14px', 
+                        color: isDarkMode ? 'rgba(255,255,255,0.7)' : 'var(--text-secondary)', 
+                        lineHeight: 1.6 
+                    }">
+                        {{ item.description }}
+                    </p>
+                    
+                    <div class="news-footer-mock" :style="{ color: isDarkMode ? 'rgba(255,255,255,0.5)' : 'var(--text-secondary)' }">
+                        <i class="fa-regular fa-clock" style="font-size: 14px;"></i>
+                        <span>{{ item.time || '2026-02-01' }}</span>
+                        <i class="fa-regular fa-user" style="font-size: 14px; margin-left: 8px;"></i>
+                        <span>钟智强</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div style="text-align: center; margin-bottom: 60px;" data-aos="fade-up">
+                <h2 style="font-size: 32px; font-weight: 600;">系统安全特性</h2>
+            </div>
+
+            <div class="feature-grid">
+                <div v-for="(feature, index) in features" :key="feature.title" class="feature-card" data-aos="zoom-in" :data-aos-delay="index * 50">
+                    <i :class="['fa-solid', feature.icon]" style="font-size: 32px; color: var(--brand-color); margin-bottom: 16px;"></i>
+                    <h3 style="font-size: 18px; margin-bottom: 12px; font-weight: 600;">{{ feature.title }}</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 14px;">{{ feature.description }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section style="padding: 80px 10%; text-align: center; background: var(--bg-body); border-top: 1px solid var(--border-color);">
+            <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 32px;">底层架构 · 2026 技术演进</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+                <span v-for="tag in techStack" :key="tag.name" :class="['nz-tag', 'nz-tag-' + tag.theme]">
+                    {{ tag.name }}
+                </span>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div style="font-weight: 700; font-size: 20px; color: var(--text-primary); margin-bottom: 12px;">哪吒网络安全</div>
+            <p style="margin-bottom: 8px; font-size: 14px; font-weight: 600;">守护 Android 数字边境 · 专业 · 纯粹 · 开源</p>
+            <p style="margin-bottom: 24px; font-size: 13px;">Author: 钟智强</p>
+            <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.8;">
+                © 2026 ctkqiang All rights reserved.<br>
+                Powered by TDesign & Nezha C++ Engine
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" :class="{ visible: showBackToTop }" @click="scrollToTop" aria-label="回到顶部">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- TDesign Vue Next JS & Icons -->
+    <!-- Removed TDesign JS -->
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        const { createApp, ref, onMounted, onUnmounted, computed } = Vue;
+        const app = createApp({
+            setup() {
+                const isDarkMode = ref(false);
+                const currentSlide = ref(0);
+                const showBackToTop = ref(false);
+                const isMobileMenuOpen = ref(false);
+                let autoplayTimer = null;
+                
+                const slides = ref([
+                    { 
+                        title: '极简交互，纯粹体验', 
+                        description: '延续 TDesign 视觉语言，提供直观、清爽且无广告干扰的操作界面。',
+                        image: '../assets/nezhawangluanquan/1.jpg'
+                    },
+                    { 
+                        title: '全网动态，安防头条', 
+                        description: '集成全球主流安全资讯源，实时推送最新的漏洞预警与网络威胁情报。',
+                        image: '../assets/nezhawangluanquan/2.jpg'
+                    },
+                    { 
+                        title: 'WiFi 巡检，隐患探测', 
+                        description: '深度扫描当前局域网，精准识别异常连接设备，守护您的无线网络边界。',
+                        image: '../assets/nezhawangluanquan/3.jpg'
+                    },
+                    { 
+                        title: '应用权限，深度掌控', 
+                        description: '可视化分析应用权限调用，识别潜在风险软件，让隐私泄露无处遁形。',
+                        image: '../assets/nezhawangluanquan/4.jpg'
+                    },
+                    { 
+                        title: '底层动态，实时监测', 
+                        description: '基于 NDK 驱动实现高性能 Logcat 追踪，透视系统底层运行逻辑。',
+                        image: '../assets/nezhawangluanquan/5.jpg'
+                    },
+                    { 
+                        title: '智能检测，识破伪装', 
+                        description: '内置安全 HTTP 客户端，深度检测目标网站信誉，远离网络诈骗陷阱。',
+                        image: '../assets/nezhawangluanquan/6.jpg'
+                    },
+                    { 
+                        title: '蓝牙安全，全景扫描', 
+                        description: '快速扫描周边蓝牙设备及信标，检测非授权连接，加固个人数字屏障。',
+                        image: '../assets/nezhawangluanquan/7.jpg'
+                    }
+                ]);
+
+                const startAutoplay = () => {
+                    stopAutoplay();
+                    autoplayTimer = setInterval(() => {
+                        nextSlide();
+                    }, 5000);
+                };
+
+                const stopAutoplay = () => {
+                    if (autoplayTimer) clearInterval(autoplayTimer);
+                };
+
+                const nextSlide = () => {
+                    currentSlide.value = (currentSlide.value + 1) % slides.value.length;
+                };
+
+                const prevSlide = () => {
+                    currentSlide.value = (currentSlide.value - 1 + slides.value.length) % slides.value.length;
+                };
+
+                const techFacts = ref([
+                    { 
+                        title: '毫秒级系统性能看板', 
+                        category: '性能监控', 
+                        description: '集成 C++ 编写的性能采集模块，通过 /proc 文件系统实时获取 CPU、内存及 FPS 数据。',
+                        brandColor: '#1976D2',
+                        lightBg: '#E3F2FD',
+                        darkBg: '#0D47A1'
+                    },
+                    { 
+                        title: 'Dart FFI 零开销通信', 
+                        category: '底层桥接', 
+                        description: '放弃传统的 MethodChannel，采用 FFI 直接调用 C++ 动态链接库，极大降低数据传递延迟。',
+                        brandColor: '#7B1FA2',
+                        lightBg: '#F3E5F5',
+                        darkBg: '#4A148C'
+                    },
+                    { 
+                        title: '一键深度内存清理', 
+                        category: '系统优化', 
+                        description: '通过 Android 系统服务层清理冗余后台进程，释放系统资源，提升设备运行流畅度。',
+                        brandColor: '#388E3C',
+                        lightBg: '#E8F5E9',
+                        darkBg: '#1B5E20'
+                    },
+                    { 
+                        title: 'TDesign 移动端视觉体系', 
+                        category: '交互设计', 
+                        description: '基于腾讯开源视觉规范，提供符合工业标准的 Material 设计体验，简洁且专业。',
+                        brandColor: '#F57C00',
+                        lightBg: '#FFF3E0',
+                        darkBg: '#E65100'
+                    }
+                ]);
+
+                const features = ref([
+                    { title: '实时性能趋势', icon: 'fa-gauge-high', description: '可视化展示 system 资源占用，支持自定义刷新频率。' },
+                    { title: '底层安全引擎', icon: 'fa-shield-halved', description: 'C++ 20 核心逻辑，确保安全检测的高效与低功耗。' },
+                    { title: '安全资讯流', icon: 'fa-list-check', description: '集成多源安全资讯，实时同步全球网络安全态势。' },
+                    { title: '一键加速优化', icon: 'fa-bolt', description: '智能化清理系统垃圾，快速提升设备响应速度。' }
+                ]);
+
+                const techStack = ref([
+                    { name: 'Android NDK', theme: 'success' },
+                    { name: 'C++ 20', theme: 'warning' },
+                    { name: 'Flutter 3.31', theme: 'primary' },
+                    { name: 'Dart FFI', theme: 'danger' },
+                    { name: 'SQLite FFI', theme: 'default' }
+                ]);
+
+                const toggleTheme = () => {
+                    isDarkMode.value = !isDarkMode.value;
+                    const theme = isDarkMode.value ? 'dark' : 'light';
+                    document.documentElement.setAttribute('theme-mode', theme);
+                    localStorage.setItem('nz-theme', theme);
+                };
+
+                const scrollToDownload = () => {
+                    const el = document.getElementById('download');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                };
+
+                const scrollToDownloadMobile = () => {
+                    isMobileMenuOpen.value = false;
+                    setTimeout(() => {
+                        scrollToDownload();
+                    }, 300);
+                };
+
+                const scrollToTop = () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+
+                const handleScroll = () => {
+                    showBackToTop.value = window.scrollY > 300;
+                };
+
+                onMounted(() => {
+                    // Init AOS
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-in-out',
+                        once: true
+                    });
+
+                    // Check saved preference or system preference
+                    const savedTheme = localStorage.getItem('nz-theme');
+                    const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    
+                    if (savedTheme) {
+                        isDarkMode.value = savedTheme === 'dark';
+                    } else {
+                        isDarkMode.value = systemDarkMode;
+                    }
+                    
+                    document.documentElement.setAttribute('theme-mode', isDarkMode.value ? 'dark' : 'light');
+
+                    // Listen for system changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                        if (!localStorage.getItem('nz-theme')) {
+                            isDarkMode.value = e.matches;
+                            document.documentElement.setAttribute('theme-mode', e.matches ? 'dark' : 'light');
+                        }
+                    });
+
+                    // Scroll and Autoplay
+                    window.addEventListener('scroll', handleScroll);
+                    startAutoplay();
+                });
+
+                onUnmounted(() => {
+                    window.removeEventListener('scroll', handleScroll);
+                    stopAutoplay();
+                });
+
+                return {
+                    isDarkMode,
+                    currentSlide,
+                    showBackToTop,
+                    isMobileMenuOpen,
+                    slides,
+                    nextSlide,
+                    prevSlide,
+                    techFacts,
+                    features,
+                    techStack,
+                    toggleTheme,
+                    scrollToDownload,
+                    scrollToDownloadMobile,
+                    scrollToTop,
+                    startAutoplay,
+                    stopAutoplay
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
