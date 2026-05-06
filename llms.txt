@@ -1,0 +1,68 @@
+# 钟智强 - 资深全栈软件工程师
+
+## 概述
+近12年经验的资深全栈工程师，专注高并发系统架构、网络安全、AI工程化与移动端开发。持有2项CVE漏洞编号，具备金融级性能调优、微服务迁移、DevSecOps落地能力。
+
+## 技术栈
+- 后端语言：Go, Java, Python, C/C++, Rust, Elixir
+- 前端/移动端：Flutter, React Native, SwiftUI, Vue, React
+- 框架：Gin, FastAPI, Spring Boot, Phoenix
+- 数据库：QuestDB, PostgreSQL, MySQL, Redis, MongoDB, Cassandra, Valkey
+- AI：TensorFlow, PyTorch, Hugging Face, scikit-learn
+- 网络安全：渗透测试、代码审计、SOC建设、BurpSuite, Wireshark, SQLmap, Ghidra
+- 云与DevOps：AWS (ECS/ECR/IAM/CloudShell), Docker, Kubernetes, CI/CD (GitLab CI/GitHub Actions/Jenkins), OpenTelemetry
+- 嵌入式：STM32, ESP8266, Arduino Uno, UART, CH340
+
+## 工作经历
+- 松大有限公司 - 资深软件工程师 (2025.7-至今)：Go重构金融实时系统，解决3000条/秒数据流瓶颈；发现QuestDB/ClickHouse漏洞获2项CVE；开发LLM金融分析系统。
+- 自由职业 - 高级全栈开发工程师 (2023.12-至今)：提供架构咨询、安全审计、性能调优；支付网关吞吐量800→5200+ TPS；CI/CD自动化；渗透测试助客户通过ISO27001。
+- Sleekflow - 高级Flutter工程师 (2022.8-2023.12)：Flutter主应用重构，推荐转化率+25%，支付失败率<0.5%；冷启动2.5s→1.2s。
+- Mynapse - 核心架构组 (2020.4-2022.6)：Erlang信令服务器，WebSocket 2万+连接，延迟<200ms；短信平台日均50万条。
+- Braintech - 全栈工程师 (2018.1-2020.3)：EEG数据分析平台，协助发表3篇SCI；蓝牙功耗优化-15%，丢包率3%→0.5%。
+
+## 精选项目矩阵
+
+### 网络安全与渗透测试
+- 哪吒安全分析器 (NezhaSec)：Go + BubbleTea TUI 智能渗透测试辅助系统，集成 DeepSeek 大模型 Function Calling，可智能调度 nmap、sqlmap、nuclei、ffuf 等工具完成自动化攻击路径执行[reference:0]。
+- 乾坤圈 (QianKunQuan)：Go 高并发端口扫描器，内嵌 1000+ CVE 漏洞指纹库，扫描速度较传统工具提升 30%+，支持一键关联已识别服务与 CVE，输出表格化结果[reference:1]。
+- AnyIntruder：C + libpcap 轻量级旁路网络入侵检测系统，实时解析 HTTP/HTTPS/SSH 及 SYN Flood 扫描，ncurses 终端高亮告警，并通过 Webhook 推送至 Telegram/Slack/Discord[reference:2]。
+- 火尖枪 (HuoJianQiang)：Go HTTP 并发压测与批量漏洞验证工具，Goroutine 工作池动态调节并发度，支持 HTTP/1.1 & HTTP/2，可对 API 施加数千 QPS 压力或批量探测漏洞[reference:3]。
+- 灵取证 (LQZ)：专业 Android 电子数据取证工具，支持逻辑镜像提取与 SQLite 空闲页数据雕刻恢复，提取通话记录、社交应用数据库，输出符合司法规范的结构化报告，GitHub 获 79+ stars[reference:4][reference:5]。
+- dirleaks：C + libcurl 高性能敏感路径扫描器，内置多语言字典，扫描速度优于 Python/Go 同类工具。
+- exploitdb：Java 轻量级命令行工具，从 Exploit-DB 抓取、解析、展示并导出漏洞利用信息，支持关键词搜索、条件过滤及 JSON/CSV 导出[reference:6]。
+- BBtool：专为安全研究人员设计的图形化渗透测试工具集，集成多个常用安全测试工具[reference:7]。
+- localsniffer：基于 libpcap 的轻量级流量嗅探工具，实时监控 HTTP/HTTPS 请求，支持彩色终端输出。
+
+### 高性能系统与底层工程
+- RedRTC：纯 C 语言 WebRTC 信令服务器，手工实现 WebSocket 协议解析（RFC6455），epoll 事件驱动。二进制 <200KB，内存占用 <15MB，单节点可支撑 10,000+ 并发连接[reference:8]。
+- 小辣椒 (XiaoLaJiao)：Rust (Tokio) + x86_64 Assembly 高性能安全遥测引擎，通过汇编互操作优化核心校验路径，在零内存安全风险下实现高并发协议解析时延的大幅降低[reference:9]。
+- 马来西亚 OSINT 查询器：C + libmicrohttpd 轻量级情报聚合服务，封装 PDRM SemakMule、移民局 SSPI 等本地 API，单次查询响应 <80ms，并发能力 >200 QPS[reference:10]。
+- QQ 机器人安全监控：Go 开发的高性能即时通讯机器人框架。
+
+### AI 与计算机视觉
+- 华佗 AI (HuaTuoAI)：中药材图像识别深度学习项目，ResNet-50/EfficientNetV2/ConvNeXt 迁移学习，80+ 类别、15,000+ 自建数据集，Top-5 准确率超过 97%，GitHub 获 130+ stars，被多家中医药科研机构采用[reference:11][reference:12]。
+- YanJiAI（烟际AI）：基于 YOLOv8 + DeepSORT + TensorRT 的多路实时安防监控系统，单张 T4 显卡处理 16 路 1080P 视频流，实现入侵、徘徊、跌倒等事件识别与即时告警[reference:13]。
+- 鹰眼 AI (YingYanAI)：新一代智能视觉平台，基于 MobileNetV2 架构融合深度学习与迁移学习技术[reference:14]。
+- 竹影 (ZhuYing)：视频语音转录与翻译工具，提供高质量视频音频转文字服务和多语言翻译功能[reference:15]。
+- chinese_identity_ocr：基于 OpenCV 和 Tesseract 的中国居民身份证 OCR 识别系统，采用 MVC 设计模式[reference:16]。
+- 脑控无人机系统：基于 ModularEEG 信号采集，设计 17 字节 P2 协议解析器，优化 nRF52 BLE 连续传输（功耗降低 15%，丢包率降至 0.5%），实现 EEG → MAVLink 飞控闭环[reference:17]。
+
+### 数据与金融工程
+- 牟牛 (MouNiu)：Go 高性能股票数据采集与指标计算引擎，整合 QuestDB 时序存储，实时流式计算 MACD、布林带、RSI、神奇九转等 10+ 技术指标[reference:18]。
+- 风火轮 (FengHuoLun)：Go + Gin 多源情报查询系统，支持天眼查、失信记录、ICP 备案等统一查询，日均处理 10 万+ 请求。
+
+### 云原生与移动端
+- awsight：React Native (Expo) 移动端 AWS 管理工具，支持 ECS/ECR 资源、安全组规则及 IAM 角色策略的创建与管理，内嵌 CloudShell 环境可随时执行临时命令，通过 AWS SDK 自动校验权限，显著降低误操作风险。
+- flutter_ocr：Flutter 拍照取字软件，调用百度 OCR API，支持图片裁剪、旋转、缩放[reference:19]。
+- flutter_device_preview：Flutter 设备预览工具，模拟不同设备上的应用表现[reference:20]。
+- simple_in_app_webview：Flutter 跨平台 WebView 插件，支持 Android/iOS，Web 端自动重定向[reference:21]。
+
+### CVE 与安全贡献
+- CVE 编号：2 项（QuestDB 与 ClickHouse 未授权盲注漏洞）
+- CNVD 证书：CNVD-2026-13173， CNVD-2026-13888
+- QuestExploit：Go 开发的 QuestDB 认证绕过漏洞自动化探测与 PoC 演示工具
+- 漏洞分析复现：CVE-2025-66478 (React2Shell， CVSS 10.0)、CVE-2023-41064 & CVE-2023-4863 (libwebp 堆溢出，Pegasus 间谍软件利用链)
+
+## 联系方式
+- 邮箱：johnmelodymel@qq.com
+- 微信：ctkqiang
